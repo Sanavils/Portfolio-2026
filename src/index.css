@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-violet: #EEB8F9;
+  --color-bg-light: #FAFAF7;
+  --color-charcoal: #111111;
+  --color-charcoal-light: #000000;
+  --color-charcoal-muted: #666666;
+  --color-border-light: rgba(0, 0, 0, 0.12);
+
+  --font-syne: "Syne", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  --animate-marquee-slow: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-bg-light text-charcoal font-inter antialiased overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-syne font-bold tracking-tight text-charcoal-light;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFAF7;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #EEB8F9;
+}
+
+/* Custom typography and utility classes */
+.text-stroke {
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+}
+
+.text-stroke-hover:hover {
+  -webkit-text-stroke: 1px transparent;
+  color: currentColor;
+}
+
+/* Hide scrollbar helper */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom cursor configurations */
+@media (min-width: 1024px) {
+  .custom-cursor-active {
+    cursor: none;
+  }
+  .custom-cursor-active a,
+  .custom-cursor-active button,
+  .custom-cursor-active [role="button"],
+  .custom-cursor-active .interactive-hover {
+    cursor: none;
+  }
+}
+
+/* Mask text reveal helper for sliding typography from below */
+.text-reveal-mask {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
