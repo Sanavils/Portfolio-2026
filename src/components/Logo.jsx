@@ -1,9 +1,12 @@
 import React from 'react';
 
 export default function Logo({ className = '', height = 40, showText = true }) {
+  // Dynamically adjust viewBox to crop empty margins when rendering monogram only
+  const viewBox = showText ? "0 0 110 100" : "15 10 60 80";
+
   return (
     <svg
-      viewBox="0 0 100 100"
+      viewBox={viewBox}
       height={height}
       className={`inline-block select-none ${className}`}
       fill="currentColor"
@@ -18,16 +21,16 @@ export default function Logo({ className = '', height = 40, showText = true }) {
       {/* Bottom-left L-shape and horizontal crossbar */}
       <path d="M 17 58.5 H 58 V 71.5 H 31 V 85 H 17 Z" />
       
-      {/* Vertically rotated name label reading bottom-to-top */}
+      {/* Vertically rotated name label with expanded spacing to prevent overlaps */}
       {showText && (
         <text
-          x="74"
+          x="84"
           y="85"
-          transform="rotate(-90 74 85)"
+          transform="rotate(-90 84 85)"
           fontFamily="'Inter', 'Neue Montreal', 'Satoshi', sans-serif"
           fontWeight="900"
-          fontSize="9"
-          letterSpacing="0.4"
+          fontSize="9.5"
+          letterSpacing="0.6"
         >
           HASSEN ARKAB
         </text>

@@ -41,6 +41,38 @@ export default function ProjectPage() {
 
   // Render giant visual mockup cover
   const renderGiantPlaceholder = (proj) => {
+    if (proj.slug === 'groupe-adp') {
+      return (
+        <div className="w-full aspect-[21/9] min-h-[300px] md:min-h-[450px] relative border-y border-border-light overflow-hidden bg-[#0A2A5C] flex items-center justify-center p-8 md:p-12">
+          {/* Centered logo with premium fade-in and scale animation */}
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            src="/assets/projects/groupe-adp/adp-logo.png" 
+            alt="Groupe ADP Logo" 
+            className="relative z-10"
+            style={{
+              width: 'clamp(180px, 22vw, 360px)',
+              height: 'auto',
+              maxHeight: '70%',
+              objectFit: 'contain'
+            }}
+          />
+          
+          <div className="absolute top-8 left-8 flex justify-between items-baseline w-[calc(100%-4rem)] pointer-events-none text-white/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-10">
+            <span>CASE STUDY // CORPORATE REDESIGN</span>
+            <span className="font-bold">ID: {proj.id}</span>
+          </div>
+          
+          <div className="absolute bottom-8 left-8 flex justify-between items-baseline w-[calc(100%-4rem)] pointer-events-none text-white/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-10">
+            <span>{proj.visual.label}</span>
+            <span>{proj.year}</span>
+          </div>
+        </div>
+      );
+    }
+
     const { bgColor, textColor, type, label } = proj.visual;
     return (
       <div className={`w-full aspect-[21/9] min-h-[300px] md:min-h-[450px] relative border-y border-border-light overflow-hidden ${bgColor} flex flex-col justify-between p-8 md:p-12`}>
@@ -81,16 +113,16 @@ export default function ProjectPage() {
 
         <div className="flex justify-between items-baseline z-10">
           <span className="font-mono text-[10px] uppercase tracking-widest text-violet-dark opacity-60">CASE STUDY // GRAPHIC SYSTEM</span>
-          <span className="font-mono text-[10px] uppercase tracking-widest font-bold">ID: {project.id}</span>
+          <span className="font-mono text-[10px] uppercase tracking-widest font-bold">ID: {proj.id}</span>
         </div>
 
         <h2 className="font-syne font-black text-6xl sm:text-8xl md:text-[10vw] text-center select-none z-10 tracking-tighter uppercase leading-none" style={{ color: type.includes('light') || type === 'editorial-block' ? '#111111' : '#EEB8F9' }}>
-          {project.slug.replace('-', ' ')}
+          {proj.slug.replace('-', ' ')}
         </h2>
 
         <div className="flex justify-between items-baseline z-10 font-mono text-[10px] uppercase tracking-widest opacity-60">
           <span>{label}</span>
-          <span>{project.year}</span>
+          <span>{proj.year}</span>
         </div>
       </div>
     );
@@ -226,16 +258,165 @@ export default function ProjectPage() {
           </div>
         </div>
 
-        {/* Gallery / Interactive details placeholders */}
+        {/* Gallery / Interactive details showcase */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="aspect-[16/10] bg-charcoal/5 border border-border-light flex items-center justify-center p-8 select-none">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted">Visual Spec // layout A</span>
+          {project.slug === 'groupe-adp' ? (
+            <div className="space-y-16">
+              {/* B. Grand visuel principal inside a mockup browser window */}
+              <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm">
+                {/* Browser top bar */}
+                <div className="bg-charcoal/5 border-b border-border-light px-4 py-3 flex items-center gap-3">
+                  <div className="flex gap-1.5">
+                    <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                    <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                    <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                  </div>
+                  <div className="flex-1 max-w-md mx-auto bg-bg-light border border-border-light/60 rounded px-3 py-1 text-center font-mono text-[10px] text-charcoal-muted select-all">
+                    groupeadp.fr
+                  </div>
+                </div>
+                {/* Content: Mockup showing the real ADP Logo, contained without distortion or pixelation */}
+                <div className="bg-[#0A2A5C] p-12 md:p-24 flex justify-center items-center">
+                  <img 
+                    src="/assets/projects/groupe-adp/adp-logo.png" 
+                    alt="Groupe ADP Logo" 
+                    className="w-full h-auto max-w-xl object-contain shadow-sm rounded"
+                  />
+                </div>
+                <div className="p-4 border-t border-border-light bg-charcoal/[0.01]">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-charcoal-muted block mb-1">
+                    {language === 'fr' ? 'IDENTITÉ GROUPE ADP' : 'GROUPE ADP IDENTITY'}
+                  </span>
+                  <span className="font-syne font-bold text-sm text-charcoal">
+                    {language === 'fr' ? 'Charte graphique et logo officiel' : 'Official brand identity guidelines'}
+                  </span>
+                </div>
+              </div>
+
+              {/* C. Section Parcours complets & Pages Intranet */}
+              <div className="space-y-8 pt-6">
+                <div>
+                  <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
+                    / {language === 'fr' ? 'Interfaces et pages du portail Intranet' : 'Intranet portal pages & interfaces'}
+                  </h3>
+                  <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-2xl">
+                    {language === 'fr' 
+                      ? 'Explorez les différentes maquettes longues issues du portail. Faites défiler verticalement chaque écran pour analyser la structure de la grille, le traitement typographique et l\'organisation des contenus sans aucune déformation.'
+                      : 'Explore the different long-form mockups from the intranet portal. Scroll vertically within each screen to inspect the grid structure, typography, and content layout without distortion.'}
+                  </p>
+                </div>
+
+                {/* Horizontal scroll / Flex container for multiple mobile viewports */}
+                <div className="flex flex-wrap gap-8 justify-center items-start">
+                  
+                  {/* Screen 1: Brand Studio */}
+                  <div className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px] border border-border-light rounded-lg overflow-hidden bg-bg-light flex flex-col shadow-sm">
+                    <div className="bg-charcoal/5 border-b border-border-light px-3 py-2 flex items-center justify-between">
+                      <span className="font-mono text-[8px] text-charcoal-muted">brandstudio.adp</span>
+                      <div className="flex gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                      </div>
+                    </div>
+                    <div className="bg-charcoal/[0.02] h-[450px] overflow-y-auto p-4 flex justify-center scrollbar-thin">
+                      <img 
+                        src="/assets/projects/groupe-adp/adp-brandstudio-full.png" 
+                        alt="Brand Studio Page" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="p-3 border-t border-border-light bg-charcoal/[0.01]">
+                      <span className="font-mono text-[8px] uppercase tracking-widest text-violet font-bold block mb-0.5">01 / BRAND STUDIO</span>
+                      <span className="text-[10px] text-charcoal-muted font-light leading-tight block">
+                        {language === 'fr' ? 'Page de présentation Brand' : 'Brand presentation page'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Screen 2: Le Comité Exécutif (Comex) */}
+                  <div className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px] border border-border-light rounded-lg overflow-hidden bg-bg-light flex flex-col shadow-sm">
+                    <div className="bg-charcoal/5 border-b border-border-light px-3 py-2 flex items-center justify-between">
+                      <span className="font-mono text-[8px] text-charcoal-muted">comex.adp</span>
+                      <div className="flex gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                      </div>
+                    </div>
+                    <div className="bg-charcoal/[0.02] h-[450px] overflow-y-auto p-4 flex justify-center scrollbar-thin">
+                      <img 
+                        src="/assets/projects/groupe-adp/adp-comex.png" 
+                        alt="Comité Exécutif" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="p-3 border-t border-border-light bg-charcoal/[0.01]">
+                      <span className="font-mono text-[8px] uppercase tracking-widest text-violet font-bold block mb-0.5">02 / LE COMITÉ EXÉCUTIF</span>
+                      <span className="text-[10px] text-charcoal-muted font-light leading-tight block">
+                        {language === 'fr' ? 'Annuaire et organigramme COMEX' : 'COMEX directory and chart'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Screen 3: Les Marques */}
+                  <div className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px] border border-border-light rounded-lg overflow-hidden bg-bg-light flex flex-col shadow-sm">
+                    <div className="bg-charcoal/5 border-b border-border-light px-3 py-2 flex items-center justify-between">
+                      <span className="font-mono text-[8px] text-charcoal-muted">marques.adp</span>
+                      <div className="flex gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                      </div>
+                    </div>
+                    <div className="bg-charcoal/[0.02] h-[450px] overflow-y-auto p-4 flex justify-center scrollbar-thin">
+                      <img 
+                        src="/assets/projects/groupe-adp/adp-marques.png" 
+                        alt="Les Marques" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="p-3 border-t border-border-light bg-charcoal/[0.01]">
+                      <span className="font-mono text-[8px] uppercase tracking-widest text-violet font-bold block mb-0.5">03 / ARCHITECTURE DE MARQUE</span>
+                      <span className="text-[10px] text-charcoal-muted font-light leading-tight block">
+                        {language === 'fr' ? 'Écosystème de marque ADP' : 'ADP brand ecosystem'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Screen 4: Espace Patrimoine */}
+                  <div className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px] border border-border-light rounded-lg overflow-hidden bg-bg-light flex flex-col shadow-sm">
+                    <div className="bg-charcoal/5 border-b border-border-light px-3 py-2 flex items-center justify-between">
+                      <span className="font-mono text-[8px] text-charcoal-muted">patrimoine.adp</span>
+                      <div className="flex gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                      </div>
+                    </div>
+                    <div className="bg-charcoal/[0.02] h-[450px] overflow-y-auto p-4 flex justify-center scrollbar-thin">
+                      <img 
+                        src="/assets/projects/groupe-adp/adp-patrimoine.png" 
+                        alt="Espace Patrimoine" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="p-3 border-t border-border-light bg-charcoal/[0.01]">
+                      <span className="font-mono text-[8px] uppercase tracking-widest text-violet font-bold block mb-0.5">04 / ESPACE PATRIMOINE</span>
+                      <span className="text-[10px] text-charcoal-muted font-light leading-tight block">
+                        {language === 'fr' ? 'Page historique et patrimoine' : 'Historical heritage page'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="aspect-[16/10] bg-charcoal/5 border border-border-light flex items-center justify-center p-8 select-none">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted">Visual Spec // layout B</span>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="aspect-[16/10] bg-charcoal/5 border border-border-light flex items-center justify-center p-8 select-none">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted">Visual Spec // layout A</span>
+              </div>
+              <div className="aspect-[16/10] bg-charcoal/5 border border-border-light flex items-center justify-center p-8 select-none">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted">Visual Spec // layout B</span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Prev / Next project navigation links */}

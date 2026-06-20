@@ -37,6 +37,18 @@ export default function ProjectCard({ project, index }) {
   const renderPlaceholder = (proj) => {
     const { bgColor, textColor, type, label } = proj.visual;
 
+    if (proj.slug === 'groupe-adp') {
+      return (
+        <div className="absolute inset-0 bg-[#0A2A5C] flex items-center justify-center border border-charcoal/10 overflow-hidden">
+          <img 
+            src="/assets/projects/groupe-adp/adp-logo.png" 
+            alt="Groupe ADP Logo" 
+            className="w-full h-full object-contain p-6 sm:p-8 md:p-12 transition-transform duration-700 group-hover:scale-105"
+          />
+        </div>
+      );
+    }
+
     switch (type) {
       case 'grid-lines':
         return (

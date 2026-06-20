@@ -111,10 +111,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="w-full flex justify-center py-4 select-none pointer-events-none">
-          <h2 className="font-display font-black text-[10vw] leading-none text-charcoal/[0.04] tracking-tighter text-center uppercase whitespace-nowrap">
-            EVERYTHING STARTS WITH A LINE
-          </h2>
+        {/* Infinite scrolling footer marquee */}
+        <div className="footer-marquee py-4 select-none pointer-events-none border-t border-charcoal/5 mt-8">
+          <div className="footer-marquee-track">
+            <span>HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
+            <span aria-hidden="true">HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
+          </div>
         </div>
 
       </div>
