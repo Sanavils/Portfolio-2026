@@ -75,16 +75,14 @@ export default function Hero() {
           </motion.div>
 
           {/* Typographic Mask Reveal Title */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-charcoal-light leading-[0.95] mb-10 font-syne select-none uppercase">
-            <div className="text-reveal-mask">
+          <h1 className="text-display-lg text-charcoal-light mb-12 select-none uppercase max-w-4xl">
+            <div className="text-reveal-mask block">
               <motion.div variants={lineMaskVariants}>{t.hero.titleLine1}</motion.div>
             </div>
-            <br />
-            <div className="text-reveal-mask">
+            <div className="text-reveal-mask block">
               <motion.div variants={lineMaskVariants}>{t.hero.titleLine2}</motion.div>
             </div>
-            <br />
-            <div className="text-reveal-mask">
+            <div className="text-reveal-mask block">
               <motion.div variants={lineMaskVariants}>{t.hero.titleLine3}</motion.div>
             </div>
           </h1>

@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import LanguageSwitch from './LanguageSwitch';
+import Logo from './Logo';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,16 +41,12 @@ export default function Header() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Logo monogram H with animated spacing on hover */}
           <Link
             to="/"
-            className="group font-syne text-2xl md:text-3xl font-extrabold tracking-tighter text-charcoal flex items-center gap-1.5 transition-all duration-300"
+            className="group flex items-center text-charcoal hover:text-violet transition-colors duration-300"
+            aria-label="Homepage"
           >
-            <motion.span 
-              className="inline-block transition-transform duration-300 group-hover:scale-105 group-hover:text-violet"
-            >
-              H.
-            </motion.span>
+            <Logo height={28} showText={false} className="transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
           {/* Desktop Navigation Links */}

@@ -8,10 +8,12 @@
   --color-charcoal-muted: #666666;
   --color-border-light: rgba(0, 0, 0, 0.12);
 
+  --font-display: "Unbounded", sans-serif;
   --font-syne: "Syne", sans-serif;
   --font-inter: "Inter", sans-serif;
 
   --animate-marquee-slow: marquee 30s linear infinite;
+  --animate-spin-slow: spin 20s linear infinite;
 
   @keyframes marquee {
     0% { transform: translateX(0%); }
@@ -41,6 +43,23 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #EEB8F9;
+}
+
+/* Responsive clamp display headings style settings */
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6.2vw, 5.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-weight: 900;
+}
+
+.text-display-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4.5vw, 3.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 900;
 }
 
 /* Custom typography and utility classes */

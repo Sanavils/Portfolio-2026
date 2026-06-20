@@ -19,8 +19,8 @@ export default function ProjectGrid() {
       {/* Main typographic header statements */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12 mb-16 items-start">
         <div className="lg:col-span-8 space-y-4">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-syne font-black uppercase leading-[1.05] text-charcoal-light select-none">
-            {t.workSection.heading.split(' AND ').map((part, idx) => (
+          <h3 className="text-display-md uppercase text-charcoal-light select-none max-w-4xl">
+            {t.workSection.heading.split(language === 'fr' ? ' ET ' : ' AND ').map((part, idx) => (
               <span key={idx} className="block">
                 {part} {idx === 0 && <span className="text-violet">&bull;</span>}
               </span>

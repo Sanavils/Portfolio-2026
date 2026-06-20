@@ -111,9 +111,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Giant Typographic Poster Banner */}
         <div className="w-full flex justify-center py-4 select-none pointer-events-none">
-          <h2 className="font-syne font-black text-[12vw] leading-none text-charcoal/[0.04] tracking-tighter text-center uppercase whitespace-nowrap">
+          <h2 className="font-display font-black text-[10vw] leading-none text-charcoal/[0.04] tracking-tighter text-center uppercase whitespace-nowrap">
             EVERYTHING STARTS WITH A LINE
           </h2>
         </div>

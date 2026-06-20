@@ -116,17 +116,22 @@ export default function ProjectPage() {
         {/* Dynamic visual project mockup banner */}
         {renderGiantPlaceholder(project)}
 
-        {/* Project detailed metadata layout */}
+        {/* Project Header block */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 md:mt-16">
+          <div className="border-b border-border-light pb-10">
+            <h1 className="text-display-md text-charcoal-light uppercase max-w-5xl leading-tight">
+              {pContent.title}
+            </h1>
+          </div>
+        </div>
+
+        {/* Project detailed metadata layout */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 border-b border-border-light pb-12">
             
             {/* Left Header Title / Role metadata (Span 4) */}
             <div className="lg:col-span-4 space-y-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-syne font-black uppercase leading-none">
-                {pContent.title}
-              </h1>
-              
-              <div className="grid grid-cols-2 gap-4 border-t border-border-light pt-6 text-xs md:text-sm">
+              <div className="grid grid-cols-2 gap-4 text-xs md:text-sm">
                 <div>
                   <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block mb-1">
                     {t.projectPage.role}
@@ -143,13 +148,13 @@ export default function ProjectPage() {
                   <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block mb-1">
                     {t.projectPage.category}
                   </span>
-                  <span className="font-bold text-charcoal">{pContent.category}</span>
+                  <span className="font-bold text-charcoal leading-relaxed">{pContent.category}</span>
                 </div>
               </div>
             </div>
 
             {/* Right Intro details columns (Span 8) */}
-            <div className="lg:col-span-8 space-y-8 lg:pl-8 border-l border-border-light/0 lg:border-l lg:border-border-light">
+            <div className="lg:col-span-8 space-y-8 lg:pl-10 lg:border-l lg:border-border-light">
               <p className="text-lg md:text-xl leading-relaxed text-charcoal font-light border-l-2 border-violet pl-4">
                 {pContent.intro}
               </p>
