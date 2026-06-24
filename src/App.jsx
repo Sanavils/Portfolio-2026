@@ -12,6 +12,7 @@ import CreativeStack from './components/CreativeStack';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectPage from './pages/ProjectPage';
+import PlaygroundPage from './pages/PlaygroundPage';
 import CustomCursor from './components/CustomCursor';
 
 // Inner component to track location pathname for AnimatePresence transitions
@@ -37,6 +38,9 @@ function AnimatedRoutes() {
         />
         {/* Dynamic Project Details Route */}
         <Route path="/work/:slug" element={<ProjectPage />} />
+        
+        {/* Playground Route */}
+        <Route path="/playground" element={<PlaygroundPage />} />
       </Routes>
     </AnimatePresence>
   );

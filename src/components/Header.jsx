@@ -27,6 +27,7 @@ export default function Header() {
 
   const navLinks = [
     { name: t.nav.work, href: isHome ? '#work' : '/#work' },
+    { name: 'PLAYGROUND', href: '/playground', isRoute: true },
     { name: t.nav.about, href: isHome ? '#about' : '/#about' },
     { name: t.nav.contact, href: isHome ? '#contact' : '/#contact' },
   ];
@@ -52,19 +53,33 @@ export default function Header() {
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-10">
             <nav className="flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="group relative text-xs font-mono font-bold tracking-widest uppercase text-charcoal-muted hover:text-charcoal transition-colors duration-300 py-1"
-                >
-                  <span className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5">
-                    <span className="text-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-1">/</span>
-                    {link.name}
-                  </span>
-                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-violet group-hover:w-full transition-all duration-300 ease-out" />
-                </a>
-              ))}
+              {navLinks.map((link) => 
+                link.isRoute ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="group relative text-xs font-mono font-bold tracking-widest uppercase text-charcoal-muted hover:text-charcoal transition-colors duration-300 py-1"
+                  >
+                    <span className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5">
+                      <span className="text-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-1">/</span>
+                      {link.name}
+                    </span>
+                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-violet group-hover:w-full transition-all duration-300 ease-out" />
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="group relative text-xs font-mono font-bold tracking-widest uppercase text-charcoal-muted hover:text-charcoal transition-colors duration-300 py-1"
+                  >
+                    <span className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5">
+                      <span className="text-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-1">/</span>
+                      {link.name}
+                    </span>
+                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-violet group-hover:w-full transition-all duration-300 ease-out" />
+                  </a>
+                )
+              )}
             </nav>
 
             {/* Language Selection Toggle */}
@@ -96,17 +111,29 @@ export default function Header() {
             className="fixed inset-x-0 top-0 pt-24 pb-12 bg-bg-light border-b border-charcoal/10 shadow-lg z-30 md:hidden"
           >
             <div className="flex flex-col items-center gap-6 px-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-syne font-bold uppercase tracking-wider text-charcoal hover:text-violet transition-colors duration-300 flex items-center"
-                >
-                  <span className="text-violet mr-2">/</span>
-                  {link.name}
-                </a>
-              ))}
+              {navLinks.map((link) => 
+                link.isRoute ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-lg font-syne font-bold uppercase tracking-wider text-charcoal hover:text-violet transition-colors duration-300 flex items-center"
+                  >
+                    <span className="text-violet mr-2">/</span>
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-lg font-syne font-bold uppercase tracking-wider text-charcoal hover:text-violet transition-colors duration-300 flex items-center"
+                  >
+                    <span className="text-violet mr-2">/</span>
+                    {link.name}
+                  </a>
+                )
+              )}
             </div>
           </motion.div>
         )}

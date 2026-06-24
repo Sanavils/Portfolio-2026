@@ -73,6 +73,38 @@ export default function ProjectPage() {
       );
     }
 
+    if (proj.slug === 'abercrombie') {
+      return (
+        <div className="w-full aspect-[21/9] min-h-[300px] md:min-h-[450px] relative border-y border-border-light overflow-hidden bg-[#EAEAEA] flex items-center justify-center p-8 md:p-12">
+          {/* Centered logo with premium fade-in and scale animation */}
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            src="/assets/projects/abercrombie/abercrombie-logo.png" 
+            alt="Abercrombie Logo" 
+            className="relative z-10"
+            style={{
+              width: 'clamp(180px, 22vw, 360px)',
+              height: 'auto',
+              maxHeight: '70%',
+              objectFit: 'contain'
+            }}
+          />
+          
+          <div className="absolute top-8 left-8 flex justify-between items-baseline w-[calc(100%-4rem)] pointer-events-none text-charcoal/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-10">
+            <span>CASE STUDY // BRAND REBRANDING</span>
+            <span className="font-bold">ID: {proj.id}</span>
+          </div>
+          
+          <div className="absolute bottom-8 left-8 flex justify-between items-baseline w-[calc(100%-4rem)] pointer-events-none text-charcoal/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-10">
+            <span>{proj.visual.label}</span>
+            <span>{proj.year}</span>
+          </div>
+        </div>
+      );
+    }
+
     const { bgColor, textColor, type, label } = proj.visual;
     return (
       <div className={`w-full aspect-[21/9] min-h-[300px] md:min-h-[450px] relative border-y border-border-light overflow-hidden ${bgColor} flex flex-col justify-between p-8 md:p-12`}>
@@ -404,6 +436,104 @@ export default function ProjectPage() {
                       </span>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          ) : project.slug === 'abercrombie' ? (
+            <div className="space-y-16">
+              {/* B. Grand visuel principal inside a mockup browser window */}
+              <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm">
+                {/* Browser top bar */}
+                <div className="bg-charcoal/5 border-b border-border-light px-4 py-3 flex items-center gap-3">
+                  <div className="flex gap-1.5">
+                    <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                    <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                    <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                  </div>
+                  <div className="flex-1 max-w-md mx-auto bg-bg-light border border-border-light/60 rounded px-3 py-1 text-center font-mono text-[10px] text-charcoal-muted select-all">
+                    abercrombie.com
+                  </div>
+                </div>
+                {/* Content: Mockup showing the real Abercrombie Logo, contained without distortion or pixelation */}
+                <div className="bg-[#EAEAEA] p-12 md:p-24 flex justify-center items-center">
+                  <img 
+                    src="/assets/projects/abercrombie/abercrombie-logo.png" 
+                    alt="Abercrombie Logo" 
+                    className="w-full h-auto max-w-xl object-contain shadow-sm rounded"
+                  />
+                </div>
+                <div className="p-4 border-t border-border-light bg-charcoal/[0.01]">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-charcoal-muted block mb-1">
+                    {language === 'fr' ? 'IDENTITÉ ABERCROMBIE' : 'ABERCROMBIE IDENTITY'}
+                  </span>
+                  <span className="font-syne font-bold text-sm text-charcoal">
+                    {language === 'fr' ? 'Charte graphique et logo officiel' : 'Official brand identity guidelines'}
+                  </span>
+                </div>
+              </div>
+
+              {/* C. Section Parcours complets & Visuels de Rebranding */}
+              <div className="space-y-8 pt-6">
+                <div>
+                  <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
+                    / {language === 'fr' ? 'Visuels du Rebranding & Direction Artistique' : 'Rebranding Visuals & Art Direction'}
+                  </h3>
+                  <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-2xl">
+                    {language === 'fr' 
+                      ? 'Découvrez les maquettes physiques et éditoriales du projet de rebranding. Les visuels intègrent la nouvelle typographie graffiti avec l\'univers brut de la marque.'
+                      : 'Discover the physical and editorial mockups of the rebranding project. The visuals integrate the new graffiti typography with the raw brand identity.'}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                  {/* Visual 1: Beat Generation Photo */}
+                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
+                        {language === 'fr' ? '01 / Direction Artistique Photo' : '01 / Photo Art Direction'}
+                      </span>
+                    </div>
+                    <div className="p-4 flex items-center justify-center bg-[#E5E5E5]">
+                      <img 
+                        src="/assets/projects/abercrombie/abercrombie-beat.jpg" 
+                        alt="Abercrombie Beat Generation" 
+                        className="w-full h-auto max-h-[500px] object-contain shadow-md rounded"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Visual 2: Business Card Mockup */}
+                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
+                        {language === 'fr' ? '02 / Cartes de Visite Brutalistes' : '02 / Brutalist Business Cards'}
+                      </span>
+                    </div>
+                    <div className="p-4 flex items-center justify-center bg-[#F2F2F2]">
+                      <img 
+                        src="/assets/projects/abercrombie/abercrombie-card.jpg" 
+                        alt="Abercrombie Business Card Mockup" 
+                        className="w-full h-auto max-h-[500px] object-contain shadow-md rounded"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Visual 3: Street Billboard Mockup (Span 2) */}
+                  <div className="md:col-span-2 border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
+                        {language === 'fr' ? '03 / Affichage Urbain Mockup' : '03 / Urban Billboard Mockup'}
+                      </span>
+                    </div>
+                    <div className="p-4 flex items-center justify-center bg-[#D6D6D6]">
+                      <img 
+                        src="/assets/projects/abercrombie/abercrombie-billboard.jpg" 
+                        alt="Abercrombie Street Billboard" 
+                        className="w-full h-auto max-h-[600px] object-contain shadow-md rounded"
+                      />
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>

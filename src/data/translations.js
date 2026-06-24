@@ -87,6 +87,15 @@ export const translations = {
       outcome: "Outcome",
       prevProject: "Previous Project",
       nextProject: "Next Project"
+    },
+    playground: {
+      tag: "/ SIDE PROJECTS / EXPERIMENTS / FUN STUFF",
+      title: "PLAYGROUND",
+      subtitle: "A space for side projects, experiments, interactive ideas and creative tests.",
+      intro: "This is where I explore things a little more freely — motion, visuals, music, interactions and small ideas turned into playful digital objects.",
+      openBtn: "Open experiment",
+      viewBtn: "View experiment font",
+      year: "Year"
     }
   },
   fr: {
@@ -174,6 +183,15 @@ export const translations = {
       outcome: "Résultat",
       prevProject: "Projet Précédent",
       nextProject: "Projet Suivant"
+    },
+    playground: {
+      tag: "/ PROJETS PERSO / EXPÉRIMENTATIONS / PROJETS FUN",
+      title: "PLAYGROUND",
+      subtitle: "Un espace pour mes projets perso, mes expérimentations, mes idées interactives et mes tests créatifs.",
+      intro: "C’est ici que j’explore des choses plus librement — motion, visuels, musique, interactions et petites idées transformées en objets digitaux plus fun.",
+      openBtn: "Ouvrir l'expérience",
+      viewBtn: "Voir l'expérience",
+      year: "Année"
     }
   }
 };
