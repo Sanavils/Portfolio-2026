@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { LanguageProvider } from './context/LanguageContext';
 import Loader from './components/Loader';
 import Header from './components/Header';
@@ -74,6 +75,9 @@ export default function App() {
 
           {/* Persistent page footer */}
           <Footer />
+
+          {/* Vercel Speed Insights */}
+          <SpeedInsights />
         </div>
       </Router>
     </LanguageProvider>
