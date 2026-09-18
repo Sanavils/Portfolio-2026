@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { projectsData } from '../data/projectsData';
@@ -9,7 +9,6 @@ import PageTransition from '../components/PageTransition';
 
 export default function ProjectPage() {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const { language } = useLanguage();
   const t = translations[language];
 
@@ -43,29 +42,23 @@ export default function ProjectPage() {
   const renderGiantPlaceholder = (proj) => {
     if (proj.slug === 'groupe-adp') {
       return (
-        <div className="w-full aspect-[21/9] min-h-[300px] md:min-h-[450px] relative border-y border-border-light overflow-hidden bg-[#0A2A5C] flex items-center justify-center p-8 md:p-12">
-          {/* Centered logo with premium fade-in and scale animation */}
+        <div className="w-full aspect-[21/9] min-h-[320px] md:min-h-[480px] relative border-y border-border-light overflow-hidden bg-[#0A2A5C] flex items-center justify-center">
+          {/* Main visual taking 100% of the block */}
           <motion.img 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             src="/assets/projects/groupe-adp/adp-logo.png" 
-            alt="Groupe ADP Logo" 
-            className="relative z-10"
-            style={{
-              width: 'clamp(180px, 22vw, 360px)',
-              height: 'auto',
-              maxHeight: '70%',
-              objectFit: 'contain'
-            }}
+            alt="Groupe ADP" 
+            className="w-full h-full object-cover relative z-10"
           />
           
-          <div className="absolute top-8 left-8 flex justify-between items-baseline w-[calc(100%-4rem)] pointer-events-none text-white/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-10">
+          <div className="absolute top-6 left-6 md:top-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>CASE STUDY // CORPORATE REDESIGN</span>
             <span className="font-bold">ID: {proj.id}</span>
           </div>
           
-          <div className="absolute bottom-8 left-8 flex justify-between items-baseline w-[calc(100%-4rem)] pointer-events-none text-white/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-10">
+          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label}</span>
             <span>{proj.year}</span>
           </div>
@@ -75,29 +68,23 @@ export default function ProjectPage() {
 
     if (proj.slug === 'abercrombie') {
       return (
-        <div className="w-full aspect-[21/9] min-h-[300px] md:min-h-[450px] relative border-y border-border-light overflow-hidden bg-[#EAEAEA] flex items-center justify-center p-8 md:p-12">
-          {/* Centered logo with premium fade-in and scale animation */}
+        <div className="w-full aspect-[21/9] min-h-[320px] md:min-h-[480px] relative border-y border-border-light overflow-hidden bg-[#EAEAEA] flex items-center justify-center">
+          {/* Main visual taking 100% of the block */}
           <motion.img 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             src="/assets/projects/abercrombie/abercrombie-logo.png" 
-            alt="Abercrombie Logo" 
-            className="relative z-10"
-            style={{
-              width: 'clamp(180px, 22vw, 360px)',
-              height: 'auto',
-              maxHeight: '70%',
-              objectFit: 'contain'
-            }}
+            alt="Abercrombie" 
+            className="w-full h-full object-cover relative z-10"
           />
           
-          <div className="absolute top-8 left-8 flex justify-between items-baseline w-[calc(100%-4rem)] pointer-events-none text-charcoal/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-10">
+          <div className="absolute top-6 left-6 md:top-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>CASE STUDY // BRAND REBRANDING</span>
             <span className="font-bold">ID: {proj.id}</span>
           </div>
           
-          <div className="absolute bottom-8 left-8 flex justify-between items-baseline w-[calc(100%-4rem)] pointer-events-none text-charcoal/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-10">
+          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label}</span>
             <span>{proj.year}</span>
           </div>
@@ -105,7 +92,33 @@ export default function ProjectPage() {
       );
     }
 
-    const { bgColor, textColor, type, label } = proj.visual;
+    if (proj.slug === 'civic-vote') {
+      return (
+        <div className="w-full aspect-[16/9] max-h-[620px] min-h-[320px] md:min-h-[460px] relative border-y border-border-light overflow-hidden bg-[#8D4FE7] flex items-center justify-center">
+          {/* Main visual taking 100% of the block */}
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            src="/assets/projects/civic-vote/civic-vote-hero.png" 
+            alt="Civic Vote — Se déplacer pour voter" 
+            className="w-full h-full object-cover relative z-10"
+          />
+          
+          {/* Top-right badges leaving the République Française logo in top-left completely uncluttered */}
+          <div className="absolute top-6 right-6 md:top-8 md:right-8 pointer-events-none text-white/90 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20 flex items-center gap-3">
+            <span className="hidden sm:inline">CASE STUDY // CIVIC CAMPAIGN</span>
+            <span className="font-bold bg-white/20 backdrop-blur px-2 py-0.5 rounded">ID: {proj.id}</span>
+          </div>
+          
+          <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 pointer-events-none text-white/90 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+            <span>{proj.visual.label} &bull; {proj.year}</span>
+          </div>
+        </div>
+      );
+    }
+
+    const { bgColor, type, label } = proj.visual;
     return (
       <div className={`w-full aspect-[21/9] min-h-[300px] md:min-h-[450px] relative border-y border-border-light overflow-hidden ${bgColor} flex flex-col justify-between p-8 md:p-12`}>
         {/* Decorative Grid Lines / Concentric Circles based on type */}
@@ -294,39 +307,8 @@ export default function ProjectPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16">
           {project.slug === 'groupe-adp' ? (
             <div className="space-y-16">
-              {/* B. Grand visuel principal inside a mockup browser window */}
-              <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm">
-                {/* Browser top bar */}
-                <div className="bg-charcoal/5 border-b border-border-light px-4 py-3 flex items-center gap-3">
-                  <div className="flex gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                    <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                    <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
-                  </div>
-                  <div className="flex-1 max-w-md mx-auto bg-bg-light border border-border-light/60 rounded px-3 py-1 text-center font-mono text-[10px] text-charcoal-muted select-all">
-                    groupeadp.fr
-                  </div>
-                </div>
-                {/* Content: Mockup showing the real ADP Logo, contained without distortion or pixelation */}
-                <div className="bg-[#0A2A5C] p-12 md:p-24 flex justify-center items-center">
-                  <img 
-                    src="/assets/projects/groupe-adp/adp-logo.png" 
-                    alt="Groupe ADP Logo" 
-                    className="w-full h-auto max-w-xl object-contain shadow-sm rounded"
-                  />
-                </div>
-                <div className="p-4 border-t border-border-light bg-charcoal/[0.01]">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-charcoal-muted block mb-1">
-                    {language === 'fr' ? 'IDENTITÉ GROUPE ADP' : 'GROUPE ADP IDENTITY'}
-                  </span>
-                  <span className="font-syne font-bold text-sm text-charcoal">
-                    {language === 'fr' ? 'Charte graphique et logo officiel' : 'Official brand identity guidelines'}
-                  </span>
-                </div>
-              </div>
-
-              {/* C. Section Parcours complets & Pages Intranet */}
-              <div className="space-y-8 pt-6">
+              {/* Section Parcours complets & Pages Intranet */}
+              <div className="space-y-8">
                 <div>
                   <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
                     / {language === 'fr' ? 'Interfaces et pages du portail Intranet' : 'Intranet portal pages & interfaces'}
@@ -441,39 +423,8 @@ export default function ProjectPage() {
             </div>
           ) : project.slug === 'abercrombie' ? (
             <div className="space-y-16">
-              {/* B. Grand visuel principal inside a mockup browser window */}
-              <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm">
-                {/* Browser top bar */}
-                <div className="bg-charcoal/5 border-b border-border-light px-4 py-3 flex items-center gap-3">
-                  <div className="flex gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                    <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                    <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
-                  </div>
-                  <div className="flex-1 max-w-md mx-auto bg-bg-light border border-border-light/60 rounded px-3 py-1 text-center font-mono text-[10px] text-charcoal-muted select-all">
-                    abercrombie.com
-                  </div>
-                </div>
-                {/* Content: Mockup showing the real Abercrombie Logo, contained without distortion or pixelation */}
-                <div className="bg-[#EAEAEA] p-12 md:p-24 flex justify-center items-center">
-                  <img 
-                    src="/assets/projects/abercrombie/abercrombie-logo.png" 
-                    alt="Abercrombie Logo" 
-                    className="w-full h-auto max-w-xl object-contain shadow-sm rounded"
-                  />
-                </div>
-                <div className="p-4 border-t border-border-light bg-charcoal/[0.01]">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-charcoal-muted block mb-1">
-                    {language === 'fr' ? 'IDENTITÉ ABERCROMBIE' : 'ABERCROMBIE IDENTITY'}
-                  </span>
-                  <span className="font-syne font-bold text-sm text-charcoal">
-                    {language === 'fr' ? 'Charte graphique et logo officiel' : 'Official brand identity guidelines'}
-                  </span>
-                </div>
-              </div>
-
-              {/* C. Section Parcours complets & Visuels de Rebranding */}
-              <div className="space-y-8 pt-6">
+              {/* Section Parcours complets & Visuels de Rebranding */}
+              <div className="space-y-8">
                 <div>
                   <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
                     / {language === 'fr' ? 'Visuels du Rebranding & Direction Artistique' : 'Rebranding Visuals & Art Direction'}
@@ -534,6 +485,56 @@ export default function ProjectPage() {
                     </div>
                   </div>
 
+                </div>
+              </div>
+            </div>
+          ) : project.slug === 'civic-vote' ? (
+            <div className="space-y-16">
+              {/* Section Campagne & Illustrations */}
+              <div className="space-y-8">
+                <div>
+                  <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
+                    / {language === 'fr' ? 'Campagne & Déclinaisons Illustrées' : 'Campaign & Illustrated Variations'}
+                  </h3>
+                  <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-2xl">
+                    {language === 'fr' 
+                      ? 'Découvrez les déclinaisons graphiques de la campagne citoyenne. Des illustrations vivantes, pop et engageantes conçues pour mobiliser les jeunes électeurs autour du geste démocratique.'
+                      : 'Explore the graphic variations of the civic campaign. Vibrant, bold, and engaging illustrations designed to mobilize young voters around civic participation.'}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                  {/* Visual 1: Allons Voter */}
+                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
+                        {language === 'fr' ? '01 / Déclinaison Réseaux — Allons Voter' : '01 / Social Media — Allons Voter'}
+                      </span>
+                    </div>
+                    <div className="p-6 md:p-8 flex items-center justify-center bg-[#F3EEFA] flex-1">
+                      <img 
+                        src="/assets/projects/civic-vote/civic-vote-allons-voter.png" 
+                        alt="Civic Vote — Allons Voter" 
+                        className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Visual 2: En Route Pour Voter */}
+                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
+                        {language === 'fr' ? '02 / Affiche Campagne — En Route Pour Voter' : '02 / Campaign Poster — En Route Pour Voter'}
+                      </span>
+                    </div>
+                    <div className="p-6 md:p-8 flex items-center justify-center bg-[#F3EEFA] flex-1">
+                      <img 
+                        src="/assets/projects/civic-vote/civic-vote-en-route.png" 
+                        alt="Civic Vote — En Route Pour Voter" 
+                        className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

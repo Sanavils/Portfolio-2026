@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { LanguageProvider } from './context/LanguageContext';
@@ -13,6 +12,8 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectPage from './pages/ProjectPage';
 import PlaygroundPage from './pages/PlaygroundPage';
+import MusicVisualizerPage from './pages/MusicVisualizerPage';
+import InterestsPage from './pages/InterestsPage';
 import CustomCursor from './components/CustomCursor';
 
 // Inner component to track location pathname for AnimatePresence transitions
@@ -41,6 +42,12 @@ function AnimatedRoutes() {
         
         {/* Playground Route */}
         <Route path="/playground" element={<PlaygroundPage />} />
+
+        {/* Fullscreen Music Visualizer Route */}
+        <Route path="/playground/musix-visualizer" element={<MusicVisualizerPage />} />
+
+        {/* Interests Radar Route */}
+        <Route path="/interests" element={<InterestsPage />} />
       </Routes>
     </AnimatePresence>
   );

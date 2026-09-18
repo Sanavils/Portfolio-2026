@@ -5,6 +5,8 @@ export const translations = {
   en: {
     nav: {
       work: "Work",
+      playground: "Playground",
+      interests: "Interests",
       about: "About",
       contact: "Contact",
       status: "Available for work — Paris"
@@ -101,6 +103,8 @@ export const translations = {
   fr: {
     nav: {
       work: "Projets",
+      playground: "Playground",
+      interests: "Centres d’intérêt",
       about: "À propos",
       contact: "Contact",
       status: "Disponible — Paris"

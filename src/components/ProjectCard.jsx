@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -35,7 +34,7 @@ export default function ProjectCard({ project, index }) {
 
   // Render high-fidelity graphic placeholders
   const renderPlaceholder = (proj) => {
-    const { bgColor, textColor, type, label } = proj.visual;
+    const { bgColor, type, label } = proj.visual;
 
     if (proj.slug === 'groupe-adp') {
       return (
@@ -43,7 +42,7 @@ export default function ProjectCard({ project, index }) {
           <img 
             src="/assets/projects/groupe-adp/adp-logo.png" 
             alt="Groupe ADP Logo" 
-            className="w-full h-full object-contain p-6 sm:p-8 md:p-12 transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
       );
@@ -55,7 +54,19 @@ export default function ProjectCard({ project, index }) {
           <img 
             src="/assets/projects/abercrombie/abercrombie-logo.png" 
             alt="Abercrombie Logo" 
-            className="w-full h-full object-contain p-6 sm:p-8 md:p-12 transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        </div>
+      );
+    }
+
+    if (proj.slug === 'civic-vote') {
+      return (
+        <div className="absolute inset-0 bg-[#8D4FE7] flex items-center justify-center border border-charcoal/10 overflow-hidden">
+          <img 
+            src="/assets/projects/civic-vote/civic-vote-hero.png" 
+            alt="Civic Vote — Se déplacer pour voter" 
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
       );

@@ -8,7 +8,7 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import PageTransition from '../components/PageTransition';
-import MusicPlayer from '../components/playground/MusicPlayer';
+import MusicPlayer from '../components/playground/MusixVisualizer/MusicPlayer';
 
 export default function PlaygroundPage() {
   const { language } = useLanguage();
