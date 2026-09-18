@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import { LanguageProvider } from './context/LanguageContext';
 import Loader from './components/Loader';
 import Header from './components/Header';
@@ -75,6 +76,7 @@ export default function App() {
           {/* Persistent page footer */}
           <Footer />
         </div>
+        <Analytics />
       </Router>
     </LanguageProvider>
   );
