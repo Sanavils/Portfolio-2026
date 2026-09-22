@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import LanguageSwitch from './LanguageSwitch';
 import Logo from './Logo';
+import PrefetchLink from './PrefetchLink';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,8 +23,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const isHome = location.pathname === '/';
 
   const navLinks = [
     { name: t.nav.work, href: '/work', routePath: '/work' },
@@ -50,7 +49,7 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo / Brand mark */}
-          <Link
+          <PrefetchLink
             to="/"
             className="group flex items-center gap-3 text-charcoal hover:text-violet transition-colors duration-300"
             aria-label="Accueil Hassen Arkab"
@@ -59,7 +58,7 @@ export default function Header() {
             <span className="font-syne font-black text-xs sm:text-sm tracking-tight text-charcoal group-hover:text-violet transition-colors duration-300 uppercase select-none">
               Hassen Arkab
             </span>
-          </Link>
+          </PrefetchLink>
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
@@ -67,7 +66,7 @@ export default function Header() {
               {navLinks.map((link) => {
                 const isActive = checkIsActive(link.routePath);
                 return (
-                  <Link
+                  <PrefetchLink
                     key={link.name}
                     to={link.href}
                     className={`group relative text-xs font-mono font-bold tracking-widest uppercase transition-colors duration-300 py-1 ${
@@ -79,12 +78,12 @@ export default function Header() {
                       {link.name}
                     </span>
                     <span className={`absolute bottom-0 left-0 h-[1.5px] bg-violet transition-all duration-300 ease-out ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                  </Link>
+                  </PrefetchLink>
                 );
               })}
 
               {/* Discrete Contact CTA */}
-              <Link
+              <PrefetchLink
                 to="/contact"
                 className={`ml-1 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase border transition-all duration-300 ${
                   isContactActive
@@ -93,7 +92,7 @@ export default function Header() {
                 }`}
               >
                 {t.nav.contact}
-              </Link>
+              </PrefetchLink>
             </nav>
 
             {/* Language Selection Toggle */}
@@ -129,7 +128,7 @@ export default function Header() {
               {navLinks.map((link) => {
                 const isActive = checkIsActive(link.routePath);
                 return (
-                  <Link
+                  <PrefetchLink
                     key={link.name}
                     to={link.href}
                     onClick={() => setMobileMenuOpen(false)}
@@ -139,11 +138,11 @@ export default function Header() {
                   >
                     <span className={`text-violet mr-2 ${isActive ? 'opacity-100 font-black' : 'opacity-40'}`}>/</span>
                     {link.name}
-                  </Link>
+                  </PrefetchLink>
                 );
               })}
 
-              <Link
+              <PrefetchLink
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className={`mt-2 px-6 py-2.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase border transition-all duration-300 ${
@@ -153,7 +152,7 @@ export default function Header() {
                 }`}
               >
                 {t.nav.contact}
-              </Link>
+              </PrefetchLink>
             </div>
           </motion.div>
         )}

@@ -79,18 +79,26 @@ export const translations = {
       copyright: "© 2026 Hassen Arkab"
     },
     projectPage: {
+      breadcrumbHome: "Home",
+      breadcrumbWork: "Work",
       backBtn: "Back to work",
       role: "Role",
       year: "Year",
       category: "Category",
+      tools: "Tools & Stack",
+      caseStudyLabel: "CASE STUDY // UX UI DESIGN",
       context: "Context",
       challenge: "Challenge",
       goals: "Goals",
       process: "Process",
       solution: "Solution",
-      outcome: "Outcome",
+      visuals: "Visuals & Prototypes",
+      outcome: "Outcome & Learnings",
       prevProject: "Previous project",
-      nextProject: "Next project"
+      nextProject: "Next project",
+      contactCtaTitle: "Have a similar project?",
+      contactCtaSubtitle: "Let's discuss your interface, design system or brand identity.",
+      contactCtaBtn: "Contact me"
     },
     playground: {
       tag: "/ EXPERIMENTS / INTERACTION / CREATIVE TESTS",
@@ -180,18 +188,26 @@ export const translations = {
       copyright: "© 2026 Hassen Arkab"
     },
     projectPage: {
+      breadcrumbHome: "Accueil",
+      breadcrumbWork: "Projets",
       backBtn: "Retour aux projets",
       role: "Rôle",
       year: "Année",
       category: "Catégorie",
+      tools: "Outils & Stack",
+      caseStudyLabel: "ÉTUDE DE CAS // UX UI DESIGN",
       context: "Contexte",
       challenge: "Problématique",
       goals: "Objectifs",
       process: "Méthode",
       solution: "Solution",
-      outcome: "Résultat",
+      visuals: "Visuels & Prototypes",
+      outcome: "Résultat & Apprentissages",
       prevProject: "Projet précédent",
-      nextProject: "Projet suivant"
+      nextProject: "Projet suivant",
+      contactCtaTitle: "Vous avez un projet similaire ?",
+      contactCtaSubtitle: "Échangeons sur votre prochaine interface, design system ou identité visuelle.",
+      contactCtaBtn: "Me contacter"
     },
     playground: {
       tag: "/ EXPÉRIMENTATIONS / INTERACTION / PROJETS CRÉATIFS",

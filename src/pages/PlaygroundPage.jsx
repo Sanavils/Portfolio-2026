@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -9,7 +9,9 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import PageTransition from '../components/PageTransition';
 import SEO from '../components/SEO';
-import MusicPlayer from '../components/playground/MusixVisualizer/MusicPlayer';
+
+// Lazy-load heavy Three.js audio visualizer on demand with skeleton fallback
+const MusicPlayer = lazy(() => import('../components/playground/MusixVisualizer/MusicPlayer'));
 
 export default function PlaygroundPage() {
   const { language } = useLanguage();
@@ -39,10 +41,10 @@ export default function PlaygroundPage() {
   useEffect(() => {
     if (isHovered || isPlayingMusic || isPlayingGame) return;
     const interval = setInterval(() => {
-      handleNext();
+      setSlide(([curr]) => [(curr + 1) % totalSlides, 1]);
     }, 10000); // 10 seconds slow autoplay
     return () => clearInterval(interval);
-  }, [isHovered, isPlayingMusic, isPlayingGame, slide]);
+  }, [isHovered, isPlayingMusic, isPlayingGame]);
 
   const slideVariants = {
     enter: (direction) => ({
@@ -202,13 +204,42 @@ export default function PlaygroundPage() {
   );
 }
 
+function MusicPlayerSkeleton({ lang }) {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-pulse select-none">
+      <div className="lg:col-span-8 bg-[#09090C] border border-white/10 rounded-xl min-h-[380px] md:min-h-[440px] flex items-center justify-center p-8">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-12 h-12 rounded-full border border-violet/30 flex items-center justify-center">
+            <span className="w-2.5 h-2.5 rounded-full bg-violet animate-ping" />
+          </div>
+          <span className="font-mono text-[9px] uppercase tracking-widest text-white/50">
+            {lang === 'fr' ? 'Initialisation Visualiseur 3D...' : 'Initializing 3D Visualizer...'}
+          </span>
+        </div>
+      </div>
+      <div className="lg:col-span-4 bg-[#09090C] border border-white/10 rounded-xl p-6 flex flex-col justify-between min-h-[340px]">
+        <div className="space-y-4">
+          <div className="h-4 bg-white/10 rounded w-1/2" />
+          <div className="h-3 bg-white/5 rounded w-3/4" />
+          <div className="h-2 bg-white/5 rounded w-full mt-6" />
+        </div>
+        <div className="h-10 bg-white/10 rounded-full w-full" />
+      </div>
+    </div>
+  );
+}
+
 // ----------------------------------------------------
 // CARD RENDER MANAGER
 // ----------------------------------------------------
 function renderActiveCard(index, lang, t, setIsPlayingMusic, setIsPlayingGame) {
   switch (index) {
     case 0:
-      return <MusicPlayer lang={lang} onPlayStateChange={setIsPlayingMusic} />;
+      return (
+        <Suspense fallback={<MusicPlayerSkeleton lang={lang} />}>
+          <MusicPlayer lang={lang} onPlayStateChange={setIsPlayingMusic} />
+        </Suspense>
+      );
     case 1:
       return <TypoMotionCard lang={lang} />;
     case 2:

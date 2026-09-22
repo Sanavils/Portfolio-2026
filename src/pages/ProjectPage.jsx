@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -8,6 +8,7 @@ import { projectsData } from '../data/projectsData';
 import { projectSeoMap } from '../data/projectSeoData';
 import SEO from '../components/SEO';
 import PageTransition from '../components/PageTransition';
+import PrefetchLink from '../components/PrefetchLink';
 
 export default function ProjectPage() {
   const { slug } = useParams();
@@ -32,11 +33,11 @@ export default function ProjectPage() {
           canonical="https://www.hassenarkab.com/not-found"
           noindex={true}
         />
-        <div className="min-h-screen flex flex-col items-center justify-center bg-bg-light">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-bg-light px-6">
           <h1 className="text-2xl font-syne font-bold uppercase mb-4">Project Not Found</h1>
-          <Link to="/work" className="text-xs font-mono font-bold uppercase text-violet underline">
+          <PrefetchLink to="/work" className="text-xs font-mono font-bold uppercase text-violet underline">
             Back to Work
-          </Link>
+          </PrefetchLink>
         </div>
       </>
     );
@@ -45,8 +46,8 @@ export default function ProjectPage() {
   const pContent = project[language];
 
   const seoData = projectSeoMap[project.slug] || {
-    title: `${project.title} — Hassen Arkab`,
-    description: pContent.heroSummary || `${project.title} UX/UI Case Study by Hassen Arkab`,
+    title: `${project.title || pContent.title} — Hassen Arkab`,
+    description: pContent.heroSummary || pContent.intro || `${project.slug} UX/UI Case Study by Hassen Arkab`,
   };
 
   const creativeWorkSchema = {
@@ -70,27 +71,37 @@ export default function ProjectPage() {
   const prevProject = projectsData[projectIndex === 0 ? projectsData.length - 1 : projectIndex - 1];
   const nextProject = projectsData[projectIndex === projectsData.length - 1 ? 0 : projectIndex + 1];
 
-  // Render giant visual mockup cover
+  const projectTitleDisplay = project.id === "02" 
+    ? "Abercrombie & Fitch" 
+    : project.id === "01" 
+      ? "Groupe ADP" 
+      : project.id === "03" 
+        ? "Civic Vote" 
+        : project.slug.replace('-', ' ');
+
+  // Render giant visual mockup cover (taking 100% of container width)
   const renderGiantPlaceholder = (proj) => {
     if (proj.slug === 'groupe-adp') {
       return (
-        <div className="w-full aspect-[21/9] min-h-[320px] md:min-h-[480px] relative border-y border-border-light overflow-hidden bg-[#0A2A5C] flex items-center justify-center">
+        <div className="w-full aspect-[21/9] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-[#0A2A5C] flex items-center justify-center shadow-sm">
           {/* Main visual taking 100% of the block */}
           <motion.img 
-            initial={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.99 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             src="/assets/projects/groupe-adp/adp-logo.png" 
             alt="Groupe ADP" 
+            loading="eager"
+            fetchPriority="high"
             className="w-full h-full object-cover relative z-10"
           />
           
-          <div className="absolute top-6 left-6 md:top-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+          <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/60 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>CASE STUDY // CORPORATE REDESIGN</span>
             <span className="font-bold">ID: {proj.id}</span>
           </div>
           
-          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+          <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/60 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label}</span>
             <span>{proj.year}</span>
           </div>
@@ -100,23 +111,25 @@ export default function ProjectPage() {
 
     if (proj.slug === 'abercrombie') {
       return (
-        <div className="w-full aspect-[21/9] min-h-[320px] md:min-h-[480px] relative border-y border-border-light overflow-hidden bg-[#EAEAEA] flex items-center justify-center">
+        <div className="w-full aspect-[21/9] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-[#EAEAEA] flex items-center justify-center shadow-sm">
           {/* Main visual taking 100% of the block */}
           <motion.img 
-            initial={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.99 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             src="/assets/projects/abercrombie/abercrombie-logo.png" 
             alt="Abercrombie" 
+            loading="eager"
+            fetchPriority="high"
             className="w-full h-full object-cover relative z-10"
           />
           
-          <div className="absolute top-6 left-6 md:top-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+          <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/60 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>CASE STUDY // BRAND REBRANDING</span>
             <span className="font-bold">ID: {proj.id}</span>
           </div>
           
-          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/50 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+          <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/60 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label}</span>
             <span>{proj.year}</span>
           </div>
@@ -126,24 +139,25 @@ export default function ProjectPage() {
 
     if (proj.slug === 'civic-vote') {
       return (
-        <div className="w-full aspect-[16/9] max-h-[620px] min-h-[320px] md:min-h-[460px] relative border-y border-border-light overflow-hidden bg-[#8D4FE7] flex items-center justify-center">
+        <div className="w-full aspect-[16/9] max-h-[600px] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-[#8D4FE7] flex items-center justify-center shadow-sm">
           {/* Main visual taking 100% of the block */}
           <motion.img 
-            initial={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.99 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             src="/assets/projects/civic-vote/civic-vote-hero.png" 
             alt="Civic Vote — Se déplacer pour voter" 
+            loading="eager"
+            fetchPriority="high"
             className="w-full h-full object-cover relative z-10"
           />
           
-          {/* Top-right badges leaving the République Française logo in top-left completely uncluttered */}
-          <div className="absolute top-6 right-6 md:top-8 md:right-8 pointer-events-none text-white/90 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20 flex items-center gap-3">
+          <div className="absolute top-5 right-6 md:top-6 md:right-8 pointer-events-none text-white/90 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20 flex items-center gap-3">
             <span className="hidden sm:inline">CASE STUDY // CIVIC CAMPAIGN</span>
             <span className="font-bold bg-white/20 backdrop-blur px-2 py-0.5 rounded">ID: {proj.id}</span>
           </div>
           
-          <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 pointer-events-none text-white/90 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+          <div className="absolute bottom-5 right-6 md:bottom-6 md:right-8 pointer-events-none text-white/90 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label} &bull; {proj.year}</span>
           </div>
         </div>
@@ -152,23 +166,25 @@ export default function ProjectPage() {
 
     if (proj.slug === 'okane') {
       return (
-        <div className="w-full aspect-[16/9] max-h-[620px] min-h-[320px] md:min-h-[460px] relative border-y border-border-light overflow-hidden bg-[#5DB075] flex items-center justify-center">
+        <div className="w-full aspect-[16/9] max-h-[600px] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-[#5DB075] flex items-center justify-center shadow-sm">
           {/* Main visual taking 100% of the block */}
           <motion.img 
-            initial={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.99 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             src="/assets/projects/okane/okane-logo.png" 
             alt="Okane Logo" 
+            loading="eager"
+            fetchPriority="high"
             className="w-full h-full object-cover relative z-10"
           />
           
-          <div className="absolute top-6 left-6 md:top-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/80 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+          <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/80 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>CASE STUDY // PRODUCT DESIGN</span>
             <span className="font-bold bg-white/20 backdrop-blur px-2 py-0.5 rounded text-white">ID: {proj.id}</span>
           </div>
           
-          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/80 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+          <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/80 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label}</span>
             <span>{proj.year}</span>
           </div>
@@ -178,8 +194,8 @@ export default function ProjectPage() {
 
     const { bgColor, type, label } = proj.visual;
     return (
-      <div className={`w-full aspect-[21/9] min-h-[300px] md:min-h-[450px] relative border-y border-border-light overflow-hidden ${bgColor} flex flex-col justify-between p-8 md:p-12`}>
-        {/* Decorative Grid Lines / Concentric Circles based on type */}
+      <div className={`w-full aspect-[21/9] min-h-[300px] md:min-h-[440px] relative border border-border-light rounded-xl overflow-hidden ${bgColor} flex flex-col justify-between p-8 md:p-12 shadow-sm`}>
+        {/* Decorative Graphic Lines based on type */}
         <div className="absolute inset-0 flex items-center justify-center opacity-25 pointer-events-none">
           {type === 'grid-lines' && (
             <>
@@ -215,15 +231,15 @@ export default function ProjectPage() {
         </div>
 
         <div className="flex justify-between items-baseline z-10">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-violet-dark opacity-60">CASE STUDY // GRAPHIC SYSTEM</span>
+          <span className="font-mono text-[10px] uppercase tracking-widest text-violet-dark opacity-70">CASE STUDY // GRAPHIC SYSTEM</span>
           <span className="font-mono text-[10px] uppercase tracking-widest font-bold">ID: {proj.id}</span>
         </div>
 
-        <div className="font-syne font-black text-6xl sm:text-8xl md:text-[10vw] text-center select-none z-10 tracking-tighter uppercase leading-none" style={{ color: type.includes('light') || type === 'editorial-block' ? '#111111' : '#EEB8F9' }}>
+        <div className="font-syne font-black text-5xl sm:text-7xl md:text-8xl text-center select-none z-10 tracking-tight uppercase leading-none" style={{ color: type.includes('light') || type === 'editorial-block' ? '#111111' : '#EEB8F9' }}>
           {proj.slug.replace('-', ' ')}
         </div>
 
-        <div className="flex justify-between items-baseline z-10 font-mono text-[10px] uppercase tracking-widest opacity-60">
+        <div className="flex justify-between items-baseline z-10 font-mono text-[10px] uppercase tracking-widest opacity-70">
           <span>{label}</span>
           <span>{proj.year}</span>
         </div>
@@ -318,19 +334,16 @@ export default function ProjectPage() {
     if (!data) return null;
 
     return (
-      <div className="space-y-10">
+      <div className="space-y-8 mt-4">
         <div>
-          <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
-            / {data.title}
-          </h3>
-          <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-2xl">
+          <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
             {data.subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
           {/* Board 1 */}
-          <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+          <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
             <div className="p-4 bg-charcoal/5 border-b border-border-light flex justify-between items-center">
               <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted font-bold">
                 {data.board1Title}
@@ -339,7 +352,7 @@ export default function ProjectPage() {
                 SPEC // A
               </span>
             </div>
-            <div className={`p-8 ${data.board1Theme} flex-1 flex flex-col justify-between min-h-[340px]`}>
+            <div className={`p-8 ${data.board1Theme} flex-1 flex flex-col justify-between min-h-[320px]`}>
               <div className="space-y-4">
                 <div className="flex flex-wrap gap-2">
                   {data.pills1.map((pill, i) => (
@@ -349,7 +362,7 @@ export default function ProjectPage() {
                   ))}
                 </div>
                 <div className="pt-6 font-syne font-black text-2xl uppercase tracking-tight opacity-90">
-                  {proj.title}
+                  {projTitleDisplay}
                 </div>
               </div>
 
@@ -365,7 +378,7 @@ export default function ProjectPage() {
           </div>
 
           {/* Board 2 */}
-          <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+          <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
             <div className="p-4 bg-charcoal/5 border-b border-border-light flex justify-between items-center">
               <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted font-bold">
                 {data.board2Title}
@@ -374,7 +387,7 @@ export default function ProjectPage() {
                 SPEC // B
               </span>
             </div>
-            <div className={`p-8 ${data.board2Theme} flex-1 flex flex-col justify-between min-h-[340px]`}>
+            <div className={`p-8 ${data.board2Theme} flex-1 flex flex-col justify-between min-h-[320px]`}>
               <div className="space-y-4">
                 <div className="flex flex-wrap gap-2">
                   {data.pills2.map((pill, i) => (
@@ -388,7 +401,7 @@ export default function ProjectPage() {
                 </div>
               </div>
 
-              <div className="p-4 rounded border border-current/15 bg-current/[0.03] mt-6">
+              <div className="p-4 rounded-lg border border-current/15 bg-current/[0.03] mt-6">
                 <div className="flex justify-between items-center font-mono text-[9px] uppercase tracking-widest opacity-70 mb-2">
                   <span>SYSTEM VALIDATION</span>
                   <span>PARIS 2026</span>
@@ -404,6 +417,14 @@ export default function ProjectPage() {
     );
   };
 
+  const projTitleDisplay = project.id === "02" 
+    ? "Abercrombie & Fitch" 
+    : project.id === "01" 
+      ? "Groupe ADP" 
+      : project.id === "03" 
+        ? "Civic Vote" 
+        : project.slug.replace('-', ' ');
+
   return (
     <>
       <SEO
@@ -414,162 +435,243 @@ export default function ProjectPage() {
       />
       <PageTransition />
       
-      <div className="min-h-screen bg-bg-light pt-28 pb-16">
+      <div className="min-h-screen bg-bg-light pt-28 pb-20">
         
-        {/* Return Button Block */}
+        {/* ──────────────────────────────────────────────────────────── */}
+        {/* 1. TOP BAR: BREADCRUMB & BACK BUTTON                        */}
+        {/* ──────────────────────────────────────────────────────────── */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-8">
-          <Link
-            to="/work"
-            className="group inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-charcoal hover:text-violet transition-colors duration-300 cursor-none interactive-hover"
-          >
-            <ArrowLeft size={14} className="transform group-hover:-translate-x-0.5 transition-transform duration-300" />
-            {t.projectPage.backBtn}
-          </Link>
-        </div>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border-light">
+            
+            {/* Discrete breadcrumb */}
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-charcoal-muted">
+              <PrefetchLink to="/" className="hover:text-violet transition-colors">
+                {t.projectPage.breadcrumbHome}
+              </PrefetchLink>
+              <span className="text-charcoal/20">/</span>
+              <PrefetchLink to="/work" className="hover:text-violet transition-colors">
+                {t.projectPage.breadcrumbWork}
+              </PrefetchLink>
+              <span className="text-charcoal/20">/</span>
+              <span className="text-charcoal font-bold truncate max-w-[220px] sm:max-w-none">
+                {projectTitleDisplay}
+              </span>
+            </nav>
 
-        {/* Dynamic visual project mockup banner */}
-        {renderGiantPlaceholder(project)}
-
-        {/* Project Header block */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 md:mt-16">
-          <div className="border-b border-border-light pb-10">
-            <h1 
-              className="font-syne font-black text-charcoal-light uppercase tracking-tight"
-              style={{
-                fontSize: 'clamp(2.2rem, 5vw, 4.4rem)',
-                lineHeight: 1.02,
-                letterSpacing: '-0.035em',
-                maxWidth: '1100px'
-              }}
+            {/* Back to work visible top button */}
+            <PrefetchLink
+              to="/work"
+              className="group inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-charcoal hover:text-violet transition-colors duration-300 self-start sm:self-auto cursor-none interactive-hover"
             >
-              {pContent.title}
-            </h1>
+              <ArrowLeft size={14} className="transform group-hover:-translate-x-1 transition-transform duration-300" />
+              {t.projectPage.backBtn}
+            </PrefetchLink>
           </div>
         </div>
 
-        {/* Project detailed metadata layout */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 border-b border-border-light pb-12">
-            
-            {/* Left Header Title / Role metadata (Span 4) */}
-            <div className="lg:col-span-4 space-y-6">
-              <div className="grid grid-cols-2 gap-4 text-xs md:text-sm">
-                <div>
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block mb-1">
-                    {t.projectPage.role}
-                  </span>
-                  <span className="font-bold text-charcoal">{pContent.role}</span>
-                </div>
-                <div>
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block mb-1">
-                    {t.projectPage.year}
-                  </span>
-                  <span className="font-bold text-charcoal">{project.year}</span>
-                </div>
-                <div className="col-span-2 mt-2">
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block mb-1">
-                    {t.projectPage.category}
-                  </span>
-                  <span className="font-bold text-charcoal leading-relaxed">{pContent.category}</span>
-                </div>
-              </div>
+        {/* ──────────────────────────────────────────────────────────── */}
+        {/* 2. PROJECT HERO HEADER: LABEL, TITLE, INTRO & METADATA GRID  */}
+        {/* ──────────────────────────────────────────────────────────── */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-4">
+          
+          {/* Discrete small label */}
+          <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-4">
+            / {t.projectPage.caseStudyLabel} // {project.year}
+          </span>
+
+          {/* Clean, readable heading in font-syne extra-bold (clamp responsive, max-w-[1100px], no awkward breaks) */}
+          <h1 
+            className="font-syne font-extrabold text-charcoal-light uppercase tracking-tight text-balance"
+            style={{
+              fontSize: 'clamp(2.2rem, 5vw, 4.4rem)',
+              lineHeight: 1.02,
+              letterSpacing: '-0.035em',
+              maxWidth: '1100px'
+            }}
+          >
+            {pContent.title}
+          </h1>
+
+          {/* Short project intro (2 to 3 lines max) */}
+          <p className="text-base sm:text-lg text-charcoal/80 leading-relaxed font-light max-w-[850px] mt-6 border-l-2 border-violet pl-4">
+            {pContent.intro}
+          </p>
+
+          {/* Clean, airy metadata block (4 columns) */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-8 mt-8 border-t border-border-light">
+            <div>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block mb-1">
+                {t.projectPage.role}
+              </span>
+              <span className="font-syne font-bold text-xs sm:text-sm text-charcoal block leading-snug">
+                {pContent.role}
+              </span>
             </div>
 
-            {/* Right Intro details columns (Span 8) */}
-            <div className="lg:col-span-8 space-y-8 lg:pl-10 lg:border-l lg:border-border-light">
-              <p className="text-lg md:text-xl leading-relaxed text-charcoal font-light border-l-2 border-violet pl-4">
-                {pContent.intro}
-              </p>
+            <div>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block mb-1">
+                {t.projectPage.year}
+              </span>
+              <span className="font-syne font-bold text-xs sm:text-sm text-charcoal block leading-snug">
+                {project.year}
+              </span>
+            </div>
 
-              {/* Context Block */}
-              <div>
-                <h2 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-3">
-                  / {t.projectPage.context}
+            <div>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block mb-1">
+                {t.projectPage.category}
+              </span>
+              <span className="font-syne font-bold text-xs sm:text-sm text-charcoal block leading-snug">
+                {pContent.category}
+              </span>
+            </div>
+
+            <div>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block mb-1">
+                {t.projectPage.tools}
+              </span>
+              <span className="font-syne font-bold text-xs sm:text-sm text-charcoal block leading-snug">
+                {project.tags.join(', ')}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* ──────────────────────────────────────────────────────────── */}
+        {/* 3. GRAND VISUEL PRINCIPAL (HERO BANNER 100% WIDTH)          */}
+        {/* ──────────────────────────────────────────────────────────── */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 my-12 md:my-16">
+          {renderGiantPlaceholder(project)}
+        </div>
+
+        {/* ──────────────────────────────────────────────────────────── */}
+        {/* 4. CASE STUDY BODY: 7 NUMBERED READABLE SECTIONS            */}
+        {/* ──────────────────────────────────────────────────────────── */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
+          
+          {/* 01 / CONTEXT */}
+          <section className="border-t border-border-light pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
+              <div className="lg:col-span-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-1">
+                  SECTION // 01
+                </span>
+                <h2 className="font-syne font-bold text-sm sm:text-base uppercase tracking-wider text-charcoal">
+                  {t.projectPage.context}
                 </h2>
-                <p className="text-sm md:text-base text-charcoal leading-relaxed font-light">
+              </div>
+              <div className="lg:col-span-8">
+                <p className="text-base sm:text-lg text-charcoal/80 leading-[1.65] font-light max-w-[680px]">
                   {pContent.context}
                 </p>
               </div>
+            </div>
+          </section>
 
-              {/* Challenge Block */}
-              <div>
-                <h2 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-3">
-                  / {t.projectPage.challenge}
+          {/* 02 / CHALLENGE */}
+          <section className="border-t border-border-light pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
+              <div className="lg:col-span-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-1">
+                  SECTION // 02
+                </span>
+                <h2 className="font-syne font-bold text-sm sm:text-base uppercase tracking-wider text-charcoal">
+                  {t.projectPage.challenge}
                 </h2>
-                <p className="text-sm md:text-base text-charcoal leading-relaxed font-light">
+              </div>
+              <div className="lg:col-span-8">
+                <p className="text-base sm:text-lg text-charcoal/80 leading-[1.65] font-light max-w-[680px]">
                   {pContent.challenge}
                 </p>
               </div>
+            </div>
+          </section>
 
-              {/* Goals Block */}
-              <div>
-                <h2 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-3">
-                  / {t.projectPage.goals}
+          {/* 03 / GOALS */}
+          <section className="border-t border-border-light pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
+              <div className="lg:col-span-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-1">
+                  SECTION // 03
+                </span>
+                <h2 className="font-syne font-bold text-sm sm:text-base uppercase tracking-wider text-charcoal">
+                  {t.projectPage.goals}
                 </h2>
-                <ul className="list-disc pl-5 space-y-2 text-xs md:text-sm text-charcoal font-light">
+              </div>
+              <div className="lg:col-span-8">
+                <ul className="space-y-3 max-w-[680px]">
                   {pContent.goals.map((goal, index) => (
-                    <li key={index}>{goal}</li>
+                    <li key={index} className="flex items-start gap-3 text-base sm:text-lg text-charcoal/80 leading-[1.65] font-light">
+                      <span className="text-violet font-bold mt-1 select-none">—</span>
+                      <span>{goal}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
+            </div>
+          </section>
 
-              {/* Process Block */}
-              <div>
-                <h2 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-3">
-                  / {t.projectPage.process}
+          {/* 04 / PROCESS */}
+          <section className="border-t border-border-light pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
+              <div className="lg:col-span-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-1">
+                  SECTION // 04
+                </span>
+                <h2 className="font-syne font-bold text-sm sm:text-base uppercase tracking-wider text-charcoal">
+                  {t.projectPage.process}
                 </h2>
-                <p className="text-sm md:text-base text-charcoal-muted leading-relaxed font-light">
+              </div>
+              <div className="lg:col-span-8">
+                <p className="text-base sm:text-lg text-charcoal/80 leading-[1.65] font-light max-w-[680px]">
                   {pContent.process}
                 </p>
               </div>
+            </div>
+          </section>
 
-              {/* Solution Block */}
-              <div>
-                <h2 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-3">
-                  / {t.projectPage.solution}
+          {/* 05 / SOLUTION */}
+          <section className="border-t border-border-light pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
+              <div className="lg:col-span-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-1">
+                  SECTION // 05
+                </span>
+                <h2 className="font-syne font-bold text-sm sm:text-base uppercase tracking-wider text-charcoal">
+                  {t.projectPage.solution}
                 </h2>
-                <p className="text-sm md:text-base text-charcoal leading-relaxed font-light">
+              </div>
+              <div className="lg:col-span-8">
+                <p className="text-base sm:text-lg text-charcoal/80 leading-[1.65] font-light max-w-[680px]">
                   {pContent.solution}
                 </p>
               </div>
+            </div>
+          </section>
 
-              {/* Outcome Block */}
-              <div>
-                <h2 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-3">
-                  / {t.projectPage.outcome}
-                </h2>
-                <p className="text-sm md:text-base text-charcoal leading-relaxed font-light">
-                  {pContent.outcome}
-                </p>
-              </div>
-
+          {/* 06 / VISUALS & DETAILED MOCKUPS */}
+          <section className="border-t border-border-light pt-10">
+            <div className="mb-8">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-1">
+                SECTION // 06
+              </span>
+              <h2 className="font-syne font-bold text-sm sm:text-base uppercase tracking-wider text-charcoal">
+                {t.projectPage.visuals}
+              </h2>
             </div>
 
-          </div>
-        </div>
+            {project.slug === 'groupe-adp' ? (
+              <div className="space-y-6">
+                <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
+                  {language === 'fr' 
+                    ? 'Explorez les différentes maquettes issues du portail. Faites défiler verticalement chaque écran pour analyser la structure de la grille, le traitement typographique et l\'organisation des contenus sans aucune déformation.'
+                    : 'Explore the different mockups from the intranet portal. Scroll vertically within each screen to inspect the grid structure, typography, and content layout without distortion.'}
+                </p>
 
-        {/* Gallery / Interactive details showcase */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16">
-          {project.slug === 'groupe-adp' ? (
-            <div className="space-y-16">
-              {/* Section Parcours complets & Pages Intranet */}
-              <div className="space-y-8">
-                <div>
-                  <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
-                    / {language === 'fr' ? 'Interfaces et pages du portail Intranet' : 'Intranet portal pages & interfaces'}
-                  </h3>
-                  <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-2xl">
-                    {language === 'fr' 
-                      ? 'Explorez les différentes maquettes longues issues du portail. Faites défiler verticalement chaque écran pour analyser la structure de la grille, le traitement typographique et l\'organisation des contenus sans aucune déformation.'
-                      : 'Explore the different long-form mockups from the intranet portal. Scroll vertically within each screen to inspect the grid structure, typography, and content layout without distortion.'}
-                  </p>
-                </div>
-
-                {/* Horizontal scroll / Flex container for multiple mobile viewports */}
-                <div className="flex flex-wrap gap-8 justify-center items-start">
-                  
+                {/* Grid container for 4 screens */}
+                <div className="flex flex-wrap gap-6 justify-center items-start pt-4">
                   {/* Screen 1: Brand Studio */}
-                  <div className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px] border border-border-light rounded-lg overflow-hidden bg-bg-light flex flex-col shadow-sm">
+                  <div className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-[280px] border border-border-light rounded-xl overflow-hidden bg-bg-light flex flex-col shadow-sm">
                     <div className="bg-charcoal/5 border-b border-border-light px-3 py-2 flex items-center justify-between">
                       <span className="font-mono text-[8px] text-charcoal-muted">brandstudio.adp</span>
                       <div className="flex gap-1">
@@ -595,7 +697,7 @@ export default function ProjectPage() {
                   </div>
 
                   {/* Screen 2: Le Comité Exécutif (Comex) */}
-                  <div className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px] border border-border-light rounded-lg overflow-hidden bg-bg-light flex flex-col shadow-sm">
+                  <div className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-[280px] border border-border-light rounded-xl overflow-hidden bg-bg-light flex flex-col shadow-sm">
                     <div className="bg-charcoal/5 border-b border-border-light px-3 py-2 flex items-center justify-between">
                       <span className="font-mono text-[8px] text-charcoal-muted">comex.adp</span>
                       <div className="flex gap-1">
@@ -621,7 +723,7 @@ export default function ProjectPage() {
                   </div>
 
                   {/* Screen 3: Les Marques */}
-                  <div className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px] border border-border-light rounded-lg overflow-hidden bg-bg-light flex flex-col shadow-sm">
+                  <div className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-[280px] border border-border-light rounded-xl overflow-hidden bg-bg-light flex flex-col shadow-sm">
                     <div className="bg-charcoal/5 border-b border-border-light px-3 py-2 flex items-center justify-between">
                       <span className="font-mono text-[8px] text-charcoal-muted">marques.adp</span>
                       <div className="flex gap-1">
@@ -647,7 +749,7 @@ export default function ProjectPage() {
                   </div>
 
                   {/* Screen 4: Espace Patrimoine */}
-                  <div className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px] border border-border-light rounded-lg overflow-hidden bg-bg-light flex flex-col shadow-sm">
+                  <div className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-[280px] border border-border-light rounded-xl overflow-hidden bg-bg-light flex flex-col shadow-sm">
                     <div className="bg-charcoal/5 border-b border-border-light px-3 py-2 flex items-center justify-between">
                       <span className="font-mono text-[8px] text-charcoal-muted">patrimoine.adp</span>
                       <div className="flex gap-1">
@@ -673,25 +775,17 @@ export default function ProjectPage() {
                   </div>
                 </div>
               </div>
-            </div>
-          ) : project.slug === 'abercrombie' ? (
-            <div className="space-y-16">
-              {/* Section Parcours complets & Visuels de Rebranding */}
-              <div className="space-y-8">
-                <div>
-                  <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
-                    / {language === 'fr' ? 'Visuels du Rebranding & Direction Artistique' : 'Rebranding Visuals & Art Direction'}
-                  </h3>
-                  <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-2xl">
-                    {language === 'fr' 
-                      ? 'Découvrez les maquettes physiques et éditoriales du projet de rebranding. Les visuels intègrent la nouvelle typographie graffiti avec l\'univers brut de la marque.'
-                      : 'Discover the physical and editorial mockups of the rebranding project. The visuals integrate the new graffiti typography with the raw brand identity.'}
-                  </p>
-                </div>
+            ) : project.slug === 'abercrombie' ? (
+              <div className="space-y-6">
+                <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
+                  {language === 'fr' 
+                    ? 'Découvrez les maquettes physiques et éditoriales du projet de rebranding. Les visuels intègrent la nouvelle typographie avec l\'univers brut de la marque.'
+                    : 'Discover the physical and editorial mockups of the rebranding project. The visuals integrate the new typography with the raw brand identity.'}
+                </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start pt-4">
                   {/* Visual 1: Beat Generation Photo */}
-                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
                     <div className="p-4 bg-charcoal/5 border-b border-border-light">
                       <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
                         {language === 'fr' ? '01 / Direction Artistique Photo' : '01 / Photo Art Direction'}
@@ -709,7 +803,7 @@ export default function ProjectPage() {
                   </div>
 
                   {/* Visual 2: Business Card Mockup */}
-                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
                     <div className="p-4 bg-charcoal/5 border-b border-border-light">
                       <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
                         {language === 'fr' ? '02 / Cartes de Visite Brutalistes' : '02 / Brutalist Business Cards'}
@@ -727,7 +821,7 @@ export default function ProjectPage() {
                   </div>
 
                   {/* Visual 3: Street Billboard Mockup (Span 2) */}
-                  <div className="md:col-span-2 border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="md:col-span-2 border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
                     <div className="p-4 bg-charcoal/5 border-b border-border-light">
                       <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
                         {language === 'fr' ? '03 / Affichage Urbain Mockup' : '03 / Urban Billboard Mockup'}
@@ -743,28 +837,19 @@ export default function ProjectPage() {
                       />
                     </div>
                   </div>
-
                 </div>
               </div>
-            </div>
-          ) : project.slug === 'civic-vote' ? (
-            <div className="space-y-16">
-              {/* Section Campagne & Illustrations */}
-              <div className="space-y-8">
-                <div>
-                  <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
-                    / {language === 'fr' ? 'Campagne & Déclinaisons Illustrées' : 'Campaign & Illustrated Variations'}
-                  </h3>
-                  <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-2xl">
-                    {language === 'fr' 
-                      ? 'Découvrez les déclinaisons graphiques de la campagne citoyenne. Des illustrations vivantes, pop et engageantes conçues pour mobiliser les jeunes électeurs autour du geste démocratique.'
-                      : 'Explore the graphic variations of the civic campaign. Vibrant, bold, and engaging illustrations designed to mobilize young voters around civic participation.'}
-                  </p>
-                </div>
+            ) : project.slug === 'civic-vote' ? (
+              <div className="space-y-6">
+                <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
+                  {language === 'fr' 
+                    ? 'Découvrez les déclinaisons graphiques de la campagne citoyenne. Des illustrations vivantes, pop et engageantes conçues pour mobiliser les jeunes électeurs.'
+                    : 'Explore the graphic variations of the civic campaign. Vibrant, bold, and engaging illustrations designed to mobilize young voters.'}
+                </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch pt-4">
                   {/* Visual 1: Allons Voter */}
-                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
                     <div className="p-4 bg-charcoal/5 border-b border-border-light">
                       <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
                         {language === 'fr' ? '01 / Déclinaison Réseaux — Allons Voter' : '01 / Social Media — Allons Voter'}
@@ -782,7 +867,7 @@ export default function ProjectPage() {
                   </div>
 
                   {/* Visual 2: En Route Pour Voter */}
-                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
                     <div className="p-4 bg-charcoal/5 border-b border-border-light">
                       <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
                         {language === 'fr' ? '02 / Affiche Campagne — En Route Pour Voter' : '02 / Campaign Poster — En Route Pour Voter'}
@@ -800,25 +885,17 @@ export default function ProjectPage() {
                   </div>
                 </div>
               </div>
-            </div>
-          ) : project.slug === 'okane' ? (
-            <div className="space-y-16">
-              {/* Section Interfaces & Expérience Mobile */}
-              <div className="space-y-8">
-                <div>
-                  <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
-                    / {language === 'fr' ? 'Interfaces & Expérience Mobile' : 'Mobile Experience & Interfaces'}
-                  </h3>
-                  <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-2xl">
-                    {language === 'fr' 
-                      ? 'Découvrez les maquettes de l’application Okane. Une expérience conçue pour simplifier le suivi budgétaire au quotidien grâce à des jauges visuelles claires, un système de catégorisation intuitif et un ton bienveillant.'
-                      : 'Explore the Okane application mockups. An experience designed to simplify daily budget tracking through clear visual gauges, an intuitive categorization system, and an approachable tone.'}
-                  </p>
-                </div>
+            ) : project.slug === 'okane' ? (
+              <div className="space-y-6">
+                <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
+                  {language === 'fr' 
+                    ? 'Découvrez les maquettes de l’application Okane. Une expérience conçue pour simplifier le suivi budgétaire au quotidien grâce à des jauges visuelles claires et un ton bienveillant.'
+                    : 'Explore the Okane application mockups. An experience designed to simplify daily budget tracking through clear visual gauges and an approachable tone.'}
+                </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch pt-4">
                   {/* Visual 1: Mockup Trio Overview */}
-                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
                     <div className="p-4 bg-charcoal/5 border-b border-border-light">
                       <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
                         {language === 'fr' ? '01 / Parcours Global — Onboarding, Accueil & Suivi' : '01 / Global Journey — Onboarding, Home & Tracking'}
@@ -836,7 +913,7 @@ export default function ProjectPage() {
                   </div>
 
                   {/* Visual 2: Detailed Expenses Screen */}
-                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
                     <div className="p-4 bg-charcoal/5 border-b border-border-light">
                       <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
                         {language === 'fr' ? '02 / Vue Détaillée — Gestion des Dépenses & Catégories' : '02 / Detailed View — Expense Tracking & Categories'}
@@ -854,48 +931,99 @@ export default function ProjectPage() {
                   </div>
                 </div>
               </div>
+            ) : (
+              renderEditorialShowcase(project)
+            )}
+          </section>
+
+          {/* 07 / OUTCOME */}
+          <section className="border-t border-border-light pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
+              <div className="lg:col-span-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-1">
+                  SECTION // 07
+                </span>
+                <h2 className="font-syne font-bold text-sm sm:text-base uppercase tracking-wider text-charcoal">
+                  {t.projectPage.outcome}
+                </h2>
+              </div>
+              <div className="lg:col-span-8">
+                <p className="text-base sm:text-lg text-charcoal/80 leading-[1.65] font-light max-w-[680px]">
+                  {pContent.outcome}
+                </p>
+              </div>
             </div>
-          ) : (
-            renderEditorialShowcase(project)
-          )}
+          </section>
+
         </div>
 
-        {/* Prev / Next project navigation links */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-20 pt-10 border-t border-border-light">
+        {/* ──────────────────────────────────────────────────────────── */}
+        {/* 5. CONTACT CTA BANNER (DISCRETE END-OF-CASE-STUDY)          */}
+        {/* ──────────────────────────────────────────────────────────── */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-20">
+          <div className="border border-border-light rounded-xl p-8 sm:p-12 bg-charcoal/[0.02] flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="space-y-2">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block">
+                / {language === 'fr' ? 'COLLABORATION' : 'COLLABORATION'}
+              </span>
+              <h3 className="font-syne font-black text-xl sm:text-2xl uppercase tracking-tight text-charcoal">
+                {t.projectPage.contactCtaTitle}
+              </h3>
+              <p className="text-xs sm:text-sm text-charcoal-muted font-light max-w-xl">
+                {t.projectPage.contactCtaSubtitle}
+              </p>
+            </div>
+            <PrefetchLink
+              to="/contact"
+              className="px-6 py-3 rounded-full bg-charcoal text-bg-light hover:bg-violet hover:text-charcoal font-mono text-xs uppercase font-bold tracking-widest transition-all duration-300 self-start md:self-auto cursor-none interactive-hover whitespace-nowrap shadow-xs"
+            >
+              {t.projectPage.contactCtaBtn}
+            </PrefetchLink>
+          </div>
+        </div>
+
+        {/* ──────────────────────────────────────────────────────────── */}
+        {/* 6. BOTTOM NAVIGATION (PREV / BACK TO WORK / NEXT)           */}
+        {/* ──────────────────────────────────────────────────────────── */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16 pt-10 border-t border-border-light">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-            <Link
+            
+            {/* Prev Project */}
+            <PrefetchLink
               to={prevProject.link}
               className="group flex flex-col items-center sm:items-start text-center sm:text-left gap-1 cursor-none interactive-hover"
             >
               <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted flex items-center gap-1.5">
-                <ArrowLeft size={10} />
+                <ArrowLeft size={10} className="transform group-hover:-translate-x-1 transition-transform duration-300" />
                 {t.projectPage.prevProject}
               </span>
               <span className="font-syne font-bold text-base sm:text-lg text-charcoal group-hover:text-violet transition-colors duration-300 uppercase">
-                {prevProject.slug.replace('-', ' ')}
+                {prevProject.id === "02" ? "Abercrombie & Fitch" : prevProject.id === "01" ? "Groupe ADP" : prevProject.id === "03" ? "Civic Vote" : prevProject.slug.replace('-', ' ')}
               </span>
-            </Link>
+            </PrefetchLink>
 
             {/* Back to work centered button */}
-            <Link
+            <PrefetchLink
               to="/work"
               className="px-6 py-2.5 rounded-full border border-charcoal/20 hover:border-violet hover:bg-violet hover:text-charcoal font-mono text-xs uppercase font-bold tracking-widest transition-all duration-300 cursor-none interactive-hover my-2 sm:my-0"
             >
               {t.projectPage.backBtn}
-            </Link>
+            </PrefetchLink>
 
-            <Link
+            {/* Next Project */}
+            <PrefetchLink
               to={nextProject.link}
               className="group flex flex-col items-center sm:items-end text-center sm:text-right gap-1 cursor-none interactive-hover"
             >
               <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted flex items-center gap-1.5">
                 {t.projectPage.nextProject}
-                <ArrowRight size={10} />
+                <ArrowRight size={10} className="transform group-hover:translate-x-1 transition-transform duration-300" />
               </span>
               <span className="font-syne font-bold text-base sm:text-lg text-charcoal group-hover:text-violet transition-colors duration-300 uppercase">
-                {nextProject.slug.replace('-', ' ')}
+                {nextProject.id === "02" ? "Abercrombie & Fitch" : nextProject.id === "01" ? "Groupe ADP" : nextProject.id === "03" ? "Civic Vote" : nextProject.slug.replace('-', ' ')}
               </span>
-            </Link>
+            </PrefetchLink>
+
           </div>
         </div>
 

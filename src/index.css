@@ -29,6 +29,12 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-syne font-bold tracking-tight text-charcoal-light;
   }
+
+  :focus-visible {
+    outline: 2px solid #EEB8F9;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 }
 
 /* Custom scrollbar */

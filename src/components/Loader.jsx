@@ -3,15 +3,29 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
 
 export default function Loader() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(() => {
+    try {
+      return !sessionStorage.getItem('hasSeenLoader');
+    } catch {
+      return true;
+    }
+  });
 
   useEffect(() => {
+    if (!isVisible) return;
     // Snappy duration: 1.1 seconds for responsive, non-blocking entrance
     const timer = setTimeout(() => {
       setIsVisible(false);
+      try {
+        sessionStorage.setItem('hasSeenLoader', 'true');
+      } catch {
+        // Ignore storage restrictions if cookies/storage are disabled
+      }
     }, 1100);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isVisible]);
+
+  if (!isVisible) return null;
 
   return (
     <AnimatePresence>
@@ -74,4 +88,3 @@ export default function Loader() {
     </AnimatePresence>
   );
 }
-

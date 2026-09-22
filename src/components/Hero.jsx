@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDownRight, ArrowRight, Sparkles } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import PrefetchLink from './PrefetchLink';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { skillsMarquee } from '../data/projectsData';
@@ -109,30 +109,30 @@ export default function Hero() {
             variants={itemVariants}
             className="flex flex-wrap gap-4 sm:gap-6 items-center"
           >
-            <Link
+            <PrefetchLink
               to="/work"
               className="group relative flex items-center justify-center gap-2 bg-charcoal hover:bg-violet text-bg-light hover:text-charcoal px-8 py-4 text-xs font-mono font-bold tracking-widest uppercase transition-all duration-300 border border-charcoal/10 cursor-none interactive-hover"
             >
               {language === 'fr' ? 'Voir le projet' : 'View project'}
               <ArrowDownRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
-            </Link>
+            </PrefetchLink>
 
-            <Link
+            <PrefetchLink
               to="/playground"
               className="group flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-charcoal hover:text-violet py-3 transition-colors duration-300 cursor-none interactive-hover"
             >
               <Sparkles size={14} className="text-violet" />
               {t.hero.ctaPlayground}
               <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            </PrefetchLink>
 
-            <Link
+            <PrefetchLink
               to="/contact"
               className="group flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-charcoal hover:text-violet py-3 transition-colors duration-300 cursor-none interactive-hover"
             >
               {t.hero.ctaContact}
               <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            </PrefetchLink>
           </motion.div>
         </motion.div>
       </div>

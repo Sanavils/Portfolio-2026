@@ -1,31 +1,45 @@
-import React, { lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { LanguageProvider } from './context/LanguageContext';
 import Loader from './components/Loader';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import { 
+  lazyWithPreload, 
+  registerRoutePreloader, 
+  preloadCriticalImages 
+} from './utils/preload';
 
-// Code-split pages for high performance and reduced initial bundle
-const HomePage = lazy(() => import('./pages/HomePage'));
-const WorkPage = lazy(() => import('./pages/WorkPage'));
-const ProjectPage = lazy(() => import('./pages/ProjectPage'));
-const PlaygroundPage = lazy(() => import('./pages/PlaygroundPage'));
+// Code-split pages with built-in preload methods
+export const HomePage = lazyWithPreload(() => import('./pages/HomePage'));
+export const WorkPage = lazyWithPreload(() => import('./pages/WorkPage'));
+export const ProjectPage = lazyWithPreload(() => import('./pages/ProjectPage'));
+export const PlaygroundPage = lazyWithPreload(() => import('./pages/PlaygroundPage'));
+export const InterestsPage = lazyWithPreload(() => import('./pages/InterestsPage'));
+export const AboutPage = lazyWithPreload(() => import('./pages/AboutPage'));
+export const ContactPage = lazyWithPreload(() => import('./pages/ContactPage'));
+export const NotFoundPage = lazyWithPreload(() => import('./pages/NotFoundPage'));
+
+// Heavy Three.js 3D visualizer chunk remains strictly lazy-loaded on demand
 const MusicVisualizerPage = lazy(() => import('./pages/MusicVisualizerPage'));
-const InterestsPage = lazy(() => import('./pages/InterestsPage'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
-// Subtle elegant route loader
+// Register preloaders for instantaneous navigation on hover/focus
+registerRoutePreloader('/', HomePage.preload);
+registerRoutePreloader('/work', WorkPage.preload);
+registerRoutePreloader('/work/:slug', ProjectPage.preload);
+registerRoutePreloader('/playground', PlaygroundPage.preload);
+registerRoutePreloader('/interests', InterestsPage.preload);
+registerRoutePreloader('/about', AboutPage.preload);
+registerRoutePreloader('/contact', ContactPage.preload);
+registerRoutePreloader('/not-found', NotFoundPage.preload);
+
+// Non-disruptive, elegant 2px top-line loading bar (never displaces or hides the page layout)
 function RouteLoader() {
   return (
-    <div className="min-h-[60vh] flex items-center justify-center">
-      <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-charcoal-muted">
-        <span className="h-1.5 w-1.5 rounded-full bg-violet animate-ping" />
-        <span>Loading...</span>
-      </div>
+    <div className="fixed top-0 left-0 right-0 h-[2px] bg-violet/30 z-[9999] overflow-hidden pointer-events-none">
+      <div className="h-full bg-violet w-1/3 animate-pulse" />
     </div>
   );
 }
@@ -34,46 +48,81 @@ function RouteLoader() {
 function AnimatedRoutes() {
   const location = useLocation();
 
+  // Scroll to top on every route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <Suspense fallback={<RouteLoader />}>
       <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          {/* Main Portfolio Route */}
-          <Route path="/" element={<HomePage />} />
+        <motion.div
+          key={location.pathname}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full"
+        >
+          <Routes location={location}>
+            {/* Main Portfolio Route */}
+            <Route path="/" element={<HomePage />} />
 
-          {/* Work / Projects Hub */}
-          <Route path="/work" element={<WorkPage />} />
+            {/* Work / Projects Hub */}
+            <Route path="/work" element={<WorkPage />} />
 
-          {/* Dynamic Project Details Route */}
-          <Route path="/work/:slug" element={<ProjectPage />} />
-          
-          {/* Playground Route */}
-          <Route path="/playground" element={<PlaygroundPage />} />
+            {/* Dynamic Project Details Route */}
+            <Route path="/work/:slug" element={<ProjectPage />} />
+            
+            {/* Playground Route */}
+            <Route path="/playground" element={<PlaygroundPage />} />
 
-          {/* Fullscreen Music Visualizer Route */}
-          <Route path="/playground/musix-visualizer" element={<MusicVisualizerPage />} />
+            {/* Fullscreen Music Visualizer Route (Lazy 3D) */}
+            <Route path="/playground/musix-visualizer" element={<MusicVisualizerPage />} />
 
-          {/* Interests Radar Route */}
-          <Route path="/interests" element={<InterestsPage />} />
+            {/* Interests Radar Route */}
+            <Route path="/interests" element={<InterestsPage />} />
 
-          {/* Dedicated About Route */}
-          <Route path="/about" element={<AboutPage />} />
+            {/* Dedicated About Route */}
+            <Route path="/about" element={<AboutPage />} />
 
-          {/* Dedicated Contact Route */}
-          <Route path="/contact" element={<ContactPage />} />
+            {/* Dedicated Contact Route */}
+            <Route path="/contact" element={<ContactPage />} />
 
-          {/* Explicit 404 Route */}
-          <Route path="/not-found" element={<NotFoundPage />} />
+            {/* Explicit 404 Route */}
+            <Route path="/not-found" element={<NotFoundPage />} />
 
-          {/* Catch-all 404 Route */}
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+            {/* Catch-all 404 Route */}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </motion.div>
       </AnimatePresence>
     </Suspense>
   );
 }
 
 export default function App() {
+  // Preload primary route chunks and critical hero images in the background after initial render
+  useEffect(() => {
+    const runBackgroundPreload = () => {
+      WorkPage.preload?.();
+      ProjectPage.preload?.();
+      AboutPage.preload?.();
+      ContactPage.preload?.();
+      InterestsPage.preload?.();
+      PlaygroundPage.preload?.();
+      preloadCriticalImages();
+    };
+
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const handle = window.requestIdleCallback(runBackgroundPreload, { timeout: 2500 });
+      return () => window.cancelIdleCallback?.(handle);
+    } else {
+      const timer = setTimeout(runBackgroundPreload, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <LanguageProvider>
       <Router>
@@ -81,7 +130,7 @@ export default function App() {
           {/* Custom magnetic circle cursor trail */}
           <CustomCursor />
 
-          {/* Intro loader curtain */}
+          {/* Intro loader curtain - runs only once on initial session visit */}
           <Loader />
 
           {/* Fixed header bar */}
