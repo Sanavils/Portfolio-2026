@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
-  Play, Pause, SkipForward, SkipBack, Volume2, ListMusic,
   ArrowLeft, ArrowRight, Sparkles, RefreshCw, 
-  Gamepad2, Sliders, Type, Compass, Palette 
+  Gamepad2, Sliders 
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import PageTransition from '../components/PageTransition';
+import SEO from '../components/SEO';
 import MusicPlayer from '../components/playground/MusixVisualizer/MusicPlayer';
 
 export default function PlaygroundPage() {
@@ -63,11 +64,16 @@ export default function PlaygroundPage() {
 
   return (
     <>
+      <SEO
+        title="Playground — Hassen Arkab"
+        description="Espace d’expérimentations créatives de Hassen Arkab : music visualizer, motion design, projets interactifs, tests UI et creative coding."
+        canonical="https://www.hassenarkab.com/playground"
+      />
       <PageTransition />
       <div className="min-h-screen bg-bg-light pt-28 pb-20 overflow-hidden">
         
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-8">
           <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-3">
             {t.playground.tag}
           </span>
@@ -75,12 +81,48 @@ export default function PlaygroundPage() {
             <h1 className="font-display font-black text-display-lg leading-none uppercase text-charcoal-light tracking-tighter mb-4">
               {t.playground.title}
             </h1>
-            <p className="font-syne font-bold text-lg md:text-xl text-charcoal max-w-2xl mb-2 leading-tight">
-              {t.playground.subtitle}
-            </p>
-            <p className="text-sm md:text-base text-charcoal-muted max-w-xl font-light leading-relaxed">
+            <p className="text-sm md:text-base text-charcoal-muted max-w-2xl font-light leading-relaxed">
               {t.playground.intro}
             </p>
+          </div>
+
+          {/* Quick experiment jump pills & Featured Link */}
+          <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
+            <div className="flex flex-wrap items-center gap-2">
+              {[
+                { idx: 0, label: '01 / MUSIX 3D' },
+                { idx: 1, label: '02 / Typo Motion' },
+                { idx: 2, label: '03 / Poster' },
+                { idx: 3, label: '04 / Color Lab' },
+                { idx: 4, label: '05 / UI Studio' },
+                { idx: 5, label: '06 / Reflex Game' },
+                { idx: 6, label: '07 / Generative' },
+              ].map((item) => (
+                <button
+                  key={item.idx}
+                  onClick={() => setSlide([item.idx, item.idx > slide ? 1 : -1])}
+                  className={`px-3 py-1 rounded-full font-mono text-[10px] uppercase tracking-wider transition-all duration-300 cursor-none interactive-hover ${
+                    slide === item.idx
+                      ? 'bg-charcoal text-bg-light border border-charcoal font-bold'
+                      : 'bg-transparent text-charcoal-muted border border-charcoal/10 hover:border-violet hover:text-charcoal'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Featured Experience Link */}
+            {slide === 0 && (
+              <Link
+                to="/playground/musix-visualizer"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-violet bg-violet/10 text-charcoal font-mono text-[10px] uppercase font-bold tracking-widest hover:bg-violet transition-all duration-300 cursor-none interactive-hover"
+              >
+                <Sparkles size={12} className="text-violet animate-pulse" />
+                {language === 'fr' ? 'Ouvrir en plein écran immersif' : 'Open immersive full screen'}
+                <ArrowRight size={12} />
+              </Link>
+            )}
           </div>
         </div>
 
@@ -168,17 +210,17 @@ function renderActiveCard(index, lang, t, setIsPlayingMusic, setIsPlayingGame) {
     case 0:
       return <MusicPlayer lang={lang} onPlayStateChange={setIsPlayingMusic} />;
     case 1:
-      return <TypoMotionCard lang={lang} t={t} />;
+      return <TypoMotionCard lang={lang} />;
     case 2:
-      return <InteractivePosterCard lang={lang} t={t} />;
+      return <InteractivePosterCard lang={lang} />;
     case 3:
-      return <ColorLabCard lang={lang} t={t} />;
+      return <ColorLabCard lang={lang} />;
     case 4:
-      return <UIPlaygroundCard lang={lang} t={t} />;
+      return <UIPlaygroundCard lang={lang} />;
     case 5:
-      return <MiniGameCard lang={lang} t={t} onGameStateChange={setIsPlayingGame} />;
+      return <MiniGameCard lang={lang} onGameStateChange={setIsPlayingGame} />;
     case 6:
-      return <VisualExperimentCard lang={lang} t={t} />;
+      return <VisualExperimentCard lang={lang} />;
     default:
       return null;
   }
@@ -187,7 +229,7 @@ function renderActiveCard(index, lang, t, setIsPlayingMusic, setIsPlayingGame) {
 // ----------------------------------------------------
 // 02 / TYPO MOTION CARD
 // ----------------------------------------------------
-function TypoMotionCard({ lang, t }) {
+function TypoMotionCard({ lang }) {
   const [hoverText, setHoverText] = useState(false);
   
   return (
@@ -268,7 +310,7 @@ function TypoMotionCard({ lang, t }) {
 // ----------------------------------------------------
 // 03 / INTERACTIVE POSTER CARD
 // ----------------------------------------------------
-function InteractivePosterCard({ lang, t }) {
+function InteractivePosterCard({ lang }) {
   const containerRef = useRef(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
@@ -377,7 +419,7 @@ function InteractivePosterCard({ lang, t }) {
 // ----------------------------------------------------
 // 04 / COLOR LAB CARD
 // ----------------------------------------------------
-function ColorLabCard({ lang, t }) {
+function ColorLabCard({ lang }) {
   const [hue, setHue] = useState(280);
   const [saturation, setSaturation] = useState(80);
 
@@ -485,7 +527,7 @@ function ColorLabCard({ lang, t }) {
 // ----------------------------------------------------
 // 05 / UI PLAYGROUND CARD
 // ----------------------------------------------------
-function UIPlaygroundCard({ lang, t }) {
+function UIPlaygroundCard({ lang }) {
   const [toggleActive, setToggleActive] = useState(false);
   const [sliderVal, setSliderVal] = useState(60);
 
@@ -592,7 +634,7 @@ function UIPlaygroundCard({ lang, t }) {
 // ----------------------------------------------------
 // 06 / MINI GAME CARD (PLAYABLE!)
 // ----------------------------------------------------
-function MiniGameCard({ lang, t, onGameStateChange }) {
+function MiniGameCard({ lang, onGameStateChange }) {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [gameState, setGameState] = useState('idle'); // idle, playing, over
@@ -806,7 +848,7 @@ function MiniGameCard({ lang, t, onGameStateChange }) {
 // ----------------------------------------------------
 // 07 / VISUAL EXPERIMENT CARD
 // ----------------------------------------------------
-function VisualExperimentCard({ lang, t }) {
+function VisualExperimentCard({ lang }) {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const mouse = useRef({ x: 0, y: 0, active: false });

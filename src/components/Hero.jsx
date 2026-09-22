@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownRight, ArrowRight } from 'lucide-react';
+import { ArrowDownRight, ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { skillsMarquee } from '../data/projectsData';
@@ -76,6 +76,7 @@ export default function Hero() {
 
           {/* Typographic Mask Reveal Title */}
           <h1 className="text-display-lg text-charcoal-light mb-12 select-none uppercase max-w-4xl">
+            <span className="sr-only">Hassen Arkab — UX/UI Designer</span>
             <div className="text-reveal-mask block">
               <motion.div variants={lineMaskVariants}>{t.hero.titleLine1}</motion.div>
             </div>
@@ -106,22 +107,32 @@ export default function Hero() {
           {/* Main Action CTAs */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap gap-6 items-center"
+            className="flex flex-wrap gap-4 sm:gap-6 items-center"
           >
-            <a
-              href="#work"
-              className="group relative flex items-center justify-center gap-2 bg-charcoal hover:bg-violet text-bg-light hover:text-charcoal px-8 py-4 text-xs font-mono font-bold tracking-widest uppercase transition-all duration-300 border border-charcoal/10"
+            <Link
+              to="/work"
+              className="group relative flex items-center justify-center gap-2 bg-charcoal hover:bg-violet text-bg-light hover:text-charcoal px-8 py-4 text-xs font-mono font-bold tracking-widest uppercase transition-all duration-300 border border-charcoal/10 cursor-none interactive-hover"
             >
-              {t.hero.ctaWork}
+              {language === 'fr' ? 'Voir le projet' : 'View project'}
               <ArrowDownRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
-            </a>
-            <a
-              href="#contact"
-              className="group flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-charcoal hover:text-violet py-3 transition-colors duration-300"
+            </Link>
+
+            <Link
+              to="/playground"
+              className="group flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-charcoal hover:text-violet py-3 transition-colors duration-300 cursor-none interactive-hover"
+            >
+              <Sparkles size={14} className="text-violet" />
+              {t.hero.ctaPlayground}
+              <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+
+            <Link
+              to="/contact"
+              className="group flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-charcoal hover:text-violet py-3 transition-colors duration-300 cursor-none interactive-hover"
             >
               {t.hero.ctaContact}
               <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

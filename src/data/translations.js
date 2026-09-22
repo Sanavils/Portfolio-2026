@@ -18,16 +18,17 @@ export const translations = {
       titleLine3: "AND I’M A UX/UI DESIGNER",
       editorial: "EVERYTHING STARTS WITH A LINE — THE FIRST MARK, THE ORIGIN OF AN IDEA. FROM THIS SINGLE PATH, CONCEPTS TAKE SHAPE, EVOLVING INTO DIGITAL EXPERIENCES THAT FEEL CLEAR, USEFUL AND MEMORABLE.",
       secondary: "Design is a continuous movement. Each project starts with a simple idea, then grows through research, structure, visual exploration and iteration. My work connects interface design, brand identity and user experience to create digital products that feel intentional and easy to use.",
-      ctaWork: "View selected work",
-      ctaContact: "Contact me"
+      ctaWork: "View project",
+      ctaContact: "Contact me",
+      ctaPlayground: "Discover Playground"
     },
     workSection: {
       number: "01",
       title: "SELECTED WORK",
       heading: "DIGITAL EXPERIENCES, BRAND SYSTEMS AND INTERFACES DESIGNED WITH INTENTION.",
-      subtitle: "A selection of projects mixing UX/UI design, branding, product strategy and visual systems.",
+      subtitle: "A curated selection of projects spanning UX/UI design, branding, product strategy and digital systems.",
       ctaAll: "VIEW ALL PROJECTS",
-      ctaEmail: "DROP ME AN EMAIL",
+      ctaEmail: "CONTACT ME",
       caseStudy: "Case Study",
       viewBtn: "View project"
     },
@@ -37,7 +38,7 @@ export const translations = {
       heading: "Designing digital products that balance strategy, aesthetics & usability.",
       bio: "I’m Hassen Arkab, a Paris-based UX/UI Designer with a strong interest in clear interfaces, visual systems and meaningful digital experiences. My work sits between design strategy, interface design and art direction. I like building projects that feel simple, expressive and useful.",
       bio2: "With a focus on clean layouts, typography and user workflows, I collaborate with engineers, product teams, and brands. I believe that design should reduce complexity and turn raw ideas into structured interfaces.",
-      ctaContact: "Let's build together",
+      ctaContact: "Contact me",
       factsTitle: "/ Quick Facts",
       location: "Location",
       locationVal: "Paris, France",
@@ -67,7 +68,7 @@ export const translations = {
       statusLabel: "Current Status",
       statusVal: "Open for opportunities (Q3/Q4 2026)",
       directEmail: "Direct Email",
-      emailMe: "Email me",
+      emailMe: "Contact me",
       linkedin: "LinkedIn",
       github: "GitHub",
       downloadCv: "Download CV"
@@ -88,16 +89,17 @@ export const translations = {
       process: "Process",
       solution: "Solution",
       outcome: "Outcome",
-      prevProject: "Previous Project",
-      nextProject: "Next Project"
+      prevProject: "Previous project",
+      nextProject: "Next project"
     },
     playground: {
-      tag: "/ SIDE PROJECTS / EXPERIMENTS / FUN STUFF",
+      tag: "/ EXPERIMENTS / INTERACTION / CREATIVE TESTS",
       title: "PLAYGROUND",
-      subtitle: "A space for side projects, experiments, interactive ideas and creative tests.",
-      intro: "This is where I explore things a little more freely — motion, visuals, music, interactions and small ideas turned into playful digital objects.",
-      openBtn: "Open experiment",
-      viewBtn: "View experiment font",
+      subtitle: "A free space for experiments, interaction tests, visual ideas and small creative side projects.",
+      intro: "Playground is a free space for experiments, interaction tests, visual ideas and small creative side projects.",
+      openBtn: "Discover Playground",
+      viewBtn: "View project",
+      readNote: "Read note",
       year: "Year"
     }
   },
@@ -117,8 +119,9 @@ export const translations = {
       titleLine3: "ET JE SUIS DESIGNER UX/UI",
       editorial: "TOUT COMMENCE PAR UNE LIGNE — LE PREMIER TRAIT, L’ORIGINE D’UNE IDÉE. À PARTIR DE CE POINT DE DÉPART, LES CONCEPTS PRENNENT FORME ET DEVIENNENT DES EXPÉRIENCES DIGITALES CLAIRES, UTILES ET MÉMORABLES.",
       secondary: "Le design est un mouvement continu. Chaque projet commence par une idée simple, puis évolue à travers la recherche, la structure, l’exploration visuelle et l’itération. Mon travail relie interface, identité et expérience utilisateur pour créer des produits digitaux clairs, intentionnels et agréables à utiliser.",
-      ctaWork: "Voir les projets",
-      ctaContact: "Me contacter"
+      ctaWork: "Voir le projet",
+      ctaContact: "Me contacter",
+      ctaPlayground: "Découvrir Playground"
     },
     workSection: {
       number: "01",
@@ -126,7 +129,7 @@ export const translations = {
       heading: "EXPÉRIENCES DIGITALES, IDENTITÉS VISUELLES ET INTERFACES PENSÉES AVEC INTENTION.",
       subtitle: "Une sélection de projets mêlant UX/UI design, branding, stratégie produit et systèmes visuels.",
       ctaAll: "VOIR TOUS LES PROJETS",
-      ctaEmail: "M’ÉCRIRE",
+      ctaEmail: "ME CONTACTER",
       caseStudy: "Étude de Cas",
       viewBtn: "Voir le projet"
     },
@@ -136,7 +139,7 @@ export const translations = {
       heading: "Concevoir des produits digitaux qui allient stratégie, esthétique & utilisabilité.",
       bio: "Je suis Hassen Arkab, UX/UI Designer basé à Paris. Je m’intéresse aux interfaces claires, aux systèmes visuels et aux expériences digitales qui ont du sens. Mon travail se situe entre stratégie design, conception d’interface et direction artistique. J’aime construire des projets simples, expressifs et utiles.",
       bio2: "En me concentrant sur des mises en page épurées, la typographie et les flux d'utilisateurs, je collabore avec les ingénieurs, les équipes produit et les marques. Je pense que le design doit simplifier la complexité et structurer les idées.",
-      ctaContact: "Travaillons ensemble",
+      ctaContact: "Me contacter",
       factsTitle: "/ Infos Rapides",
       location: "Localisation",
       locationVal: "Paris, France",
@@ -166,7 +169,7 @@ export const translations = {
       statusLabel: "Statut Actuel",
       statusVal: "Ouvert aux opportunités (Q3/Q4 2026)",
       directEmail: "Email Direct",
-      emailMe: "M’écrire",
+      emailMe: "Me contacter",
       linkedin: "LinkedIn",
       github: "GitHub",
       downloadCv: "Télécharger CV"
@@ -187,16 +190,17 @@ export const translations = {
       process: "Méthode",
       solution: "Solution",
       outcome: "Résultat",
-      prevProject: "Projet Précédent",
-      nextProject: "Projet Suivant"
+      prevProject: "Projet précédent",
+      nextProject: "Projet suivant"
     },
     playground: {
-      tag: "/ PROJETS PERSO / EXPÉRIMENTATIONS / PROJETS FUN",
+      tag: "/ EXPÉRIMENTATIONS / INTERACTION / PROJETS CRÉATIFS",
       title: "PLAYGROUND",
-      subtitle: "Un espace pour mes projets perso, mes expérimentations, mes idées interactives et mes tests créatifs.",
-      intro: "C’est ici que j’explore des choses plus librement — motion, visuels, musique, interactions et petites idées transformées en objets digitaux plus fun.",
-      openBtn: "Ouvrir l'expérience",
-      viewBtn: "Voir l'expérience",
+      subtitle: "Playground est un espace libre pour mes expérimentations, mes tests d’interaction, mes idées visuelles et mes petits projets créatifs.",
+      intro: "Playground est un espace libre pour mes expérimentations, mes tests d’interaction, mes idées visuelles et mes petits projets créatifs.",
+      openBtn: "Découvrir Playground",
+      viewBtn: "Voir le projet",
+      readNote: "Lire la note",
       year: "Année"
     }
   }

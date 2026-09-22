@@ -301,6 +301,7 @@ export default function MusicPlayer({ lang, onPlayStateChange, isFullScreen = fa
           <div className="flex items-center gap-1.5 md:gap-2">
             <button 
               onClick={() => setShowQueue(!showQueue)}
+              aria-label={showQueue ? (lang === 'fr' ? 'Fermer la playlist' : 'Close playlist') : (lang === 'fr' ? 'Afficher la playlist' : 'Show playlist')}
               className={`p-1.5 transition-colors cursor-none ${showQueue ? 'text-violet' : 'text-white/50 hover:text-white'}`}
               title="Toggle playlist"
               onPointerDown={(e) => e.stopPropagation()}
@@ -309,6 +310,7 @@ export default function MusicPlayer({ lang, onPlayStateChange, isFullScreen = fa
             </button>
             <button 
               onClick={() => setIsMuted(!isMuted)}
+              aria-label={isMuted ? (lang === 'fr' ? 'Activer le son' : 'Unmute sound') : (lang === 'fr' ? 'Couper le son' : 'Mute sound')}
               className="p-1.5 transition-colors cursor-none text-white/50 hover:text-white"
               onPointerDown={(e) => e.stopPropagation()}
             >
@@ -353,6 +355,7 @@ export default function MusicPlayer({ lang, onPlayStateChange, isFullScreen = fa
             <div className="flex justify-between items-center pt-0.5 px-2">
               <button 
                 onClick={handlePrev}
+                aria-label={lang === 'fr' ? 'Piste précédente' : 'Previous track'}
                 className="text-white/70 hover:text-violet transition-colors cursor-none p-2 -m-2"
                 onPointerDown={(e) => e.stopPropagation()}
               >
@@ -361,6 +364,7 @@ export default function MusicPlayer({ lang, onPlayStateChange, isFullScreen = fa
 
               <button 
                 onClick={handlePlayPause}
+                aria-label={isPlaying ? (lang === 'fr' ? 'Mettre en pause' : 'Pause music') : (lang === 'fr' ? 'Lancer la lecture' : 'Play music')}
                 className="h-10 w-10 md:h-11 md:w-11 rounded-full bg-violet text-charcoal flex items-center justify-center hover:scale-105 active:scale-95 transition-all cursor-none shadow-lg shadow-violet/20"
                 onPointerDown={(e) => e.stopPropagation()}
               >
@@ -369,6 +373,7 @@ export default function MusicPlayer({ lang, onPlayStateChange, isFullScreen = fa
 
               <button 
                 onClick={handleNext}
+                aria-label={lang === 'fr' ? 'Piste suivante' : 'Next track'}
                 className="text-white/70 hover:text-violet transition-colors cursor-none p-2 -m-2"
                 onPointerDown={(e) => e.stopPropagation()}
               >
@@ -388,6 +393,7 @@ export default function MusicPlayer({ lang, onPlayStateChange, isFullScreen = fa
                 max="1"
                 step="0.05"
                 value={isMuted ? 0 : volume}
+                aria-label={lang === 'fr' ? 'Volume sonore' : 'Volume'}
                 onChange={(e) => {
                   setVolume(Number(e.target.value));
                   setIsMuted(false);
@@ -435,6 +441,7 @@ export default function MusicPlayer({ lang, onPlayStateChange, isFullScreen = fa
         <div className="absolute top-6 right-6 z-30">
           <button 
             onClick={() => setIsUIVisible(!isUIVisible)}
+            aria-label={isUIVisible ? (lang === 'fr' ? 'Masquer l’interface' : 'Hide interface') : (lang === 'fr' ? 'Afficher l’interface' : 'Show interface')}
             className="h-10 w-10 border border-white/10 rounded-full bg-charcoal/40 backdrop-blur flex items-center justify-center text-white hover:bg-violet hover:text-charcoal transition-all cursor-none"
             title={lang === 'fr' ? 'Mode immersif' : 'Immersive mode'}
             onPointerDown={(e) => e.stopPropagation()}

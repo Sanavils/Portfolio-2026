@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
-export default function ProjectCard({ project, index }) {
+export default function ProjectCard({ project, index, className }) {
   const { language } = useLanguage();
   const t = translations[language];
   const pContent = project[language];
@@ -41,7 +41,9 @@ export default function ProjectCard({ project, index }) {
         <div className="absolute inset-0 bg-[#0A2A5C] flex items-center justify-center border border-charcoal/10 overflow-hidden">
           <img 
             src="/assets/projects/groupe-adp/adp-logo.png" 
-            alt="Groupe ADP Logo" 
+            alt="Groupe ADP — Case study refonte interfaces corporate" 
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
@@ -53,7 +55,9 @@ export default function ProjectCard({ project, index }) {
         <div className="absolute inset-0 bg-[#EAEAEA] flex items-center justify-center border border-charcoal/10 overflow-hidden">
           <img 
             src="/assets/projects/abercrombie/abercrombie-logo.png" 
-            alt="Abercrombie Logo" 
+            alt="Abercrombie & Fitch — Direction artistique et rebranding" 
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
@@ -65,7 +69,9 @@ export default function ProjectCard({ project, index }) {
         <div className="absolute inset-0 bg-[#8D4FE7] flex items-center justify-center border border-charcoal/10 overflow-hidden">
           <img 
             src="/assets/projects/civic-vote/civic-vote-hero.png" 
-            alt="Civic Vote — Se déplacer pour voter" 
+            alt="Civic Vote — Expérience digitale civique et engagement citoyen" 
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
@@ -77,7 +83,9 @@ export default function ProjectCard({ project, index }) {
         <div className="absolute inset-0 bg-[#5DB075] flex items-center justify-center border border-charcoal/10 overflow-hidden">
           <img 
             src="/assets/projects/okane/okane-logo.png" 
-            alt="Okane Logo" 
+            alt="Okane — Application de gestion financière et suivi des dépenses" 
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
@@ -256,7 +264,7 @@ export default function ProjectCard({ project, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-5%' }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className={`group flex flex-col ${getLayoutClasses(index)}`}
+      className={`group flex flex-col ${className || getLayoutClasses(index)}`}
     >
       {/* Project Card Trigger Area */}
       <Link

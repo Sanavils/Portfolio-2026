@@ -26,37 +26,47 @@ export default function Header() {
   const isHome = location.pathname === '/';
 
   const navLinks = [
-    { name: t.nav.work, href: isHome ? '#work' : '/#work' },
-    { name: t.nav.playground || 'PLAYGROUND', href: '/playground', isRoute: true },
-    { name: t.nav.interests || 'INTERESTS', href: '/interests', isRoute: true },
-    { name: t.nav.about, href: isHome ? '#about' : '/#about' },
-    { name: t.nav.contact, href: isHome ? '#contact' : '/#contact' },
+    { name: t.nav.work, href: '/work', routePath: '/work' },
+    { name: t.nav.playground || 'PLAYGROUND', href: '/playground', routePath: '/playground' },
+    { name: t.nav.interests || 'INTERESTS', href: '/interests', routePath: '/interests' },
+    { name: t.nav.about, href: '/about', routePath: '/about' },
   ];
+
+  const isContactActive = location.pathname === '/contact';
+
+  const checkIsActive = (routePath) => {
+    if (routePath === '/') return location.pathname === '/';
+    return location.pathname === routePath || location.pathname.startsWith(routePath + '/');
+  };
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 border-b ${
           isScrolled
-            ? 'bg-bg-light/90 backdrop-blur-md py-4 border-charcoal/10'
-            : 'bg-transparent py-6 border-transparent'
+            ? 'bg-bg-light/95 backdrop-blur-md py-4 border-charcoal/10 shadow-xs'
+            : 'bg-bg-light/80 backdrop-blur-sm py-5 border-charcoal/5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+          {/* Logo / Brand mark */}
           <Link
             to="/"
-            className="group flex items-center text-charcoal hover:text-violet transition-colors duration-300"
-            aria-label="Homepage"
+            className="group flex items-center gap-3 text-charcoal hover:text-violet transition-colors duration-300"
+            aria-label="Accueil Hassen Arkab"
           >
-            <Logo height={28} showText={false} className="transition-transform duration-300 group-hover:scale-105" />
+            <Logo height={26} showText={false} className="transition-transform duration-300 group-hover:scale-105" />
+            <span className="font-syne font-black text-xs sm:text-sm tracking-tight text-charcoal group-hover:text-violet transition-colors duration-300 uppercase select-none">
+              Hassen Arkab
+            </span>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-10">
-            <nav className="flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8">
+            <nav className="flex items-center gap-7">
               {navLinks.map((link) => {
-                const isActive = link.isRoute && location.pathname === link.href;
-                return link.isRoute ? (
+                const isActive = checkIsActive(link.routePath);
+                return (
                   <Link
                     key={link.name}
                     to={link.href}
@@ -64,26 +74,26 @@ export default function Header() {
                       isActive ? 'text-charcoal font-black' : 'text-charcoal-muted hover:text-charcoal'
                     }`}
                   >
-                    <span className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5">
+                    <span className="inline-flex items-center transition-transform duration-300 group-hover:-translate-y-0.5">
                       <span className={`text-violet transition-opacity duration-300 mr-1 ${isActive ? 'opacity-100 font-black' : 'opacity-0 group-hover:opacity-100'}`}>/</span>
                       {link.name}
                     </span>
                     <span className={`absolute bottom-0 left-0 h-[1.5px] bg-violet transition-all duration-300 ease-out ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                   </Link>
-                ) : (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="group relative text-xs font-mono font-bold tracking-widest uppercase text-charcoal-muted hover:text-charcoal transition-colors duration-300 py-1"
-                  >
-                    <span className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5">
-                      <span className="text-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-1">/</span>
-                      {link.name}
-                    </span>
-                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-violet group-hover:w-full transition-all duration-300 ease-out" />
-                  </a>
                 );
               })}
+
+              {/* Discrete Contact CTA */}
+              <Link
+                to="/contact"
+                className={`ml-1 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase border transition-all duration-300 ${
+                  isContactActive
+                    ? 'border-violet bg-violet text-charcoal font-black'
+                    : 'border-charcoal/20 text-charcoal hover:border-violet hover:bg-violet hover:text-charcoal'
+                }`}
+              >
+                {t.nav.contact}
+              </Link>
             </nav>
 
             {/* Language Selection Toggle */}
@@ -91,14 +101,15 @@ export default function Header() {
           </div>
 
           {/* Hamburger Menu - Mobile */}
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-3 md:hidden">
             <LanguageSwitch />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-charcoal hover:text-violet transition-colors duration-300"
-              aria-label="Toggle menu"
+              className="p-2 text-charcoal hover:text-violet transition-colors duration-300 cursor-none interactive-hover"
+              aria-label={mobileMenuOpen ? (language === 'fr' ? 'Fermer le menu' : 'Close menu') : (language === 'fr' ? 'Ouvrir le menu' : 'Open menu')}
+              aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
@@ -108,39 +119,41 @@ export default function Header() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-x-0 top-0 pt-24 pb-12 bg-bg-light border-b border-charcoal/10 shadow-lg z-30 md:hidden"
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="fixed inset-x-0 top-0 pt-24 pb-10 bg-bg-light/98 backdrop-blur-xl border-b border-charcoal/10 shadow-xl z-30 md:hidden"
           >
             <div className="flex flex-col items-center gap-6 px-6">
               {navLinks.map((link) => {
-                const isActive = link.isRoute && location.pathname === link.href;
-                return link.isRoute ? (
+                const isActive = checkIsActive(link.routePath);
+                return (
                   <Link
                     key={link.name}
                     to={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`text-lg font-syne font-bold uppercase tracking-wider transition-colors duration-300 flex items-center ${
+                    className={`text-base font-syne font-bold uppercase tracking-wider transition-colors duration-300 flex items-center ${
                       isActive ? 'text-charcoal font-black' : 'text-charcoal-muted hover:text-charcoal'
                     }`}
                   >
-                    <span className="text-violet mr-2">/</span>
+                    <span className={`text-violet mr-2 ${isActive ? 'opacity-100 font-black' : 'opacity-40'}`}>/</span>
                     {link.name}
                   </Link>
-                ) : (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-lg font-syne font-bold uppercase tracking-wider text-charcoal hover:text-violet transition-colors duration-300 flex items-center"
-                  >
-                    <span className="text-violet mr-2">/</span>
-                    {link.name}
-                  </a>
                 );
               })}
+
+              <Link
+                to="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`mt-2 px-6 py-2.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase border transition-all duration-300 ${
+                  isContactActive
+                    ? 'border-violet bg-violet text-charcoal'
+                    : 'border-charcoal/20 text-charcoal hover:border-violet hover:bg-violet'
+                }`}
+              >
+                {t.nav.contact}
+              </Link>
             </div>
           </motion.div>
         )}

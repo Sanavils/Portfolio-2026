@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, FileText, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';

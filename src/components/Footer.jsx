@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowUp, Mail } from 'lucide-react';
 
 // Custom inline LinkedIn SVG icon due to package version constraints
@@ -103,6 +102,7 @@ export default function Footer() {
             <a
               href="#"
               onClick={scrollToTop}
+              aria-label={t.footer.backToTop || 'Retour en haut'}
               className="group flex items-center gap-2 text-[10px] font-mono uppercase font-bold tracking-widest text-charcoal hover:text-violet transition-colors duration-300 cursor-none interactive-hover"
             >
               {t.footer.backToTop}
@@ -117,6 +117,8 @@ export default function Footer() {
         <div className="footer-marquee py-4 select-none pointer-events-none border-t border-charcoal/5 mt-8">
           <div className="footer-marquee-track">
             <span>HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
+            <span aria-hidden="true">HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
+            <span aria-hidden="true">HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
             <span aria-hidden="true">HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
           </div>
         </div>

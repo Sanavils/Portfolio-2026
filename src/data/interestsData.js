@@ -109,6 +109,10 @@ export const interestsData = [
       "Cinematics"
     ],
     asset: "/assets/interests/league-of-legends.gif",
+    alt: {
+      en: "GIF illustrating League of Legends champions, lore and visual atmosphere",
+      fr: "GIF illustrant l’univers visuel et les champions de League of Legends"
+    },
     bentoSize: "large-wide" // Spans across two columns on desktop bento
   },
   {
@@ -139,6 +143,10 @@ export const interestsData = [
       "Worldbuilding"
     ],
     asset: "/assets/interests/honkai-star-rail.gif",
+    alt: {
+      en: "GIF illustrating the sci-fi universe, anime aesthetics and polished interfaces of Honkai: Star Rail",
+      fr: "GIF illustrant l’univers science-fiction et l’interface soignée de Honkai: Star Rail"
+    },
     bentoSize: "tall-vertical" // Tall card
   },
   {
@@ -169,6 +177,10 @@ export const interestsData = [
       "Sound design"
     ],
     asset: "/assets/interests/music-mood.gif",
+    alt: {
+      en: "Visual mood representing atmospheric music and rhythm exploration",
+      fr: "Visuel d’ambiance représentant les rythmes et ambiances sonores"
+    },
     tracklist: [
       { id: "t1", title: "Heavy Waves", artist: "Kavinsky", duration: "3:42" },
       { id: "t2", title: "Star Walkin'", artist: "Lil Nas X & Riot Games", duration: "3:30" },
@@ -205,6 +217,10 @@ export const interestsData = [
       "Experience design"
     ],
     asset: "/assets/interests/design-motion.gif",
+    alt: {
+      en: "Animation demonstrating UI motion, fluid layouts and micro-interactions",
+      fr: "Animation démontrant le motion design d’interfaces et les micro-interactions"
+    },
     bentoSize: "medium"
   },
   {
@@ -235,6 +251,10 @@ export const interestsData = [
       "Exploration"
     ],
     asset: "/assets/interests/ai-tools.gif",
+    alt: {
+      en: "Visual exploration of creative coding, AI workflows and generative design",
+      fr: "Exploration visuelle d’outils d’intelligence artificielle et design génératif"
+    },
     bentoSize: "medium"
   },
   {
