@@ -9,6 +9,7 @@
   --color-border-light: rgba(0, 0, 0, 0.12);
 
   --font-display: "Unbounded", sans-serif;
+  --font-unbounded: "Unbounded", sans-serif;
   --font-syne: "Syne", sans-serif;
   --font-inter: "Inter", sans-serif;
 
@@ -66,6 +67,24 @@
   line-height: 0.95;
   letter-spacing: -0.03em;
   font-weight: 900;
+}
+
+/* Project page hero title: Unbounded with controlled responsive clamp and natural capitalization */
+.project-title {
+  font-family: var(--font-unbounded);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 1100px;
+}
+
+@media (max-width: 640px) {
+  .project-title {
+    font-size: clamp(1.8rem, 8.5vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
 }
 
 /* Custom typography and utility classes */

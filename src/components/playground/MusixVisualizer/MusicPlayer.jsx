@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import PrefetchLink from '../../PrefetchLink';
 import { 
   Play, Pause, SkipForward, SkipBack, Volume2, VolumeX, ListMusic, Sparkles, Maximize2, EyeOff, Eye
 } from 'lucide-react';
@@ -552,13 +552,13 @@ export default function MusicPlayer({ lang, onPlayStateChange, isFullScreen = fa
           </button>
           
           {/* Open Full Screen Detail Page */}
-          <Link 
+          <PrefetchLink 
             to="/playground/musix-visualizer"
             className="inline-flex items-center gap-2 px-5 py-2.5 border border-violet bg-violet text-charcoal text-xs font-mono uppercase tracking-widest font-bold hover:bg-charcoal hover:text-white hover:border-charcoal transition-all duration-300 cursor-none interactive-hover rounded shadow-md shadow-violet/10"
           >
             {lang === 'fr' ? 'OUVRIR EN PLEIN ÉCRAN' : 'OPEN EXPERIMENT'}
             <Maximize2 size={12} />
-          </Link>
+          </PrefetchLink>
         </div>
       </div>
     </div>

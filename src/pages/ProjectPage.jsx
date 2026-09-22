@@ -479,16 +479,8 @@ export default function ProjectPage() {
             / {t.projectPage.caseStudyLabel} // {project.year}
           </span>
 
-          {/* Clean, readable heading in font-syne extra-bold (clamp responsive, max-w-[1100px], no awkward breaks) */}
-          <h1 
-            className="font-syne font-extrabold text-charcoal-light uppercase tracking-tight text-balance"
-            style={{
-              fontSize: 'clamp(2.2rem, 5vw, 4.4rem)',
-              lineHeight: 1.02,
-              letterSpacing: '-0.035em',
-              maxWidth: '1100px'
-            }}
-          >
+          {/* Clean, readable heading in Unbounded font (clamp responsive, max-w-[1100px], natural capitalization) */}
+          <h1 className="project-title text-charcoal-light text-balance">
             {pContent.title}
           </h1>
 

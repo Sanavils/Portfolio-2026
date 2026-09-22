@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Grid } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import PrefetchLink from '../components/PrefetchLink';
 
 export default function NotFoundPage() {
   const { language } = useLanguage();
@@ -52,21 +52,21 @@ export default function NotFoundPage() {
 
           {/* Actions */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Link
+            <PrefetchLink
               to="/"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-charcoal text-bg-light hover:bg-violet hover:text-charcoal font-mono text-xs uppercase font-bold tracking-widest transition-all duration-300 rounded cursor-none interactive-hover shadow-sm"
             >
               <ArrowLeft size={14} />
               {isFr ? 'Retour à l’accueil' : 'Back home'}
-            </Link>
+            </PrefetchLink>
 
-            <Link
+            <PrefetchLink
               to="/work"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-charcoal/20 hover:border-charcoal text-charcoal font-mono text-xs uppercase font-bold tracking-widest transition-all duration-300 rounded cursor-none interactive-hover"
             >
               <Grid size={14} />
               {isFr ? 'Voir les projets' : 'View projects'}
-            </Link>
+            </PrefetchLink>
           </div>
 
         </div>

@@ -9,6 +9,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import PageTransition from '../components/PageTransition';
 import SEO from '../components/SEO';
+import PrefetchLink from '../components/PrefetchLink';
 
 // Lazy-load heavy Three.js audio visualizer on demand with skeleton fallback
 const MusicPlayer = lazy(() => import('../components/playground/MusixVisualizer/MusicPlayer'));
@@ -116,14 +117,14 @@ export default function PlaygroundPage() {
 
             {/* Featured Experience Link */}
             {slide === 0 && (
-              <Link
+              <PrefetchLink
                 to="/playground/musix-visualizer"
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-violet bg-violet/10 text-charcoal font-mono text-[10px] uppercase font-bold tracking-widest hover:bg-violet transition-all duration-300 cursor-none interactive-hover"
               >
                 <Sparkles size={12} className="text-violet animate-pulse" />
                 {language === 'fr' ? 'Ouvrir en plein écran immersif' : 'Open immersive full screen'}
                 <ArrowRight size={12} />
-              </Link>
+              </PrefetchLink>
             )}
           </div>
         </div>
