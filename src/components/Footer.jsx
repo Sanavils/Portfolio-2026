@@ -48,9 +48,9 @@ export default function Footer() {
   const t = translations[language];
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: <Linkedin size={14} />, href: 'https://linkedin.com' },
-    { name: 'GitHub', icon: <Github size={14} />, href: 'https://github.com' },
-    { name: 'Email', icon: <Mail size={14} />, href: 'mailto:hassen.arkab@gmail.com' },
+    { name: 'LinkedIn', icon: <Linkedin size={14} />, href: 'https://www.linkedin.com/in/hassen-arkab' },
+    { name: 'GitHub', icon: <Github size={14} />, href: 'https://github.com/Sanavils?tab=repositories' },
+    { name: 'Email', icon: <Mail size={14} />, href: 'mailto:arkab.hassen.pro@gmail.com' },
   ];
 
   const scrollToTop = (e) => {
@@ -90,6 +90,8 @@ export default function Footer() {
                 <a
                   key={link.name}
                   href={link.href}
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="flex items-center gap-1.5 text-[10px] font-mono uppercase font-bold tracking-widest text-charcoal-muted hover:text-violet transition-colors duration-300 cursor-none interactive-hover"
                 >
                   {link.icon}

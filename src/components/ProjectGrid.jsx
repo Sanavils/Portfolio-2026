@@ -41,7 +41,7 @@ export default function ProjectGrid() {
             <ArrowDownRight size={14} className="transform group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform duration-300" />
           </a>
           <a
-            href="mailto:hassen.arkab@gmail.com"
+            href="mailto:arkab.hassen.pro@gmail.com"
             className="group flex items-center gap-2 text-charcoal hover:text-violet py-2 border-b border-charcoal/5 hover:border-violet transition-all duration-300 cursor-none interactive-hover"
           >
             {t.workSection.ctaEmail}

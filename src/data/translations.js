@@ -69,6 +69,7 @@ export const translations = {
       directEmail: "Direct Email",
       emailMe: "Email me",
       linkedin: "LinkedIn",
+      github: "GitHub",
       downloadCv: "Download CV"
     },
     footer: {
@@ -167,6 +168,7 @@ export const translations = {
       directEmail: "Email Direct",
       emailMe: "M’écrire",
       linkedin: "LinkedIn",
+      github: "GitHub",
       downloadCv: "Télécharger CV"
     },
     footer: {

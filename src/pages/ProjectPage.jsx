@@ -118,6 +118,32 @@ export default function ProjectPage() {
       );
     }
 
+    if (proj.slug === 'okane') {
+      return (
+        <div className="w-full aspect-[16/9] max-h-[620px] min-h-[320px] md:min-h-[460px] relative border-y border-border-light overflow-hidden bg-[#5DB075] flex items-center justify-center">
+          {/* Main visual taking 100% of the block */}
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            src="/assets/projects/okane/okane-logo.png" 
+            alt="Okane Logo" 
+            className="w-full h-full object-cover relative z-10"
+          />
+          
+          <div className="absolute top-6 left-6 md:top-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/80 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+            <span>CASE STUDY // PRODUCT DESIGN</span>
+            <span className="font-bold bg-white/20 backdrop-blur px-2 py-0.5 rounded text-white">ID: {proj.id}</span>
+          </div>
+          
+          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/80 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+            <span>{proj.visual.label}</span>
+            <span>{proj.year}</span>
+          </div>
+        </div>
+      );
+    }
+
     const { bgColor, type, label } = proj.visual;
     return (
       <div className={`w-full aspect-[21/9] min-h-[300px] md:min-h-[450px] relative border-y border-border-light overflow-hidden ${bgColor} flex flex-col justify-between p-8 md:p-12`}>
@@ -531,6 +557,56 @@ export default function ProjectPage() {
                       <img 
                         src="/assets/projects/civic-vote/civic-vote-en-route.png" 
                         alt="Civic Vote — En Route Pour Voter" 
+                        className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : project.slug === 'okane' ? (
+            <div className="space-y-16">
+              {/* Section Interfaces & Expérience Mobile */}
+              <div className="space-y-8">
+                <div>
+                  <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-charcoal-muted mb-2">
+                    / {language === 'fr' ? 'Interfaces & Expérience Mobile' : 'Mobile Experience & Interfaces'}
+                  </h3>
+                  <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-2xl">
+                    {language === 'fr' 
+                      ? 'Découvrez les maquettes de l’application Okane. Une expérience conçue pour simplifier le suivi budgétaire au quotidien grâce à des jauges visuelles claires, un système de catégorisation intuitif et un ton bienveillant.'
+                      : 'Explore the Okane application mockups. An experience designed to simplify daily budget tracking through clear visual gauges, an intuitive categorization system, and an approachable tone.'}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                  {/* Visual 1: Mockup Trio Overview */}
+                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
+                        {language === 'fr' ? '01 / Parcours Global — Onboarding, Accueil & Suivi' : '01 / Global Journey — Onboarding, Home & Tracking'}
+                      </span>
+                    </div>
+                    <div className="p-6 md:p-8 flex items-center justify-center bg-[#F4FAF6] flex-1">
+                      <img 
+                        src="/assets/projects/okane/okane-mockups-trio.png" 
+                        alt="Okane — Écrans de l'application" 
+                        className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Visual 2: Detailed Expenses Screen */}
+                  <div className="border border-border-light rounded-lg overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
+                        {language === 'fr' ? '02 / Vue Détaillée — Gestion des Dépenses & Catégories' : '02 / Detailed View — Expense Tracking & Categories'}
+                      </span>
+                    </div>
+                    <div className="p-6 md:p-8 flex items-center justify-center bg-[#F4FAF6] flex-1">
+                      <img 
+                        src="/assets/projects/okane/okane-screen-expenses.png" 
+                        alt="Okane — Écran Dépenses" 
                         className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
                       />
                     </div>

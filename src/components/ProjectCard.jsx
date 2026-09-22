@@ -72,6 +72,18 @@ export default function ProjectCard({ project, index }) {
       );
     }
 
+    if (proj.slug === 'okane') {
+      return (
+        <div className="absolute inset-0 bg-[#5DB075] flex items-center justify-center border border-charcoal/10 overflow-hidden">
+          <img 
+            src="/assets/projects/okane/okane-logo.png" 
+            alt="Okane Logo" 
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        </div>
+      );
+    }
+
     switch (type) {
       case 'grid-lines':
         return (
