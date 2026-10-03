@@ -1,6 +1,7 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { LanguageProvider } from './context/LanguageContext';
 import { PageTransitionProvider } from './context/PageTransitionContext';
@@ -140,13 +141,14 @@ export default function App() {
               <AnimatedRoutes />
             </main>
 
-          {/* Persistent page footer */}
-          <Footer />
+            {/* Persistent page footer */}
+            <Footer />
 
-          {/* Vercel Speed Insights */}
-          <SpeedInsights />
-        </div>
-      </PageTransitionProvider>
+            {/* Vercel Web Analytics & Speed Insights */}
+            <Analytics />
+            <SpeedInsights />
+          </div>
+        </PageTransitionProvider>
       </Router>
     </LanguageProvider>
   );
