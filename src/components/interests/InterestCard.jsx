@@ -70,9 +70,10 @@ export default function InterestCard({
             <div className="interest-media relative w-full h-56 md:h-64 bg-charcoal/5 overflow-hidden rounded-lg">
               <img
                 src={item.asset}
-                alt={title}
+                alt={item.alt ? (item.alt[language] || item.alt.en) : title}
                 onError={() => setImgError(true)}
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent opacity-60 pointer-events-none" />

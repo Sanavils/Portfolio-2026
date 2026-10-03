@@ -98,7 +98,7 @@ export default function InterestDrawer({
                 <div className="interest-media relative w-full h-64 md:h-72">
                   <img
                     src={item.asset}
-                    alt={title}
+                    alt={item.alt ? (item.alt[language] || item.alt.en) : title}
                     onError={() => setFailedImgIds((prev) => ({ ...prev, [item.id]: true }))}
                     className="w-full h-full object-cover"
                   />

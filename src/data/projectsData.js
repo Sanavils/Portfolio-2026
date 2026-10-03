@@ -222,51 +222,51 @@ export const projectsData = [
     year: "2024",
     link: "/work/serinity",
     shortDesc: {
-      en: "A calm and intuitive wellness interface designed to create a reassuring and soothing experience.",
-      fr: "Interface de bien-être calme et intuitive, pensée pour créer une expérience rassurante et apaisante."
+      en: "A connected home and energy tracking assistant designed to create a calm, intuitive and reassuring daily experience.",
+      fr: "Assistant d’habitat connecté et de suivi d’énergie pensé pour créer une expérience calme, intuitive et sereine au quotidien."
     },
     visual: {
-      bgColor: "bg-bg-light",
-      textColor: "text-violet",
+      bgColor: "bg-white",
+      textColor: "text-emerald-600",
       type: "organic-shapes", // Calm circles
-      label: "SERINITY / CALM"
+      label: "SERENITY / SMART HOME"
     },
-    tags: ["UX/UI Design", "Wellness", "Mobile App", "Interaction Design"],
+    tags: ["UX/UI Design", "Smart Home", "Mobile App", "Energy Tracking"],
     en: {
-      title: "Serinity — Designing a calm and reassuring digital experience",
-      category: "UX/UI Design, Wellness, Mobile App",
+      title: "Serenity — Your connected assistant for a serene daily life",
+      category: "UX/UI Design, Smart Home, Mobile App",
       role: "UX/UI Designer",
-      intro: "Serinity is a digital wellness concept focused on calm, balance and personal support. The goal was to create a soft, intuitive and soothing interface designed to help users take a step back.",
-      context: "Wellness products need to create a sense of trust. The interface should not feel intrusive, overloaded or guilt-inducing. It should guide users with simplicity and care.",
-      challenge: "How can a wellness interface be useful, calm and engaging without feeling too generic?",
+      intro: "Serenity is a connected home assistant designed to simplify everyday household and energy management. The goal was to create a calm, intuitive and reassuring interface to control smart devices (lighting, heating, ambient scenes) and track energy consumption effortlessly.",
+      context: "Smart home interfaces are frequently cluttered, technical and stressful to navigate. Serenity rethinks the connected home experience by putting peace of mind, visual softness and clarity at the heart of every interaction.",
+      challenge: "How can smart home controls and energy consumption data be unified into a gentle, approachable and human digital assistant?",
       goals: [
-        "Create a soothing experience.",
-        "Reduce visual noise.",
-        "Build a simple user journey.",
-        "Create a feeling of safety.",
-        "Develop a soft but recognizable identity."
+        "Simplify smart device controls (scenes, heating, lighting).",
+        "Make energy savings visible and motivating.",
+        "Reduce visual noise with clean, card-based navigation.",
+        "Create an affectionate, recognizable mascot brand identity.",
+        "Design accessible onboarding and profile management."
       ],
-      process: "I worked on visual mood, user flows, key screens and content hierarchy. The goal was to find the right balance between aesthetics, simplicity and usefulness.",
-      solution: "The solution is based on a minimal interface, soft colors, rounded components, smooth navigation and short content. Each screen is designed to be quickly understandable and to create a calm feeling.",
-      outcome: "This project allowed me to explore the role of emotion in UX/UI design, especially in experiences where trust and comfort are essential."
+      process: "I defined the visual identity around a welcoming house mascot and a soft color palette. I structured the user flows into intuitive rooms, daily scene presets (Music, Movie, Night, Sleep, Away) and clear energy analytics with positive reinforcement.",
+      solution: "The solution features an approachable mobile interface combining quick scene toggles, individual room device cards, and an encouraging energy dashboard showing immediate savings in kWh and currency. Every screen fosters confidence and simplicity.",
+      outcome: "This project demonstrated how thoughtful UI design can turn complex IoT systems and energy metrics into a soothing, rewarding everyday companion."
     },
     fr: {
-      title: "Serinity — Concevoir une expérience digitale calme et rassurante",
-      category: "UX/UI Design, Bien-être, Application mobile",
+      title: "Serenity — Votre assistant connecté pour une vie sereine",
+      category: "UX/UI Design, Habitat connecté, Application mobile",
       role: "UX/UI Designer",
-      intro: "Serinity est un concept d’experience digitale autour du bien-être, du calme et de l’accompagnement personnel. L’objectif était de créer une interface douce, intuitive et apaisante, pensée pour aider l’utilisateur à prendre du recul.",
-      context: "Les produits digitaux liés au bien-être doivent créer un climat de confiance. L’interface ne doit pas être intrusive, trop chargée ou culpabilisante. Elle doit accompagner l’utilisateur avec simplicité et délicatesse.",
-      challenge: "Comment créer une interface de bien-être qui soit à la fois utile, calme et engageante, sans devenir trop générique ?",
+      intro: "Serenity est un assistant connecté pensé pour simplifier la gestion de la maison et de l'énergie au quotidien. L’objectif était de concevoir une interface chaleureuse, intuitive et apaisante permettant aux utilisateurs de piloter facilement leurs équipements (lumières, chauffage, scènes du quotidien) et de suivre leurs économies d’énergie en toute sérénité.",
+      context: "Les applications domotiques sont souvent trop techniques, froides ou anxiogènes. Serenity réinvente l’expérience de l’habitat connecté en plaçant la sérénité, la douceur visuelle et la clarté au cœur des interactions.",
+      challenge: "Comment réunir le pilotage des objets connectés de la maison et le suivi d’économies d’énergie au sein d’une interface apaisante, humaine et accessible à tous ?",
       goals: [
-        "Créer une expérience apaisante.",
-        "Réduire la charge visuelle.",
-        "Construire un parcours simple.",
-        "Donner une impression de sécurité.",
-        "Développer une identité douce mais reconnaissable."
+        "Simplifier le contrôle des appareils (scènes d'ambiance, chauffage, éclairage).",
+        "Rendre le suivi d’énergie clair et valorisant.",
+        "Épurer la navigation grâce à des cartes douces et lisibles.",
+        "Créer une identité attachante et rassurante grâce à la mascotte Serenity.",
+        "Concevoir un parcours fluide de l’onboarding jusqu’à la gestion du profil."
       ],
-      process: "J’ai travaillé sur les ambiances visuelles, les parcours utilisateur, les écrans clés et la hiérarchie des contenus. L’objectif était de trouver un équilibre entre esthétique, simplicité et utilité.",
-      solution: "La solution repose sur une interface minimaliste, des couleurs douces, des composants arrondis, une navigation fluide et des contenus courts. Chaque écran est pensé pour être compréhensible rapidement et générer une sensation de calme.",
-      outcome: "Ce projet m’a permis d’explorer le rôle de l’émotion dans l’UX/UI design, notamment dans des expériences où la confiance et le confort sont essentiels."
+      process: "J’ai conçu l’identité visuelle autour d’une mascotte bienveillante et d’une palette douce. J’ai structuré les parcours utilisateurs par pièces de vie, créé des scènes rapides (Musique, Film, Nuit, Dormir, Sortir) et intégré un module d'énergie valorisant les économies réalisées.",
+      solution: "La solution propose une application mobile combinant des commandes directes par scène, un contrôle pièce par pièce des objets connectés et un tableau de bord d’énergie gratifiant affichant les kWh et euros économisés. L’expérience favorise le confort et la confiance.",
+      outcome: "Ce projet m’a permis de concrétiser une approche du design où l’ergonomie transforme des données techniques (IoT, kWh) en une expérience sereine, valorisante et naturelle au quotidien."
     }
   },
   {

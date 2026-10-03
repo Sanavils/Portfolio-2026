@@ -8,6 +8,7 @@ import CurrentMood from '../components/interests/CurrentMood';
 import InterestFilters from '../components/interests/InterestFilters';
 import InterestCard from '../components/interests/InterestCard';
 import InterestDrawer from '../components/interests/InterestDrawer';
+import SEO from '../components/SEO';
 
 export default function InterestsPage() {
   const { language } = useLanguage();
@@ -40,6 +41,11 @@ export default function InterestsPage() {
 
   return (
     <>
+      <SEO
+        title="Interests Radar — Hassen Arkab"
+        description="Une page personnelle autour des univers, jeux, musiques, références visuelles et sujets qui inspirent le regard créatif de Hassen Arkab."
+        canonical="https://www.hassenarkab.com/interests"
+      />
       <PageTransition />
       <div className="min-h-screen bg-bg-light pt-28 pb-24 overflow-x-hidden">
         

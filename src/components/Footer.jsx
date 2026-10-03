@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowUp, Mail } from 'lucide-react';
 
 // Custom inline LinkedIn SVG icon due to package version constraints
@@ -48,9 +47,9 @@ export default function Footer() {
   const t = translations[language];
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: <Linkedin size={14} />, href: 'https://linkedin.com' },
-    { name: 'GitHub', icon: <Github size={14} />, href: 'https://github.com' },
-    { name: 'Email', icon: <Mail size={14} />, href: 'mailto:hassen.arkab@gmail.com' },
+    { name: 'LinkedIn', icon: <Linkedin size={14} />, href: 'https://www.linkedin.com/in/hassen-arkab' },
+    { name: 'GitHub', icon: <Github size={14} />, href: 'https://github.com/Sanavils?tab=repositories' },
+    { name: 'Email', icon: <Mail size={14} />, href: 'mailto:arkab.hassen.pro@gmail.com' },
   ];
 
   const scrollToTop = (e) => {
@@ -90,6 +89,8 @@ export default function Footer() {
                 <a
                   key={link.name}
                   href={link.href}
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="flex items-center gap-1.5 text-[10px] font-mono uppercase font-bold tracking-widest text-charcoal-muted hover:text-violet transition-colors duration-300 cursor-none interactive-hover"
                 >
                   {link.icon}
@@ -101,6 +102,7 @@ export default function Footer() {
             <a
               href="#"
               onClick={scrollToTop}
+              aria-label={t.footer.backToTop || 'Retour en haut'}
               className="group flex items-center gap-2 text-[10px] font-mono uppercase font-bold tracking-widest text-charcoal hover:text-violet transition-colors duration-300 cursor-none interactive-hover"
             >
               {t.footer.backToTop}
@@ -115,6 +117,8 @@ export default function Footer() {
         <div className="footer-marquee py-4 select-none pointer-events-none border-t border-charcoal/5 mt-8">
           <div className="footer-marquee-track">
             <span>HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
+            <span aria-hidden="true">HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
+            <span aria-hidden="true">HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
             <span aria-hidden="true">HASSEN ARKAB — EVERYTHING STARTS WITH A LINE —&nbsp;</span>
           </div>
         </div>
