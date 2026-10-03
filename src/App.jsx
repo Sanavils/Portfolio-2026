@@ -151,6 +151,7 @@ export default function App() {
           {/* Vercel Speed Insights */}
           <SpeedInsights />
         </div>
+      </PageTransitionProvider>
       </Router>
     </LanguageProvider>
   );
