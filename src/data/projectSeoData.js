@@ -22,9 +22,9 @@ export const projectSeoMap = {
       'Concept d’application de gestion financière personnelle pensé pour simplifier la lecture des dépenses, réduire la charge cognitive et rendre l’argent plus visuel.',
   },
   'serinity': {
-    title: 'Serinity Wellness App — Hassen Arkab',
+    title: 'Serenity Smart Home App — Hassen Arkab',
     description:
-      'Concept d’interface bien-être calme et intuitive, pensée pour créer une expérience digitale apaisante, claire et rassurante.',
+      'Concept d’application mobile pour l’habitat connecté et la gestion d’énergie, pensé pour créer une expérience sereine, simple et valorisante au quotidien.',
   },
   'scentify': {
     title: 'Scentify Connected Diffuser — Hassen Arkab',

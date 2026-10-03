@@ -43,6 +43,8 @@ export default function ProjectCard({ project, index, className }) {
         return '/assets/projects/civic-vote/civic-vote-hero.png';
       case 'okane':
         return '/assets/projects/okane/okane-logo.png';
+      case 'serinity':
+        return '/assets/projects/serenity/serenity-logo.png';
       default:
         return null;
     }
@@ -100,6 +102,20 @@ export default function ProjectCard({ project, index, className }) {
           <img 
             src="/assets/projects/okane/okane-logo.png" 
             alt="Okane — Application de gestion financière et suivi des dépenses" 
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          />
+        </div>
+      );
+    }
+
+    if (proj.slug === 'serinity') {
+      return (
+        <div className="absolute inset-0 bg-white flex items-center justify-center overflow-hidden">
+          <img 
+            src="/assets/projects/serenity/serenity-logo.png" 
+            alt="Serenity — Assistant connecté pour une vie sereine" 
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"

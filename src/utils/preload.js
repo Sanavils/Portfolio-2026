@@ -68,6 +68,7 @@ export const preloadCriticalImages = () => {
     '/assets/projects/abercrombie/abercrombie-logo.png',
     '/assets/projects/civic-vote/civic-vote-hero.png',
     '/assets/projects/okane/okane-logo.png',
+    '/assets/projects/serenity/serenity-logo.png',
   ];
   criticalImages.forEach(preloadImage);
 };

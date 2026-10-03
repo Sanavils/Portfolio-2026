@@ -192,6 +192,34 @@ export default function ProjectPage() {
       );
     }
 
+    if (proj.slug === 'serinity') {
+      return (
+        <div className="w-full aspect-[16/9] max-h-[600px] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-white flex items-center justify-center shadow-sm">
+          {/* Main visual taking 100% of the block */}
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.99 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            src="/assets/projects/serenity/serenity-logo.png" 
+            alt="Serenity Logo" 
+            loading="eager"
+            fetchPriority="high"
+            className="w-full h-full object-contain md:object-cover relative z-10"
+          />
+          
+          <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/70 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+            <span>CASE STUDY // SMART HOME & IoT</span>
+            <span className="font-bold bg-charcoal/5 border border-charcoal/10 backdrop-blur px-2 py-0.5 rounded text-charcoal">ID: {proj.id}</span>
+          </div>
+          
+          <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/70 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+            <span>{proj.visual.label}</span>
+            <span>{proj.year}</span>
+          </div>
+        </div>
+      );
+    }
+
     const { bgColor, type, label } = proj.visual;
     return (
       <div className={`w-full aspect-[21/9] min-h-[300px] md:min-h-[440px] relative border border-border-light rounded-xl overflow-hidden ${bgColor} flex flex-col justify-between p-8 md:p-12 shadow-sm`}>
@@ -915,6 +943,52 @@ export default function ProjectPage() {
                       <img 
                         src="/assets/projects/okane/okane-screen-expenses.png" 
                         alt="Écran détaillé de ventilation des dépenses de l’application Okane" 
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : project.slug === 'serinity' ? (
+              <div className="space-y-6">
+                <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
+                  {language === 'fr' 
+                    ? 'Découvrez les maquettes de l’application Serenity. Une expérience pensée pour piloter son habitat connecté en douceur, avec une gestion intuitive des scènes d’ambiance et un suivi clair de la consommation d’énergie.'
+                    : 'Explore the Serenity application mockups. An experience designed to control your connected home smoothly, with intuitive scene management and clear energy consumption tracking.'}
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch pt-4">
+                  {/* Visual 1: Mockup Trio Overview */}
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
+                        {language === 'fr' ? '01 / Parcours Global — Onboarding, Contrôle du Salon & Profil' : '01 / Global Journey — Onboarding, Living Room Controls & Profile'}
+                      </span>
+                    </div>
+                    <div className="p-6 md:p-8 flex items-center justify-center bg-[#F5F8F5] flex-1">
+                      <img 
+                        src="/assets/projects/serenity/serenity-mockups-trio.png" 
+                        alt="Maquettes de l’application mobile Serenity : onboarding, contrôle du salon et profil utilisateur" 
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Visual 2: Detailed Energy Management Screen */}
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block">
+                        {language === 'fr' ? '02 / Suivi d’Énergie — Objets Connectés & Économies Réalisées' : '02 / Energy Tracking — Connected Devices & Energy Savings'}
+                      </span>
+                    </div>
+                    <div className="p-6 md:p-8 flex items-center justify-center bg-[#F5F8F5] flex-1">
+                      <img 
+                        src="/assets/projects/serenity/serenity-screen-energy.png" 
+                        alt="Écran de gestion de l’énergie et des objets connectés de l’application Serenity" 
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
