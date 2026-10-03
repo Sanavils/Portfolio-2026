@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Sparkles, Music } from 'lucide-react';
 
 // procedural brutalist cover art matching DA
