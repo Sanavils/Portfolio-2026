@@ -67,17 +67,22 @@ export default function ProjectPage() {
     inLanguage: language === 'fr' ? 'fr-FR' : 'en-US',
   };
 
+  // Project Display Names
+  const PROJECT_NAMES = {
+    'groupe-adp': 'Groupe ADP',
+    'ffgolf': 'ffgolf',
+    'abercrombie': 'Abercrombie & Fitch',
+    'civic-vote': 'Civic Vote',
+    'serinity': 'Serinity',
+    'okane': 'Okane',
+    'scentify': 'Scentify',
+  };
+
   // Get Next/Prev project configurations
   const prevProject = projectsData[projectIndex === 0 ? projectsData.length - 1 : projectIndex - 1];
   const nextProject = projectsData[projectIndex === projectsData.length - 1 ? 0 : projectIndex + 1];
 
-  const projectTitleDisplay = project.id === "02" 
-    ? "Abercrombie & Fitch" 
-    : project.id === "01" 
-      ? "Groupe ADP" 
-      : project.id === "03" 
-        ? "Civic Vote" 
-        : project.slug.replace('-', ' ');
+  const projectTitleDisplay = PROJECT_NAMES[project.slug] || project.slug.replace('-', ' ');
 
   // Render giant visual mockup cover (taking 100% of container width)
   const renderGiantPlaceholder = (proj) => {
@@ -85,23 +90,51 @@ export default function ProjectPage() {
       return (
         <div className="w-full aspect-[21/9] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-[#0A2A5C] flex items-center justify-center shadow-sm">
           {/* Main visual taking 100% of the block */}
-          <motion.img 
+          <motion.img
             initial={{ opacity: 0, scale: 0.99 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            src="/assets/projects/groupe-adp/adp-logo.png" 
-            alt="Groupe ADP" 
+            src="/assets/projects/groupe-adp/adp-logo.png"
+            alt="Groupe ADP"
             loading="eager"
             fetchPriority="high"
             className="w-full h-full object-cover relative z-10"
           />
-          
+
           <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/60 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>CASE STUDY // CORPORATE REDESIGN</span>
             <span className="font-bold">ID: {proj.id}</span>
           </div>
-          
+
           <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/60 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+            <span>{proj.visual.label}</span>
+            <span>{proj.year}</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (proj.slug === 'ffgolf') {
+      return (
+        <div className="w-full aspect-[16/9] relative border border-border-light rounded-xl overflow-hidden bg-white flex items-center justify-center shadow-sm">
+          {/* Main visual taking 100% of the block without cutting any parts */}
+          <motion.img
+            initial={{ opacity: 0, scale: 0.99 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            src="/assets/projects/ffgolf/ffgolf-logo.png"
+            alt="ffgolf — Logo et direction visuelle"
+            loading="eager"
+            fetchPriority="high"
+            className="w-full h-full object-contain relative z-10"
+          />
+
+          <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-[#0B2341] font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+            <span>CASE STUDY // SPORT &amp; DIGITAL FEDERATION</span>
+            <span className="font-bold bg-[#0B2341]/10 border border-[#0B2341]/20 backdrop-blur px-2 py-0.5 rounded text-[#0B2341]">ID: {proj.id}</span>
+          </div>
+
+          <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-[#0B2341] font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label}</span>
             <span>{proj.year}</span>
           </div>
@@ -113,22 +146,22 @@ export default function ProjectPage() {
       return (
         <div className="w-full aspect-[21/9] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-[#EAEAEA] flex items-center justify-center shadow-sm">
           {/* Main visual taking 100% of the block */}
-          <motion.img 
+          <motion.img
             initial={{ opacity: 0, scale: 0.99 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            src="/assets/projects/abercrombie/abercrombie-logo.png" 
-            alt="Abercrombie" 
+            src="/assets/projects/abercrombie/abercrombie-logo.png"
+            alt="Abercrombie"
             loading="eager"
             fetchPriority="high"
             className="w-full h-full object-cover relative z-10"
           />
-          
+
           <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/60 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>CASE STUDY // BRAND REBRANDING</span>
             <span className="font-bold">ID: {proj.id}</span>
           </div>
-          
+
           <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/60 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label}</span>
             <span>{proj.year}</span>
@@ -141,22 +174,22 @@ export default function ProjectPage() {
       return (
         <div className="w-full aspect-[16/9] max-h-[600px] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-[#8D4FE7] flex items-center justify-center shadow-sm">
           {/* Main visual taking 100% of the block */}
-          <motion.img 
+          <motion.img
             initial={{ opacity: 0, scale: 0.99 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            src="/assets/projects/civic-vote/civic-vote-hero.png" 
-            alt="Civic Vote — Se déplacer pour voter" 
+            src="/assets/projects/civic-vote/civic-vote-hero.png"
+            alt="Civic Vote — Se déplacer pour voter"
             loading="eager"
             fetchPriority="high"
             className="w-full h-full object-cover relative z-10"
           />
-          
+
           <div className="absolute top-5 right-6 md:top-6 md:right-8 pointer-events-none text-white/90 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20 flex items-center gap-3">
             <span className="hidden sm:inline">CASE STUDY // CIVIC CAMPAIGN</span>
             <span className="font-bold bg-white/20 backdrop-blur px-2 py-0.5 rounded">ID: {proj.id}</span>
           </div>
-          
+
           <div className="absolute bottom-5 right-6 md:bottom-6 md:right-8 pointer-events-none text-white/90 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label} &bull; {proj.year}</span>
           </div>
@@ -168,22 +201,22 @@ export default function ProjectPage() {
       return (
         <div className="w-full aspect-[16/9] max-h-[600px] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-[#5DB075] flex items-center justify-center shadow-sm">
           {/* Main visual taking 100% of the block */}
-          <motion.img 
+          <motion.img
             initial={{ opacity: 0, scale: 0.99 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            src="/assets/projects/okane/okane-logo.png" 
-            alt="Okane Logo" 
+            src="/assets/projects/okane/okane-logo.png"
+            alt="Okane Logo"
             loading="eager"
             fetchPriority="high"
             className="w-full h-full object-cover relative z-10"
           />
-          
+
           <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/80 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>CASE STUDY // PRODUCT DESIGN</span>
             <span className="font-bold bg-white/20 backdrop-blur px-2 py-0.5 rounded text-white">ID: {proj.id}</span>
           </div>
-          
+
           <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-white/80 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label}</span>
             <span>{proj.year}</span>
@@ -196,23 +229,51 @@ export default function ProjectPage() {
       return (
         <div className="w-full aspect-[16/9] max-h-[600px] min-h-[300px] md:min-h-[460px] relative border border-border-light rounded-xl overflow-hidden bg-white flex items-center justify-center shadow-sm">
           {/* Main visual taking 100% of the block */}
-          <motion.img 
+          <motion.img
             initial={{ opacity: 0, scale: 0.99 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            src="/assets/projects/serenity/serenity-logo.png" 
-            alt="Serenity Logo" 
+            src="/assets/projects/serenity/serenity-logo.png"
+            alt="Serenity Logo"
             loading="eager"
             fetchPriority="high"
             className="w-full h-full object-contain md:object-cover relative z-10"
           />
-          
+
           <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/70 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>CASE STUDY // SMART HOME & IoT</span>
             <span className="font-bold bg-charcoal/5 border border-charcoal/10 backdrop-blur px-2 py-0.5 rounded text-charcoal">ID: {proj.id}</span>
           </div>
-          
+
           <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-charcoal/70 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+            <span>{proj.visual.label}</span>
+            <span>{proj.year}</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (proj.slug === 'scentify') {
+      return (
+        <div className="w-full aspect-[16/9] relative border border-border-light rounded-xl overflow-hidden bg-[#CDCAC1] flex items-center justify-center shadow-sm">
+          {/* Main visual taking 100% of the block without cutting any parts */}
+          <motion.img
+            initial={{ opacity: 0, scale: 0.99 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            src="/assets/projects/scentify/scentify-brand-cover.png"
+            alt="Scentify — Élevez vos sens, parfumez votre quotidien"
+            loading="eager"
+            fetchPriority="high"
+            className="w-full h-full object-contain relative z-10"
+          />
+
+          <div className="absolute top-5 left-6 md:top-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-[#384C43] font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
+            <span>CASE STUDY // WELLNESS &amp; E-COMMERCE</span>
+            <span className="font-bold bg-[#384C43]/10 border border-[#384C43]/20 backdrop-blur px-2 py-0.5 rounded text-[#384C43]">ID: {proj.id}</span>
+          </div>
+
+          <div className="absolute bottom-5 left-6 md:bottom-6 md:left-8 flex justify-between items-baseline w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] pointer-events-none text-[#384C43] font-mono text-[9px] sm:text-[10px] uppercase tracking-widest z-20">
             <span>{proj.visual.label}</span>
             <span>{proj.year}</span>
           </div>
@@ -242,9 +303,9 @@ export default function ProjectPage() {
           {type === 'finance-chart' && (
             <div className="w-full h-full flex items-end justify-around px-20">
               {[30, 45, 60, 90, 75, 110, 140, 120].map((h, i) => (
-                <div 
-                  key={i} 
-                  style={{ height: `${h}px` }} 
+                <div
+                  key={i}
+                  style={{ height: `${h}px` }}
                   className="w-12 border border-violet/40 bg-violet/10 rounded-t"
                 />
               ))}
@@ -301,56 +362,20 @@ export default function ProjectPage() {
           };
         case 'scentify':
           return {
-            title: isFr ? 'Hardware-Software & Dial de Diffusion' : 'Hardware-Software & Diffusion Dial',
+            title: isFr ? 'Hardware-Software & Univers Sensoriel' : 'Hardware-Software & Sensory Universe',
             subtitle: isFr
-              ? 'Conception de l’interface de contrôle tactile et de l’expérience de recharge pour le diffuseur connecté Scentify.'
-              : 'Interface design for touch-control ambient diffusion and cartridge replenishment for the Scentify connected diffuser.',
+              ? 'Conception de l’interface de contrôle tactile et de l’expérience de recharge pour le diffuseur connecté Scentify. Une alliance entre univers sensoriel, parcours e-commerce et contrôle mobile.'
+              : 'Interface design for touch-control ambient diffusion and cartridge replenishment for the Scentify connected diffuser. A balance between sensory universe, e-commerce flow, and mobile app.',
             board1Title: isFr ? '01 / Cadran Tactile & Courbes d’Intensité' : '01 / Touch Dial & Intensity Curves',
             board1Theme: 'bg-[#18181E] text-white',
-            board2Title: isFr ? '02 / Bibliothèque Olfactive & Gestion des Capsules' : '02 / Olfactory Library & Pod Management',
+            board2Title: isFr ? '02 / Bibliothèque Olfactive & Univers E-Commerce' : '02 / Olfactory Library & E-Commerce Universe',
             board2Theme: 'bg-[#221C26] text-white',
             pills1: ['Rotary Dial UI', 'Intensity Curves 0-100%', 'Quiet Schedule Mode', 'BLE 5.2 Auto-Pairing'],
-            pills2: ['Amber & Cedar Pod', 'Bergamot Crisp', 'Lavender Dusk', 'Smart RFID Reorder'],
+            pills2: ['Sensory Palette', 'Amber & Cedar Pod', 'Smart RFID Reorder', 'Fast Cart Checkout'],
             metrics: [
               { label: isFr ? 'Précision diffusion' : 'Diffusion Precision', val: '10 Niveaux' },
               { label: isFr ? 'Autonomie pod' : 'Pod Lifespan', val: '60 Jours' },
               { label: isFr ? 'Appairage instantané' : 'Pairing Speed', val: '< 2.5s' },
-            ]
-          };
-        case 'muse':
-          return {
-            title: isFr ? 'Intelligence Artificielle & Stylisme Digital' : 'Artificial Intelligence & Digital Styling',
-            subtitle: isFr
-              ? 'Visualisation de l’architecture du dressing virtuel et du moteur d’affinité morphologique et stylistique de MUSE.'
-              : 'Architecture visualization of the virtual closet and morphological styling affinity engine of MUSE.',
-            board1Title: isFr ? '01 / Indexation Automatique & Dressing Virtuel' : '01 / Auto-Cataloging & Digital Wardrobe',
-            board1Theme: 'bg-[#F9F7F5] text-charcoal',
-            board2Title: isFr ? '02 / Matrice de Recommandation & Validation' : '02 / Recommendation Matrix & Validation',
-            board2Theme: 'bg-[#1C1824] text-white',
-            pills1: ['Auto-Segmentation', 'Color Palette Extraction', 'Occasion Classifier', 'Layering Engine'],
-            pills2: ['Style DNA Score 94%', 'Weather-Aware Outfits', 'User Veto Power', 'Zero Ghost Choices'],
-            metrics: [
-              { label: isFr ? 'Précision IA style' : 'AI Match Precision', val: '94%' },
-              { label: isFr ? 'Temps composition' : 'Outfit Assembly', val: '< 1.2s' },
-              { label: isFr ? 'Taux d’adoption' : 'User Adoption', val: '86%' },
-            ]
-          };
-        case 'alya':
-          return {
-            title: isFr ? 'Télémétrie d’Effort & Expérience Athlétique' : 'Effort Telemetry & Athletic Experience',
-            subtitle: isFr
-              ? 'Interface haute performance conçue pour les sportifs : monitoring cardiaque, anneaux de charge et coaching adaptatif.'
-              : 'High-performance interface designed for athletes: heart-rate monitoring, strain rings, and adaptive coaching.',
-            board1Title: isFr ? '01 / Anneaux d’Intensité & Zones Métaboliques' : '01 / Intensity Rings & Metabolic Zones',
-            board1Theme: 'bg-[#0E0E12] text-white',
-            board2Title: isFr ? '02 / Algorithme de Récupération & Progression' : '02 / Recovery Algorithm & Progression',
-            board2Theme: 'bg-[#16131F] text-white',
-            pills1: ['Zone 2 Aerobic', 'Anaerobic Peak', 'Heart Rate Variability', 'Strain Target Index'],
-            pills2: ['Daily Readiness 88/100', 'Sleep Debt Tracker', 'Adaptive Pace Guard', 'Community PRs'],
-            metrics: [
-              { label: isFr ? 'Fréquence de sync' : 'Sync Frequency', val: 'Temps réel' },
-              { label: isFr ? 'Index récupération' : 'Recovery Accuracy', val: '91%' },
-              { label: isFr ? 'Lisibilité plein soleil' : 'Direct Sunlight UI', val: 'AAA Ultra' },
             ]
           };
         default:
@@ -445,12 +470,12 @@ export default function ProjectPage() {
     );
   };
 
-  const projTitleDisplay = project.id === "02" 
-    ? "Abercrombie & Fitch" 
-    : project.id === "01" 
-      ? "Groupe ADP" 
-      : project.id === "03" 
-        ? "Civic Vote" 
+  const projTitleDisplay = project.id === "02"
+    ? "Abercrombie & Fitch"
+    : project.id === "01"
+      ? "Groupe ADP"
+      : project.id === "03"
+        ? "Civic Vote"
         : project.slug.replace('-', ' ');
 
   return (
@@ -462,15 +487,15 @@ export default function ProjectPage() {
         schema={creativeWorkSchema}
       />
       <PageTransition />
-      
+
       <div className="min-h-screen bg-bg-light pt-28 pb-20">
-        
+
         {/* ──────────────────────────────────────────────────────────── */}
         {/* 1. TOP BAR: BREADCRUMB & BACK BUTTON                        */}
         {/* ──────────────────────────────────────────────────────────── */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border-light">
-            
+
             {/* Discrete breadcrumb */}
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-charcoal-muted">
               <PrefetchLink to="/" className="hover:text-violet transition-colors">
@@ -501,7 +526,7 @@ export default function ProjectPage() {
         {/* 2. PROJECT HERO HEADER: LABEL, TITLE, INTRO & METADATA GRID  */}
         {/* ──────────────────────────────────────────────────────────── */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 mt-4">
-          
+
           {/* Discrete small label */}
           <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold block mb-4">
             / {t.projectPage.caseStudyLabel} // {project.year}
@@ -568,7 +593,7 @@ export default function ProjectPage() {
         {/* 4. CASE STUDY BODY: 7 NUMBERED READABLE SECTIONS            */}
         {/* ──────────────────────────────────────────────────────────── */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
-          
+
           {/* 01 / CONTEXT */}
           <section className="border-t border-border-light pt-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
@@ -683,7 +708,7 @@ export default function ProjectPage() {
             {project.slug === 'groupe-adp' ? (
               <div className="space-y-6">
                 <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
-                  {language === 'fr' 
+                  {language === 'fr'
                     ? 'Explorez les différentes maquettes issues du portail. Faites défiler verticalement chaque écran pour analyser la structure de la grille, le traitement typographique et l\'organisation des contenus sans aucune déformation.'
                     : 'Explore the different mockups from the intranet portal. Scroll vertically within each screen to inspect the grid structure, typography, and content layout without distortion.'}
                 </p>
@@ -700,9 +725,9 @@ export default function ProjectPage() {
                       </div>
                     </div>
                     <div className="bg-charcoal/[0.02] h-[450px] overflow-y-auto p-4 flex justify-center scrollbar-thin">
-                      <img 
-                        src="/assets/projects/groupe-adp/adp-brandstudio-full.png" 
-                        alt="Capture d’écran de la page Brand Studio Groupe ADP" 
+                      <img
+                        src="/assets/projects/groupe-adp/adp-brandstudio-full.png"
+                        alt="Capture d’écran de la page Brand Studio Groupe ADP"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto object-contain"
@@ -726,9 +751,9 @@ export default function ProjectPage() {
                       </div>
                     </div>
                     <div className="bg-charcoal/[0.02] h-[450px] overflow-y-auto p-4 flex justify-center scrollbar-thin">
-                      <img 
-                        src="/assets/projects/groupe-adp/adp-comex.png" 
-                        alt="Capture d’écran de l’organigramme du Comité Exécutif Groupe ADP" 
+                      <img
+                        src="/assets/projects/groupe-adp/adp-comex.png"
+                        alt="Capture d’écran de l’organigramme du Comité Exécutif Groupe ADP"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto object-contain"
@@ -752,9 +777,9 @@ export default function ProjectPage() {
                       </div>
                     </div>
                     <div className="bg-charcoal/[0.02] h-[450px] overflow-y-auto p-4 flex justify-center scrollbar-thin">
-                      <img 
-                        src="/assets/projects/groupe-adp/adp-marques.png" 
-                        alt="Capture d’écran de la page Architecture des Marques Groupe ADP" 
+                      <img
+                        src="/assets/projects/groupe-adp/adp-marques.png"
+                        alt="Capture d’écran de la page Architecture des Marques Groupe ADP"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto object-contain"
@@ -778,9 +803,9 @@ export default function ProjectPage() {
                       </div>
                     </div>
                     <div className="bg-charcoal/[0.02] h-[450px] overflow-y-auto p-4 flex justify-center scrollbar-thin">
-                      <img 
-                        src="/assets/projects/groupe-adp/adp-patrimoine.png" 
-                        alt="Capture d’écran de la page Espace Patrimoine Groupe ADP" 
+                      <img
+                        src="/assets/projects/groupe-adp/adp-patrimoine.png"
+                        alt="Capture d’écran de la page Espace Patrimoine Groupe ADP"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto object-contain"
@@ -795,10 +820,99 @@ export default function ProjectPage() {
                   </div>
                 </div>
               </div>
-            ) : project.slug === 'abercrombie' ? (
-              <div className="space-y-6">
+            ) : project.slug === 'ffgolf' ? (
+              <div className="space-y-10">
                 <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
-                  {language === 'fr' 
+                  {language === 'fr'
+                    ? 'Découvrez la maquette officielle de la home ainsi que l’identité de l’application mobile ffgolf. Une interface pensée pour moderniser la pratique du golf en France, fluidifier la prise de licence et créer un pont direct entre l’écosystème web et mobile.'
+                    : 'Explore the official homepage mockup and mobile app identity for ffgolf. An interface designed to modernize golf in France, streamline digital membership, and connect the web and mobile ecosystems.'}
+                </p>
+
+                {/* 1. Full-width Landing Page Homepage Mockup in Browser Window */}
+                <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="p-4 bg-charcoal/5 border-b border-border-light flex flex-wrap justify-between items-center gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="flex gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
+                      </div>
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold ml-2">
+                        {language === 'fr' ? '01 / Maquette de la Home — Landing Page Complète' : '01 / Homepage Mockup — Full Landing Page'}
+                      </span>
+                    </div>
+                    <div className="px-3 py-1 rounded-full bg-charcoal/5 border border-charcoal/10 font-mono text-[9px] text-charcoal-muted flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      https://www.ffgolf.org/licence
+                    </div>
+                  </div>
+
+                  <div className="p-4 sm:p-8 bg-[#0B2341] flex flex-col items-center justify-center">
+                    <div className="w-full max-w-[580px] max-h-[750px] overflow-y-auto scrollbar-thin rounded-lg border border-white/10 shadow-2xl bg-white flex justify-center">
+                      <img
+                        src="/assets/projects/ffgolf/ffgolf-home-mockup.png"
+                        alt="Capture de la landing page ffgolf — Maquette officielle de la Home"
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="mt-4 flex items-center gap-2 text-white/70 font-mono text-[9px] uppercase tracking-wider text-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-violet animate-pulse" />
+                      {language === 'fr'
+                        ? 'Faites défiler verticalement pour parcourir les différentes sections de la home'
+                        : 'Scroll vertically inside the frame to browse all homepage sections'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. Logo pour l'application mobile ffgolf */}
+                <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="p-4 bg-charcoal/5 border-b border-border-light flex flex-wrap justify-between items-center gap-2">
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold">
+                      {language === 'fr' ? '02 / Logo & Application Mobile — Identité de l’App' : '02 / Logo & Mobile App — App Identity'}
+                    </span>
+                    <span className="font-mono text-[9px] text-charcoal-muted">
+                      // APP STORE &amp; PLAY STORE
+                    </span>
+                  </div>
+
+                  <div className="p-8 sm:p-14 bg-[#F8FAFC] flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-14">
+                    {/* App icon visual */}
+                    <div className="relative group">
+                      <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-3xl overflow-hidden shadow-xl border border-charcoal/10 transition-transform duration-500 ease-out group-hover:scale-105 bg-white p-2">
+                        <img
+                          src="/assets/projects/ffgolf/ffgolf-app-icon.png"
+                          alt="Logo de l'application mobile ffgolf — Coq et contours organiques"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-contain rounded-2xl"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Editorial App Details */}
+                    <div className="space-y-3 max-w-sm text-center sm:text-left">
+                      <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#0B2341]/5 border border-[#0B2341]/10 text-[#0B2341] font-mono text-[9px] uppercase tracking-wider">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        {language === 'fr' ? 'Application officielle ffgolf' : 'Official ffgolf Mobile App'}
+                      </div>
+                      <h4 className="font-syne font-bold text-lg sm:text-xl text-charcoal">
+                        {language === 'fr' ? 'Icône d’application & univers digital' : 'App icon & digital identity'}
+                      </h4>
+                      <p className="text-xs text-charcoal-muted font-light leading-relaxed">
+                        {language === 'fr'
+                          ? 'Déclinaison de l’emblème du coq et des courbes topographiques de parcours pour l’icône applicative iOS et Android. Une identité compacte, reconnaissable et pensée pour vivre sur les écrans mobiles.'
+                          : 'Adaptation of the rooster emblem and topographical course contours for the iOS and Android app icon. A compact, instantly recognizable identity crafted for mobile screens.'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : project.slug === 'abercrombie' ? (
+              <div className="space-y-8">
+                <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
+                  {language === 'fr'
                     ? 'Découvrez les maquettes physiques et éditoriales du projet de rebranding. Les visuels intègrent la nouvelle typographie avec l\'univers brut de la marque.'
                     : 'Discover the physical and editorial mockups of the rebranding project. The visuals integrate the new typography with the raw brand identity.'}
                 </p>
@@ -812,9 +926,9 @@ export default function ProjectPage() {
                       </span>
                     </div>
                     <div className="p-4 flex items-center justify-center bg-[#E5E5E5]">
-                      <img 
-                        src="/assets/projects/abercrombie/abercrombie-beat.jpg" 
-                        alt="Direction artistique photo Beat Generation pour Abercrombie" 
+                      <img
+                        src="/assets/projects/abercrombie/abercrombie-beat.jpg"
+                        alt="Direction artistique photo Beat Generation pour Abercrombie"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[500px] object-contain shadow-md rounded"
@@ -830,9 +944,9 @@ export default function ProjectPage() {
                       </span>
                     </div>
                     <div className="p-4 flex items-center justify-center bg-[#F2F2F2]">
-                      <img 
-                        src="/assets/projects/abercrombie/abercrombie-card.jpg" 
-                        alt="Cartes de visite typographiques et minimalistes pour Abercrombie" 
+                      <img
+                        src="/assets/projects/abercrombie/abercrombie-card.jpg"
+                        alt="Cartes de visite typographiques et minimalistes pour Abercrombie"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[500px] object-contain shadow-md rounded"
@@ -848,9 +962,9 @@ export default function ProjectPage() {
                       </span>
                     </div>
                     <div className="p-4 flex items-center justify-center bg-[#D6D6D6]">
-                      <img 
-                        src="/assets/projects/abercrombie/abercrombie-billboard.jpg" 
-                        alt="Affichage urbain grand format pour le rebranding d’Abercrombie" 
+                      <img
+                        src="/assets/projects/abercrombie/abercrombie-billboard.jpg"
+                        alt="Affichage urbain grand format pour le rebranding d’Abercrombie"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[600px] object-contain shadow-md rounded"
@@ -858,11 +972,93 @@ export default function ProjectPage() {
                     </div>
                   </div>
                 </div>
+
+                {/* Abercrombie Alternative Direction / Exploration Visuelle */}
+                <div className="mt-14 pt-10 border-t border-border-light">
+                  <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2 mb-4">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold">
+                      {language === 'fr' ? 'DIRECTION ALTERNATIVE' : 'ALTERNATIVE DIRECTION'}
+                    </span>
+                    <span className="font-mono text-[9px] text-charcoal-muted uppercase tracking-widest">
+                      // {language === 'fr' ? 'PISTE 02 // EXPLORATION POP & STREETWEAR' : 'ROUTE 02 // POP & STREETWEAR EXPLORATION'}
+                    </span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl uppercase text-charcoal mb-3">
+                    {language === 'fr' ? 'Piste alternative — Univers Pop & Streetwear' : 'Alternative route — Pop & Streetwear universe'}
+                  </h3>
+                  <p className="text-sm text-charcoal-muted leading-relaxed font-light max-w-[680px] mb-8">
+                    {language === 'fr'
+                      ? 'Cette direction alternative explore un virage pop, audacieux et ludique de la marque. En associant une typographie bubble jaune graffiti, un bleu électrique éclatant et des découpes en nuage inspirées de la culture skate et surf, cette piste injecte une énergie jeune et décomplexée sur l’ensemble des points de contact.'
+                      : 'This alternative direction explores a bold, playful, and streetwear-driven evolution of Abercrombie & Fitch. Blending graffiti-style bubble typography in vibrant yellow, punchy electric blue, and cloud-cut contours rooted in surf and skate culture, this route injects youthful energy across touchpoints.'}
+                  </p>
+
+                  <div className="space-y-8">
+                    {/* Visual 1: Alternative Pop Logo / Graphic Composition (Full width) */}
+                    <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                      <div className="p-4 bg-charcoal/5 border-b border-border-light flex flex-wrap justify-between items-center gap-2">
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold">
+                          {language === 'fr' ? '01 / Identité Pop & Typographie Bubble' : '01 / Pop Identity & Bubble Typography'}
+                        </span>
+                        <span className="font-mono text-[9px] text-charcoal-muted">
+                          // LOGO &bull; GRAFFITI YELLOW &bull; ELECTRIC BLUE
+                        </span>
+                      </div>
+                      <div className="p-6 sm:p-10 flex items-center justify-center bg-[#F8FAFC]">
+                        <img
+                          src="/assets/projects/abercrombie/abercrombie-alt-logo.png"
+                          alt="Identité visuelle alternative pop et streetwear pour Abercrombie & Fitch"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-auto max-h-[500px] object-contain shadow-md rounded-lg"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Visuals 2 & 3: 2-column grid with Cards & Packaging */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                      {/* Visual 2: Business Cards Mockup */}
+                      <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                        <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                          <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold">
+                            {language === 'fr' ? '02 / Cartes de Visite & Découpes Nuages' : '02 / Business Cards & Cloud Die-cuts'}
+                          </span>
+                        </div>
+                        <div className="p-4 sm:p-6 flex items-center justify-center bg-[#514B82] flex-1">
+                          <img
+                            src="/assets/projects/abercrombie/abercrombie-alt-cards.jpg"
+                            alt="Mockup des cartes de visite de la piste pop Abercrombie sur drapé violet"
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-auto max-h-[480px] object-contain shadow-lg rounded"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Visual 3: Packaging & Shipping Boxes */}
+                      <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                        <div className="p-4 bg-charcoal/5 border-b border-border-light">
+                          <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold">
+                            {language === 'fr' ? '03 / Packaging E-commerce & Boîtes d’Expédition' : '03 / E-commerce Packaging & Shipping Boxes'}
+                          </span>
+                        </div>
+                        <div className="p-4 sm:p-6 flex items-center justify-center bg-[#3D85B8] flex-1">
+                          <img
+                            src="/assets/projects/abercrombie/abercrombie-alt-packaging.jpg"
+                            alt="Boîtes d’expédition e-commerce imprimées avec le logo alternatif Abercrombie"
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-auto max-h-[480px] object-contain shadow-lg rounded"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : project.slug === 'civic-vote' ? (
               <div className="space-y-6">
                 <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
-                  {language === 'fr' 
+                  {language === 'fr'
                     ? 'Découvrez les déclinaisons graphiques de la campagne citoyenne. Des illustrations vivantes, pop et engageantes conçues pour mobiliser les jeunes électeurs.'
                     : 'Explore the graphic variations of the civic campaign. Vibrant, bold, and engaging illustrations designed to mobilize young voters.'}
                 </p>
@@ -876,9 +1072,9 @@ export default function ProjectPage() {
                       </span>
                     </div>
                     <div className="p-6 md:p-8 flex items-center justify-center bg-[#F3EEFA] flex-1">
-                      <img 
-                        src="/assets/projects/civic-vote/civic-vote-allons-voter.png" 
-                        alt="Illustration digitale de campagne civique Allons Voter" 
+                      <img
+                        src="/assets/projects/civic-vote/civic-vote-allons-voter.png"
+                        alt="Illustration digitale de campagne civique Allons Voter"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
@@ -894,9 +1090,9 @@ export default function ProjectPage() {
                       </span>
                     </div>
                     <div className="p-6 md:p-8 flex items-center justify-center bg-[#F3EEFA] flex-1">
-                      <img 
-                        src="/assets/projects/civic-vote/civic-vote-en-route.png" 
-                        alt="Affiche de mobilisation citoyenne En Route Pour Voter" 
+                      <img
+                        src="/assets/projects/civic-vote/civic-vote-en-route.png"
+                        alt="Affiche de mobilisation citoyenne En Route Pour Voter"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
@@ -904,11 +1100,99 @@ export default function ProjectPage() {
                     </div>
                   </div>
                 </div>
+
+                {/* Civic Vote Alternative Direction / Campagne Urbaine & Géométrie Tricolore */}
+                <div className="mt-14 pt-10 border-t border-border-light">
+                  <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2 mb-4">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-violet font-bold">
+                      {language === 'fr' ? 'DIRECTION ALTERNATIVE' : 'ALTERNATIVE DIRECTION'}
+                    </span>
+                    <span className="font-mono text-[9px] text-charcoal-muted uppercase tracking-widest">
+                      // {language === 'fr' ? 'PISTE 02 // AFFICHAGE URBAIN & GÉOMÉTRIE TRICOLORE' : 'ROUTE 02 // URBAN STREET POSTERS & TRICOLOR GEOMETRY'}
+                    </span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl uppercase text-charcoal mb-3">
+                    {language === 'fr' ? 'Piste alternative — Campagne Urbaine & Modernisme Constructiviste' : 'Alternative route — Urban Campaign & Constructivist Modernism'}
+                  </h3>
+                  <p className="text-sm text-charcoal-muted leading-relaxed font-light max-w-[680px] mb-8">
+                    {language === 'fr'
+                      ? 'Cette direction alternative explore un registre visuel plus radical, brut et géométrique. Inspirée du modernisme suisse et du constructivisme, elle s’appuie sur des formes géométriques pures, le triptyque chromatique bleu-blanc-rouge et une typographie grotesque imposante pour interpeller directement le citoyen dans l’espace public.'
+                      : 'This alternative direction explores a more radical, raw, and geometric visual register. Inspired by Swiss modernism and constructivism, it leverages pure geometric shapes, the blue-white-red palette, and commanding grotesque typography to directly engage citizens in the public sphere.'}
+                  </p>
+
+                  <div className="space-y-8">
+                    {/* Visual 1: Triptyque d'affichage urbain (Pleine largeur) */}
+                    <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                      <div className="p-4 bg-charcoal/5 border-b border-border-light flex flex-wrap justify-between items-center gap-2">
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold">
+                          {language === 'fr' ? '01 / Triptyque d’Affichage Urbain — En Route Pour Voter' : '01 / Urban Poster Triptych — En Route Pour Voter'}
+                        </span>
+                        <span className="font-mono text-[9px] text-charcoal-muted">
+                          // AFFICHAGE RUE &bull; GÉOMÉTRIE TRICOLORE
+                        </span>
+                      </div>
+                      <div className="p-4 sm:p-8 flex items-center justify-center bg-[#181B20]">
+                        <img
+                          src="/assets/projects/civic-vote/civic-vote-alt-triptych.jpg"
+                          alt="Triptyque d’affiches urbaines En Route Pour Voter sur mur métallique"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-auto max-h-[600px] object-contain shadow-2xl rounded-lg"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Visual 2: Affiche Institutionnelle Vote Blanc avec panel éditorial */}
+                    <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                      <div className="p-4 bg-charcoal/5 border-b border-border-light flex flex-wrap justify-between items-center gap-2">
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold">
+                          {language === 'fr' ? '02 / Affiche Institutionnelle & Mobilisation Civique' : '02 / Institutional Poster & Civic Mobilization'}
+                        </span>
+                        <span className="font-mono text-[9px] text-charcoal-muted">
+                          // INFO.GOUV.FR &bull; SENSIBILISATION AU VOTE BLANC
+                        </span>
+                      </div>
+                      <div className="p-6 sm:p-10 bg-[#EFECE6] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-14">
+                        {/* Poster visual */}
+                        <div className="w-full md:w-auto flex justify-center">
+                          <img
+                            src="/assets/projects/civic-vote/civic-vote-alt-vote-blanc.jpg"
+                            alt="Affiche de mobilisation citoyenne : Même blanc, un vote compte — Gouvernement Français"
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full max-w-[360px] h-auto max-h-[580px] object-contain shadow-2xl rounded-lg border border-black/5"
+                          />
+                        </div>
+
+                        {/* Editorial Context */}
+                        <div className="space-y-4 max-w-md text-left">
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-charcoal/5 border border-charcoal/10 text-charcoal font-mono text-[9px] uppercase tracking-wider">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#E1251B]" />
+                            {language === 'fr' ? 'Campagne institutionnelle' : 'Institutional campaign'}
+                          </div>
+                          <h4 className="font-syne font-bold text-xl sm:text-2xl text-charcoal uppercase leading-tight">
+                            {language === 'fr' ? '« Même blanc, un vote compte. »' : '“Even blank, a vote counts.”'}
+                          </h4>
+                          <p className="text-xs sm:text-sm text-charcoal-muted font-light leading-relaxed">
+                            {language === 'fr'
+                              ? 'Déclinaison grand format pour les panneaux municipaux et les abribus. La composition joue sur le blanc central comme espace d’expression démocratique légitime, encadré par des diagonales bleu et rouge dynamiques et la signature républicaine.'
+                              : 'Large-format variation designed for municipal billboards and bus shelters. The composition uses central white space as a legitimate democratic statement, framed by dynamic blue and red diagonals and the official French Republic signature.'}
+                          </p>
+                          <div className="pt-2 flex flex-wrap gap-2 text-[10px] font-mono text-charcoal-muted">
+                            <span className="px-2.5 py-1 rounded bg-white/80 border border-charcoal/10 font-bold">INFO.GOUV.FR</span>
+                            <span className="px-2.5 py-1 rounded bg-white/80 border border-charcoal/10">Bleu-Blanc-Rouge</span>
+                            <span className="px-2.5 py-1 rounded bg-white/80 border border-charcoal/10">Typographie Grotesque</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : project.slug === 'okane' ? (
               <div className="space-y-6">
                 <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
-                  {language === 'fr' 
+                  {language === 'fr'
                     ? 'Découvrez les maquettes de l’application Okane. Une expérience conçue pour simplifier le suivi budgétaire au quotidien grâce à des jauges visuelles claires et un ton bienveillant.'
                     : 'Explore the Okane application mockups. An experience designed to simplify daily budget tracking through clear visual gauges and an approachable tone.'}
                 </p>
@@ -922,9 +1206,9 @@ export default function ProjectPage() {
                       </span>
                     </div>
                     <div className="p-6 md:p-8 flex items-center justify-center bg-[#F4FAF6] flex-1">
-                      <img 
-                        src="/assets/projects/okane/okane-mockups-trio.png" 
-                        alt="Maquettes de l’application mobile Okane : onboarding et suivi de budget" 
+                      <img
+                        src="/assets/projects/okane/okane-mockups-trio.png"
+                        alt="Maquettes de l’application mobile Okane : onboarding et suivi de budget"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
@@ -940,9 +1224,9 @@ export default function ProjectPage() {
                       </span>
                     </div>
                     <div className="p-6 md:p-8 flex items-center justify-center bg-[#F4FAF6] flex-1">
-                      <img 
-                        src="/assets/projects/okane/okane-screen-expenses.png" 
-                        alt="Écran détaillé de ventilation des dépenses de l’application Okane" 
+                      <img
+                        src="/assets/projects/okane/okane-screen-expenses.png"
+                        alt="Écran détaillé de ventilation des dépenses de l’application Okane"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
@@ -954,7 +1238,7 @@ export default function ProjectPage() {
             ) : project.slug === 'serinity' ? (
               <div className="space-y-6">
                 <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
-                  {language === 'fr' 
+                  {language === 'fr'
                     ? 'Découvrez les maquettes de l’application Serenity. Une expérience pensée pour piloter son habitat connecté en douceur, avec une gestion intuitive des scènes d’ambiance et un suivi clair de la consommation d’énergie.'
                     : 'Explore the Serenity application mockups. An experience designed to control your connected home smoothly, with intuitive scene management and clear energy consumption tracking.'}
                 </p>
@@ -968,9 +1252,9 @@ export default function ProjectPage() {
                       </span>
                     </div>
                     <div className="p-6 md:p-8 flex items-center justify-center bg-[#F5F8F5] flex-1">
-                      <img 
-                        src="/assets/projects/serenity/serenity-mockups-trio.png" 
-                        alt="Maquettes de l’application mobile Serenity : onboarding, contrôle du salon et profil utilisateur" 
+                      <img
+                        src="/assets/projects/serenity/serenity-mockups-trio.png"
+                        alt="Maquettes de l’application mobile Serenity : onboarding, contrôle du salon et profil utilisateur"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
@@ -986,13 +1270,113 @@ export default function ProjectPage() {
                       </span>
                     </div>
                     <div className="p-6 md:p-8 flex items-center justify-center bg-[#F5F8F5] flex-1">
-                      <img 
-                        src="/assets/projects/serenity/serenity-screen-energy.png" 
-                        alt="Écran de gestion de l’énergie et des objets connectés de l’application Serenity" 
+                      <img
+                        src="/assets/projects/serenity/serenity-screen-energy.png"
+                        alt="Écran de gestion de l’énergie et des objets connectés de l’application Serenity"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-auto max-h-[550px] object-contain shadow-md rounded"
                       />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : project.slug === 'scentify' ? (
+              <div className="space-y-10">
+                <p className="text-xs text-charcoal-muted leading-relaxed font-light max-w-[680px]">
+                  {language === 'fr'
+                    ? 'Découvrez les maquettes de l’expérience Scentify. Une approche holistique combinant boutique e-commerce immersive, fiche produit sensorielle détaillée pour les huiles essentielles BIO, et système graphique raffiné inspiré de la nature et du bien-être.'
+                    : 'Explore the Scentify mockups. A holistic approach combining an immersive e-commerce store, a detailed sensory product page for organic essential oils, and an elegant graphic system celebrating nature and daily wellness.'}
+                </p>
+
+                {/* 1. Charte Graphique & Système Typographique en Pleine Largeur */}
+                <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                  <div className="p-4 bg-charcoal/5 border-b border-border-light flex flex-wrap justify-between items-center gap-2">
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold">
+                      {language === 'fr' ? '01 / Charte Graphique & Système Typographique' : '01 / Graphic Chart & Typographic System'}
+                    </span>
+                    <span className="font-mono text-[9px] text-charcoal-muted">
+                      // GALLERY MODERN &bull; NEUE MONTREAL &bull; PALETTE NATURE
+                    </span>
+                  </div>
+                  <div className="p-4 sm:p-8 md:p-10 flex flex-col items-center justify-center bg-[#F3F4F1]">
+                    <img
+                      src="/assets/projects/scentify/scentify-graphic-chart.png"
+                      alt="Charte graphique de la marque Scentify : typographies Gallery Modern et Neue Montreal, palette de couleurs"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-auto max-h-[620px] object-contain shadow-md rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                {/* 2. Maquettes sur la même ligne (Grille 2 colonnes) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch pt-2">
+                  {/* Maquette 01: Boutique & Landing Page (Scrollable Browser Frame) */}
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="flex gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
+                        </div>
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold ml-1">
+                          {language === 'fr' ? '02 / Boutique & Landing Page' : '02 / Store & Landing Page'}
+                        </span>
+                      </div>
+                      <div className="px-2 py-0.5 rounded bg-charcoal/5 font-mono text-[8px] text-charcoal-muted hidden sm:block">
+                        scentify.com
+                      </div>
+                    </div>
+                    <div className="p-4 sm:p-6 bg-[#E1E3DD] flex flex-col items-center justify-center flex-1">
+                      <div className="w-full max-h-[620px] overflow-y-auto scrollbar-thin rounded-lg border border-black/10 shadow-lg bg-white flex justify-center">
+                        <img
+                          src="/assets/projects/scentify/scentify-home-mockup.png"
+                          alt="Maquette de la landing page Scentify — Boutique et collection Aura"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
+                      <div className="mt-3 flex items-center gap-1.5 text-charcoal/70 font-mono text-[8px] uppercase tracking-wider text-center">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#384C43] animate-pulse" />
+                        {language === 'fr' ? 'Défilement de la page d’accueil' : 'Scroll inside homepage view'}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Maquette 02: Fiche Produit Sensorielle (Scrollable Browser Frame) */}
+                  <div className="border border-border-light rounded-xl overflow-hidden bg-bg-light shadow-sm flex flex-col">
+                    <div className="p-4 bg-charcoal/5 border-b border-border-light flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="flex gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
+                        </div>
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal-muted block font-bold ml-1">
+                          {language === 'fr' ? '03 / Fiche Produit Sensorielle' : '03 / Sensory Product Page'}
+                        </span>
+                      </div>
+                      <div className="px-2 py-0.5 rounded bg-charcoal/5 font-mono text-[8px] text-charcoal-muted hidden sm:block">
+                        scentify.com/menthe-poivree
+                      </div>
+                    </div>
+                    <div className="p-4 sm:p-6 bg-[#CDCAC1] flex flex-col items-center justify-center flex-1">
+                      <div className="w-full max-h-[620px] overflow-y-auto scrollbar-thin rounded-lg border border-black/10 shadow-lg bg-white flex justify-center">
+                        <img
+                          src="/assets/projects/scentify/scentify-product-page.png"
+                          alt="Fiche produit Scentify — Huile essentielle Menthe poivrée BIO"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
+                      <div className="mt-3 flex items-center gap-1.5 text-charcoal/70 font-mono text-[8px] uppercase tracking-wider text-center">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#384C43] animate-pulse" />
+                        {language === 'fr' ? 'Défilement de la fiche produit' : 'Scroll inside product view'}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1013,10 +1397,20 @@ export default function ProjectPage() {
                   {t.projectPage.outcome}
                 </h2>
               </div>
-              <div className="lg:col-span-8">
+              <div className="lg:col-span-8 space-y-4">
                 <p className="text-base sm:text-lg text-charcoal/80 leading-[1.65] font-light max-w-[680px]">
                   {pContent.outcome}
                 </p>
+                {pContent.learning && (
+                  <div className="pt-4 border-t border-border-light/60">
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-violet font-bold block mb-1">
+                      {language === 'fr' ? '// APPRENTISSAGE CLÉ' : '// KEY LEARNING'}
+                    </span>
+                    <p className="text-sm sm:text-base text-charcoal-muted leading-relaxed font-light max-w-[680px]">
+                      {pContent.learning}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </section>
@@ -1053,7 +1447,7 @@ export default function ProjectPage() {
         {/* ──────────────────────────────────────────────────────────── */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16 pt-10 border-t border-border-light">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-            
+
             {/* Prev Project */}
             <PrefetchLink
               to={prevProject.link}
@@ -1064,7 +1458,7 @@ export default function ProjectPage() {
                 {t.projectPage.prevProject}
               </span>
               <span className="font-syne font-bold text-base sm:text-lg text-charcoal group-hover:text-violet transition-colors duration-300 uppercase">
-                {prevProject.id === "02" ? "Abercrombie & Fitch" : prevProject.id === "01" ? "Groupe ADP" : prevProject.id === "03" ? "Civic Vote" : prevProject.slug.replace('-', ' ')}
+                {PROJECT_NAMES[prevProject.slug] || prevProject.slug.replace('-', ' ')}
               </span>
             </PrefetchLink>
 
@@ -1086,7 +1480,7 @@ export default function ProjectPage() {
                 <ArrowRight size={10} className="transform group-hover:translate-x-1 transition-transform duration-300" />
               </span>
               <span className="font-syne font-bold text-base sm:text-lg text-charcoal group-hover:text-violet transition-colors duration-300 uppercase">
-                {nextProject.id === "02" ? "Abercrombie & Fitch" : nextProject.id === "01" ? "Groupe ADP" : nextProject.id === "03" ? "Civic Vote" : nextProject.slug.replace('-', ' ')}
+                {PROJECT_NAMES[nextProject.slug] || nextProject.slug.replace('-', ' ')}
               </span>
             </PrefetchLink>
 

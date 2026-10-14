@@ -1,5 +1,5 @@
 // Dynamic detailed projects data for Hassen Arkab's Portfolio
-// Modifying this file will update the project grids, routes, details and templates across languages.
+// Modifying this file updates the project grids, routes, details and templates across languages.
 
 export const projectsData = [
   {
@@ -7,16 +7,14 @@ export const projectsData = [
     slug: "groupe-adp",
     year: "2024 — 2026",
     link: "/work/groupe-adp",
-    // Home card short descriptions
     shortDesc: {
       en: "Redesigning and structuring corporate interfaces to make institutional content clearer and more accessible.",
       fr: "Refonte et structuration d’interfaces corporate pour rendre des contenus institutionnels plus clairs et accessibles."
     },
-    // Placeholder visual parameters (Brutalist clean aesthetic)
     visual: {
       bgColor: "bg-charcoal",
       textColor: "text-violet",
-      type: "grid-lines", // Renders airport grid lines
+      type: "grid-lines",
       label: "ADP / CORP"
     },
     tags: ["UX/UI Design", "Design System", "Figma", "Accessibility"],
@@ -59,6 +57,63 @@ export const projectsData = [
   },
   {
     id: "02",
+    slug: "ffgolf",
+    year: "2025",
+    link: "/work/ffgolf",
+    shortDesc: {
+      en: "A digital landing page designed to highlight golf membership, clarify its benefits and make the golf universe more accessible and engaging.",
+      fr: "Landing page digitale pensée pour valoriser la licence, clarifier ses bénéfices et rendre l’univers du golf plus accessible et engageant."
+    },
+    visual: {
+      bgColor: "bg-[#0B2341]",
+      textColor: "text-white",
+      type: "golf-course",
+      label: "FFGOLF / FEDERATION"
+    },
+    tags: ["UX/UI", "Landing Page", "Sports", "Brand Experience", "Web Design"],
+    en: {
+      title: "ffgolf — Rethinking the digital experience around golf membership",
+      category: "UX/UI Design, Landing Page, Digital Experience",
+      role: "UX/UI Designer",
+      intro: "This project explores the design of a landing page for ffgolf, created to highlight golf membership, its benefits and the broader golf universe. The goal was to build a clear, dynamic and accessible experience that encourages users to discover, practice and join the ffgolf community.",
+      context: "ffgolf carries a universe that is both athletic, institutional and community-driven. A golf membership is more than a simple subscription: it gives access to practice, services, benefits and a sense of belonging. The project aimed to make these benefits more visible through an engaging interface.",
+      challenge: "How can ffgolf membership be made more attractive and easier to understand through a clear, sporty and accessible digital experience?",
+      goals: [
+        "Clarify the benefits of the membership.",
+        "Create a long-form page that is structured and easy to browse.",
+        "Highlight partners and the ffgolf ecosystem.",
+        "Promote news, the mobile app and the newsletter.",
+        "Build a modern, athletic and recognizable visual direction.",
+        "Encourage users to subscribe or renew their membership."
+      ],
+      process: "The work focused on content hierarchy, a smooth reading flow and a consistent visual system. The page combines informative sections, calls to action, sport imagery and editorial blocks to guide the user without overwhelming them.",
+      solution: "The solution is based on an immersive landing page, structured through strong visual blocks, organic shapes, golf photography and clear CTAs. The ffgolf blue anchors the identity, while the visual compositions bring movement and a more accessible feeling to the golf universe.",
+      outcome: "This project allowed me to work on a complete landing page with a strong focus on readability, scroll rhythm, content presentation and the connection between branding, UX and UI.",
+      learning: "ffgolf helped me explore how an interface can make an institutional subject more attractive without losing clarity or credibility."
+    },
+    fr: {
+      title: "ffgolf — Repenser l’expérience digitale autour de la licence",
+      category: "UX/UI Design, Landing Page, Expérience digitale",
+      role: "UX/UI Designer",
+      intro: "Ce projet explore la conception d’une landing page pour la ffgolf, pensée pour valoriser la licence, ses bénéfices et l’univers du golf auprès d’un public plus large. L’objectif était de créer une expérience claire, dynamique et accessible, capable de donner envie de pratiquer, de s’informer et de rejoindre la communauté ffgolf.",
+      context: "La ffgolf porte un univers à la fois sportif, institutionnel et communautaire. La licence représente bien plus qu’une simple adhésion : elle donne accès à une pratique, à des services, à des avantages et à un sentiment d’appartenance. Le projet avait pour ambition de rendre ces bénéfices plus visibles à travers une interface engageante.",
+      challenge: "Comment rendre la licence ffgolf plus attractive et compréhensible à travers une expérience digitale claire, sportive et accessible ?",
+      goals: [
+        "Clarifier les bénéfices de la licence.",
+        "Créer une page longue structurée et facile à parcourir.",
+        "Valoriser les partenaires et l’écosystème ffgolf.",
+        "Mettre en avant les actualités, l’application et la newsletter.",
+        "Construire une direction visuelle sportive, moderne et identifiable.",
+        "Donner envie de s’inscrire ou de reprendre une licence."
+      ],
+      process: "Le travail s’est concentré sur la hiérarchisation des contenus, la création d’un parcours de lecture fluide et la mise en place d’un système visuel cohérent. La page combine des sections informatives, des appels à l’action, des visuels sportifs et des blocs éditoriaux pour guider l’utilisateur sans le surcharger.",
+      solution: "La solution repose sur une landing page immersive, rythmée par des blocs visuels forts, des formes organiques, des photos de golf et des CTA clairs. Le bleu ffgolf structure l’identité, tandis que les compositions visuelles apportent du mouvement et une dimension plus accessible à l’univers du golf.",
+      outcome: "Ce projet m’a permis de travailler une landing page complète, avec une attention particulière portée à la lisibilité, au rythme de scroll, à la mise en valeur des contenus et à la cohérence entre branding, UX et UI.",
+      learning: "ffgolf m’a permis d’explorer la manière dont une interface peut rendre un sujet institutionnel plus attractif, sans perdre en clarté ni en crédibilité."
+    }
+  },
+  {
+    id: "03",
     slug: "abercrombie",
     year: "2024",
     link: "/work/abercrombie",
@@ -69,7 +124,7 @@ export const projectsData = [
     visual: {
       bgColor: "bg-bg-light",
       textColor: "text-charcoal",
-      type: "editorial-block", // Editorial look
+      type: "editorial-block",
       label: "A&F / NEW YORK"
     },
     tags: ["Branding", "Art Direction", "Visual Identity", "Typography"],
@@ -111,7 +166,7 @@ export const projectsData = [
     }
   },
   {
-    id: "03",
+    id: "04",
     slug: "civic-vote",
     year: "2024",
     link: "/work/civic-vote",
@@ -122,7 +177,7 @@ export const projectsData = [
     visual: {
       bgColor: "bg-violet",
       textColor: "text-charcoal",
-      type: "badge-stamp", // Civic stamp
+      type: "badge-stamp",
       label: "CIVIC / VOTE 2026"
     },
     tags: ["Civic Design", "UX/UI Design", "Campaign", "Framer Motion"],
@@ -164,59 +219,6 @@ export const projectsData = [
     }
   },
   {
-    id: "04",
-    slug: "okane",
-    year: "2024",
-    link: "/work/okane",
-    shortDesc: {
-      en: "A personal finance app designed to make money management clearer, less stressful and more visual.",
-      fr: "Application de gestion financière personnelle pensée pour rendre l’argent plus lisible, moins anxiogène et plus visuel."
-    },
-    visual: {
-      bgColor: "bg-charcoal",
-      textColor: "text-white",
-      type: "finance-chart", // Finance stats circles
-      label: "OKANE / FINANCE"
-    },
-    tags: ["UX/UI Design", "Product Design", "Finance App", "Data Viz"],
-    en: {
-      title: "Okane — Making money management simpler and more visual",
-      category: "UX/UI Design, Finance App, Product Design",
-      role: "Product Designer",
-      intro: "Okane is a personal finance app concept. The goal was to create a clear, reassuring and visual interface to help users better understand their money, expenses and habits.",
-      context: "Finance apps can quickly feel cold, complex or stressful. Okane aims to offer a more human and educational approach by making financial information easier to read and follow.",
-      challenge: "How can a financial interface inspire trust without feeling too complex or too cold?",
-      goals: [
-        "Simplify the reading of expenses.",
-        "Create clear visualizations.",
-        "Make the experience less stressful.",
-        "Highlight habits and goals.",
-        "Build a clean, reliable and pleasant interface."
-      ],
-      process: "The project focused on data structure, screen clarity, browsing flows and how to represent money in a simple way. I worked on readable components, summary cards and action-oriented screens.",
-      solution: "Okane offers an experience based on simple dashboards, visible categories, financial goals and easy-to-understand insights. The interface focuses on clarity, trust and reducing cognitive load.",
-      outcome: "This project allowed me to work on a sensitive topic where design needs to inform, reassure and guide users without overwhelming them."
-    },
-    fr: {
-      title: "Okane — Rendre la gestion d’argent plus simple et plus visuelle",
-      category: "UX/UI Design, Application finance, Product Design",
-      role: "Product Designer",
-      intro: "Okane est un concept d’application autour de la gestion financière personnelle. L’objectif était de créer une interface claire, rassurante et visuelle pour aider l’utilisateur à mieux comprendre son argent, ses dépenses et ses habitudes.",
-      context: "Les applications financières peuvent vite devenir froides, complexes ou anxiogènes. Okane cherche à proposer une approche plus humaine et plus pédagogique, en rendant les informations financières plus lisibles et plus faciles à suivre.",
-      challenge: "Comment concevoir une interface financière qui inspire confiance sans être trop complexe ni trop froide ?",
-      goals: [
-        "Simplifier la lecture des dépenses.",
-        "Créer des visualisations claires.",
-        "Rendre l’expérience moins anxiogène.",
-        "Mettre en avant les habitudes et objectifs.",
-        "Construire une interface sobre, fiable et agréable."
-      ],
-      process: "Le projet s’est concentré sur la structure des données, la clarté des écrans, les parcours de consultation et la manière de représenter l’argent de façon simple. J’ai travaillé sur des composants lisibles, des cartes de synthèse et des écrans orientés action.",
-      solution: "Okane propose une expérience basée sur des tableaux de bord simples, des catégories visibles, des objectifs financiers et des conseils faciles à comprendre. L’interface privilégie la clarté, la confiance et la réduction de la charge cognitive.",
-      outcome: "Ce projet m’a permis de travailler sur un sujet sensible où le design doit à la fois informer, rassurer et accompagner l’utilisateur sans le surcharger."
-    }
-  },
-  {
     id: "05",
     slug: "serinity",
     year: "2024",
@@ -228,7 +230,7 @@ export const projectsData = [
     visual: {
       bgColor: "bg-white",
       textColor: "text-emerald-600",
-      type: "organic-shapes", // Calm circles
+      type: "organic-shapes",
       label: "SERENITY / SMART HOME"
     },
     tags: ["UX/UI Design", "Smart Home", "Mobile App", "Energy Tracking"],
@@ -271,6 +273,59 @@ export const projectsData = [
   },
   {
     id: "06",
+    slug: "okane",
+    year: "2024",
+    link: "/work/okane",
+    shortDesc: {
+      en: "A personal finance app designed to make money management clearer, less stressful and more visual.",
+      fr: "Application de gestion financière personnelle pensée pour rendre l’argent plus lisible, moins anxiogène et plus visuel."
+    },
+    visual: {
+      bgColor: "bg-charcoal",
+      textColor: "text-white",
+      type: "finance-chart",
+      label: "OKANE / FINANCE"
+    },
+    tags: ["UX/UI Design", "Product Design", "Finance App", "Data Viz"],
+    en: {
+      title: "Okane — Making money management simpler and more visual",
+      category: "UX/UI Design, Finance App, Product Design",
+      role: "Product Designer",
+      intro: "Okane is a personal finance app concept. The goal was to create a clear, reassuring and visual interface to help users better understand their money, expenses and habits.",
+      context: "Finance apps can quickly feel cold, complex or stressful. Okane aims to offer a more human and educational approach by making financial information easier to read and follow.",
+      challenge: "How can a financial interface inspire trust without feeling too complex or too cold?",
+      goals: [
+        "Simplify the reading of expenses.",
+        "Create clear visualizations.",
+        "Make the experience less stressful.",
+        "Highlight habits and goals.",
+        "Build a clean, reliable and pleasant interface."
+      ],
+      process: "The project focused on data structure, screen clarity, browsing flows and how to represent money in a simple way. I worked on readable components, summary cards and action-oriented screens.",
+      solution: "Okane offers an experience based on simple dashboards, visible categories, financial goals and easy-to-understand insights. The interface focuses on clarity, trust and reducing cognitive load.",
+      outcome: "This project allowed me to work on a sensitive topic where design needs to inform, reassure and guide users without overwhelming them."
+    },
+    fr: {
+      title: "Okane — Rendre la gestion d’argent plus simple et plus visuelle",
+      category: "UX/UI Design, Application finance, Product Design",
+      role: "Product Designer",
+      intro: "Okane est un concept d’application autour de la gestion financière personnelle. L’objectif était de créer une interface claire, rassurante et visuelle pour aider l’utilisateur à mieux comprendre son argent, ses dépenses et ses habitudes.",
+      context: "Les applications financières peuvent vite devenir froides, complexes ou anxiogènes. Okane cherche à proposer une approche plus humaine et plus pédagogique, en rendant les informations financières plus lisibles et plus faciles à suivre.",
+      challenge: "Comment concevoir une interface financière qui inspire confiance sans être trop complexe ni trop froide ?",
+      goals: [
+        "Simplifier la lecture des dépenses.",
+        "Créer des visualisations claires.",
+        "Rendre l’expérience moins anxiogène.",
+        "Mettre en avant les habitudes et objectifs.",
+        "Construire une interface sobre, fiable et agréable."
+      ],
+      process: "Le projet s’est concentré sur la structure des données, la clarté des écrans, les parcours de consultation et la manière de représenter l’argent de façon simple. J’ai travaillé sur des composants lisibles, des cartes de synthèse et des écrans orientés action.",
+      solution: "Okane propose une expérience basée sur des tableaux de bord simples, des catégories visibles, des objectifs financiers et des conseils faciles à comprendre. L’interface privilégie la clarté, la confiance et la réduction de la charge cognitive.",
+      outcome: "Ce projet m’a permis de travailler sur un sujet sensible où le design doit à la fois informer, rassurer et accompagner l’utilisateur sans le surcharger."
+    }
+  },
+  {
+    id: "07",
     slug: "scentify",
     year: "2024",
     link: "/work/scentify",
@@ -279,10 +334,10 @@ export const projectsData = [
       fr: "Expérience e-commerce et mobile autour d’un diffuseur connecté mêlant parfum, bien-être et technologie."
     },
     visual: {
-      bgColor: "bg-charcoal",
-      textColor: "text-violet",
-      type: "diffuser-dials", // Sensor circles
-      label: "SCENTIFY / DIFFUSER"
+      bgColor: "bg-[#CDCAC1]",
+      textColor: "text-[#384C43]",
+      type: "diffuser-dials",
+      label: "SCENTIFY / DIFFUSEUR & E-COMMERCE"
     },
     tags: ["UX/UI Design", "E-commerce", "Connected Product", "IoT"],
     en: {
@@ -301,7 +356,8 @@ export const projectsData = [
       ],
       process: "I worked on brand universe, product pages, app screens, purchase flows and consistency across touchpoints. The challenge was to create a smooth experience between discovery, personalization and purchase.",
       solution: "Scentify offers an elegant and immersive interface with content centered on use cases: relaxation, focus, sleep or energy. The design highlights sensations, benefits and ease of use.",
-      outcome: "This project allowed me to connect branding, UX/UI and e-commerce into a complete experience that is both digital and sensory."
+      outcome: "This project allowed me to connect branding, UX/UI and e-commerce into a complete experience that is both digital and sensory.",
+      learning: "This project helped me bridge the physical sensory experience of an IoT device with intuitive, smooth and emotional mobile and e-commerce journeys."
     },
     fr: {
       title: "Scentify — Une expérience sensorielle entre parfum, bien-être et technologie",
@@ -319,115 +375,8 @@ export const projectsData = [
       ],
       process: "J’ai travaillé sur l’univers de marque, les fiches produits, les écrans d’application, les parcours d’achat et la cohérence entre les différents supports. L’enjeu était de créer une expérience fluide entre découverte, personnalisation et achat.",
       solution: "Scentify propose une interface élégante et immersive, avec des contenus centrés sur les usages : relaxation, concentration, sommeil ou énergie. Le design met en avant les sensations, les bénéfices et la simplicité d’utilisation.",
-      outcome: "Ce projet m’a permis de relier branding, UX/UI et e-commerce dans une expérience complète, à la fois digitale et sensorielle."
-    }
-  },
-  {
-    id: "07",
-    slug: "muse",
-    year: "2025",
-    link: "/work/muse",
-    shortDesc: {
-      en: "An AI-powered styling app to build outfits, analyze a wardrobe and keep control over recommendations.",
-      fr: "Application IA de stylisme personnel pour composer des tenues, analyser son dressing et garder le contrôle sur les recommandations."
-    },
-    visual: {
-      bgColor: "bg-violet",
-      textColor: "text-charcoal",
-      type: "fashion-frames", // Fashion blocks
-      label: "MUSE / AI STYLIST"
-    },
-    tags: ["UX/UI Design", "AI Product", "Fashion Tech", "Mobile App"],
-    en: {
-      title: "MUSE — Your personal AI stylist and color consultant",
-      category: "UX/UI Design, AI Product, Fashion Tech",
-      role: "Product Designer",
-      intro: "MUSE is an app concept that uses artificial intelligence to help users build outfits, understand their color palette and make better use of their existing wardrobe.",
-      context: "Many users own clothes they do not always know how to combine. Lack of inspiration, time or confidence can make choosing an outfit difficult. MUSE offers personalized guidance through AI.",
-      challenge: "How can AI be integrated into a fashion experience without removing user control and creativity?",
-      goals: [
-        "Create a digital wardrobe.",
-        "Suggest personalized outfits.",
-        "Integrate color analysis.",
-        "Keep the experience clear and controllable.",
-        "Make AI useful, understandable and non-intrusive."
-      ],
-      process: "The project was built around key uses: scanning a wardrobe, receiving recommendations, creating looks and adjusting suggestions according to style, mood or context. I worked on flows, key screens and the role of AI in the interface.",
-      solution: "MUSE offers an experience where AI acts as a creative assistant. It suggests, explains and guides, but always lets the user decide. The interface focuses on personalization, readability and enjoyment.",
-      outcome: "This project allowed me to explore a key UX question: how to balance automation, personalization and user control in an AI-powered interface."
-    },
-    fr: {
-      title: "MUSE — Ton IA styliste et coloriste personnelle",
-      category: "UX/UI Design, Produit IA, Fashion Tech",
-      role: "Product Designer",
-      intro: "MUSE est un concept d’application qui utilise l’intelligence artificielle pour aider l’utilisateur à mieux composer ses tenues, comprendre sa colorimétrie et exploiter son dressing existant.",
-      context: "Beaucoup d’utilisateurs possèdent des vêtements qu’ils n’arrivent pas toujours à associer. Le manque d’inspiration, de temps ou de confiance peut rendre le choix d’une tenue compliqué. MUSE propose un accompagnement personnalisé à travers l’IA.",
-      challenge: "Comment intégrer l’IA dans une expérience mode sans retirer le contrôle et la créativité à l’utilisateur ?",
-      goals: [
-        "Créer un dressing digital.",
-        "Proposer des tenues personnalisées.",
-        "Intégrer la colorimétrie.",
-        "Garder une expérience claire et contrôlable.",
-        "Rendre l’IA utile, compréhensible et non intrusive."
-      ],
-      process: "Le projet s’est construit autour des usages : scanner son dressing, recevoir des recommandations, créer des looks et ajuster les propositions selon son style, son humeur ou son contexte. J’ai travaillé sur les parcours, les écrans clés et la place de l’IA dans l’interface.",
-      solution: "MUSE propose une expérience où l’IA agit comme un assistant créatif. Elle suggère, explique et accompagne, mais laisse toujours l’utilisateur décider. L’interface met l’accent sur la personnalisation, la lisibilité et le plaisir d’usage.",
-      outcome: "Ce projet m’a permis d’explorer une question centrale de l’UX actuelle : comment concilier automatisation, personnalisation et contrôle utilisateur dans une interface intégrant l’IA."
-    }
-  },
-  {
-    id: "08",
-    slug: "alya",
-    year: "2026",
-    link: "/work/alya",
-    shortDesc: {
-      en: "A rebranding and digital experience for a fitness brand focused on AI coaching, progress and wellness.",
-      fr: "Rebranding et expérience digitale pour une marque fitness centrée sur le coaching IA, la progression et le bien-être."
-    },
-    visual: {
-      bgColor: "bg-charcoal",
-      textColor: "text-violet",
-      type: "fitness-rings", // Progress rings
-      label: "ALYA / MIND MOVEMENT"
-    },
-    tags: ["UX/UI Design", "Fitness", "Brand Experience", "AI Coaching"],
-    en: {
-      title: "ALYA — Reinventing the fitness experience through wellness and AI coaching",
-      category: "UX/UI Design, Fitness, Brand Experience",
-      role: "UX/UI Designer, Strategist",
-      intro: "ALYA is a rebranding and digital experience project for a fictional fitness brand. The goal was to reposition the brand around sport, wellness, progress, recovery and intelligent coaching.",
-      context: "In a highly competitive fitness market, users are not only looking for a gym. They expect a complete experience: motivation, tracking, community, recovery, advice and personalization.",
-      challenge: "How can a classic fitness brand be transformed into a more premium, personalized and engaging experience?",
-      goals: [
-        "Reposition the brand.",
-        "Create a more complete experience.",
-        "Integrate AI coaching.",
-        "Highlight progress and recovery.",
-        "Strengthen community.",
-        "Design clear digital journeys."
-      ],
-      process: "The work focused on brand strategy, personas, user journeys, key features, app screens and how data can improve the experience without becoming intrusive.",
-      solution: "ALYA offers an experience centered on support: progress tracking, personalized recommendations, AI coaching, recovery, wellness partners and community. The design aims to balance sport energy with a strong sense of trust.",
-      outcome: "This project allowed me to connect strategy, UX/UI, business model and brand experience in a complete case study close to a real product challenge."
-    },
-    fr: {
-      title: "ALYA — Réinventer l’expérience fitness entre sport, bien-être et coaching IA",
-      category: "UX/UI Design, Fitness, Expérience de marque",
-      role: "UX/UI Designer, Stratège",
-      intro: "ALYA est un projet de rebranding et d’expérience digitale pour une salle de sport fictive. L’objectif était de repositionner la marque autour du sport, du bien-être, de la progression, de la récupération et de l’accompagnement intelligent.",
-      context: "Dans un marché du fitness très concurrentiel, les utilisateurs ne recherchent pas seulement une salle de sport. Ils attendent une expérience complète : motivation, suivi, communauté, récupération, conseils et personnalisation.",
-      challenge: "Comment transformer une marque de fitness classique en une expérience plus premium, plus personnalisée et plus engageante ?",
-      goals: [
-        "Repositionner la marque.",
-        "Créer une expérience plus complète.",
-        "Intégrer le coaching IA.",
-        "Valoriser la progression et la récupération.",
-        "Renforcer le sentiment de communauté.",
-        "Concevoir des parcours digitaux clairs."
-      ],
-      process: "Le travail a porté sur la stratégie de marque, les personas, les parcours utilisateur, les fonctionnalités clés, les écrans de l’application et la manière dont la donnée peut améliorer l’expérience sans devenir utile ou intrusive.",
-      solution: "ALYA propose une expérience centrée sur l’accompagnement : suivi de progression, recommandations personnalisées, coaching IA, récupération, partenaires bien-être et communauté. Le design cherche à créer un équilibre entre énergie sportive et sensation de confiance.",
-      outcome: "Ce projet m’a permis de lier stratégie, UX/UI, business model et expérience de marque dans un cas complet, proche d’une problématique produit réelle."
+      outcome: "Ce projet m’a permis de relier branding, UX/UI et e-commerce dans une expérience complète, à la fois digitale et sensorielle.",
+      learning: "Ce projet m’a permis de concilier l’expérience sensorielle physique d’un objet connecté avec des parcours e-commerce et mobile intuitifs, fluides et émotionnels."
     }
   }
 ];

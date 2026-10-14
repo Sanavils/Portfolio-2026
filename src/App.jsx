@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -74,6 +74,8 @@ function AnimatedRoutes() {
         <Routes location={location}>
           <Route path="/" element={<HomePage />} />
           <Route path="/work" element={<WorkPage />} />
+          <Route path="/work/muse" element={<Navigate to="/work" replace />} />
+          <Route path="/work/alya" element={<Navigate to="/work" replace />} />
           <Route path="/work/:slug" element={<ProjectPage />} />
           <Route path="/playground" element={<PlaygroundPage />} />
           <Route

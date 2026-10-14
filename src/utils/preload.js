@@ -65,10 +65,12 @@ export const preloadRoute = (path) => {
 export const preloadCriticalImages = () => {
   const criticalImages = [
     '/assets/projects/groupe-adp/adp-logo.png',
+    '/assets/projects/ffgolf/ffgolf-logo.png',
     '/assets/projects/abercrombie/abercrombie-logo.png',
     '/assets/projects/civic-vote/civic-vote-hero.png',
     '/assets/projects/okane/okane-logo.png',
     '/assets/projects/serenity/serenity-logo.png',
+    '/assets/projects/scentify/scentify-brand-cover.png',
   ];
   criticalImages.forEach(preloadImage);
 };

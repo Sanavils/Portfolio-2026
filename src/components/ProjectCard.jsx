@@ -13,20 +13,18 @@ export default function ProjectCard({ project, index, className }) {
     switch (idx) {
       case 0: // ADP - Full width
         return 'col-span-12 mb-16 lg:mb-24';
-      case 1: // Abercrombie - 50% left
+      case 1: // ffgolf - 50% left
         return 'col-span-12 md:col-span-6 mb-16 lg:mb-24 md:pr-6';
-      case 2: // Civic Vote - 50% right
+      case 2: // Abercrombie - 50% right
         return 'col-span-12 md:col-span-6 mb-16 lg:mb-24 md:pl-6 md:pt-16';
-      case 3: // Okane - 60% left
+      case 3: // Civic Vote - 60% left
         return 'col-span-12 md:col-span-7 mb-16 lg:mb-24 md:pr-8';
       case 4: // Serinity - 40% right
         return 'col-span-12 md:col-span-5 mb-16 lg:mb-24 md:pl-4 md:pt-8';
-      case 5: // Scentify - Full width
-        return 'col-span-12 mb-16 lg:mb-24';
-      case 6: // MUSE - 40% left
-        return 'col-span-12 md:col-span-5 mb-16 lg:mb-24 md:pr-4';
-      case 7: // ALYA - 60% right
-        return 'col-span-12 md:col-span-7 mb-16 lg:mb-24 md:pl-8 md:pt-12';
+      case 5: // Okane - 50% left
+        return 'col-span-12 md:col-span-6 mb-16 lg:mb-24 md:pr-6';
+      case 6: // Scentify - 50% right
+        return 'col-span-12 md:col-span-6 mb-16 lg:mb-24 md:pl-6 md:pt-12';
       default:
         return 'col-span-12 mb-16';
     }
@@ -37,14 +35,18 @@ export default function ProjectCard({ project, index, className }) {
     switch (slug) {
       case 'groupe-adp':
         return '/assets/projects/groupe-adp/adp-logo.png';
+      case 'ffgolf':
+        return '/assets/projects/ffgolf/ffgolf-logo.png';
       case 'abercrombie':
         return '/assets/projects/abercrombie/abercrombie-logo.png';
       case 'civic-vote':
         return '/assets/projects/civic-vote/civic-vote-hero.png';
-      case 'okane':
-        return '/assets/projects/okane/okane-logo.png';
       case 'serinity':
         return '/assets/projects/serenity/serenity-logo.png';
+      case 'okane':
+        return '/assets/projects/okane/okane-logo.png';
+      case 'scentify':
+        return '/assets/projects/scentify/scentify-brand-cover.png';
       default:
         return null;
     }
@@ -63,6 +65,20 @@ export default function ProjectCard({ project, index, className }) {
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          />
+        </div>
+      );
+    }
+
+    if (proj.slug === 'ffgolf') {
+      return (
+        <div className="absolute inset-0 bg-white flex items-center justify-center overflow-hidden">
+          <img 
+            src="/assets/projects/ffgolf/ffgolf-logo.png" 
+            alt="ffgolf — Logo officiel et identité visuelle" 
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
         </div>
       );
@@ -119,6 +135,20 @@ export default function ProjectCard({ project, index, className }) {
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          />
+        </div>
+      );
+    }
+
+    if (proj.slug === 'scentify') {
+      return (
+        <div className="absolute inset-0 bg-[#CDCAC1] flex items-center justify-center overflow-hidden">
+          <img 
+            src="/assets/projects/scentify/scentify-brand-cover.png" 
+            alt="Scentify — Diffuseurs connectés et huiles essentielles" 
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
         </div>
       );
@@ -236,7 +266,7 @@ export default function ProjectCard({ project, index, className }) {
             </div>
             <div className="flex justify-between items-baseline z-10">
               <span className="font-mono text-[9px] uppercase tracking-widest text-violet/70">IOT / DIFFUSER</span>
-              <span className="font-mono text-[9px] uppercase tracking-widest text-violet/70">06</span>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-violet/70">07</span>
             </div>
             <div className="font-syne font-black text-4xl sm:text-5xl text-violet leading-none select-none z-10 text-center uppercase">
               SCENTIFY
@@ -246,41 +276,21 @@ export default function ProjectCard({ project, index, className }) {
             </div>
           </div>
         );
-      case 'fashion-frames':
-        return (
-          <div className={`absolute inset-0 ${bgColor} flex flex-col justify-between p-8 overflow-hidden`}>
-            <div className="absolute inset-8 border border-charcoal/20 flex flex-col items-center justify-center">
-              <div className="w-full h-[1px] bg-charcoal/10" />
-              <span className="font-mono text-[8px] my-1 text-charcoal/60 uppercase tracking-widest">AI / CURATOR</span>
-              <div className="w-full h-[1px] bg-charcoal/10" />
-            </div>
-            <div className="flex justify-between items-baseline z-10">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal/50">FASHION / TECH</span>
-              <span className="font-mono text-[9px] uppercase tracking-widest text-charcoal/50">07</span>
-            </div>
-            <div className="font-syne font-extrabold text-4xl sm:text-5xl text-charcoal leading-none select-none z-10 text-center uppercase">
-              MUSE
-            </div>
-            <div className="font-mono text-[9px] uppercase tracking-widest text-charcoal/70 z-10">
-              {label}
-            </div>
-          </div>
-        );
-      case 'fitness-rings':
+      case 'golf-course':
         return (
           <div className={`absolute inset-0 ${bgColor} flex flex-col justify-between p-8 overflow-hidden`}>
             <div className="absolute inset-0 flex items-center justify-center opacity-30">
-              <div className="w-36 h-36 border-4 border-violet rounded-full absolute" />
-              <div className="w-24 h-24 border-2 border-violet/60 rounded-full absolute" />
+              <div className="w-44 h-44 border border-white/20 rounded-full absolute" />
+              <div className="w-28 h-28 border border-white/40 rounded-full absolute" />
             </div>
             <div className="flex justify-between items-baseline z-10">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-violet">FITNESS / SYSTEM</span>
-              <span className="font-mono text-[9px] uppercase tracking-widest text-violet">08</span>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-white/70">SPORTS / FEDERATION</span>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-white/70">02</span>
             </div>
-            <div className="font-syne font-black text-4xl sm:text-6xl text-violet leading-none select-none z-10 text-center uppercase">
-              ALYA
+            <div className="font-syne font-black text-4xl sm:text-5xl text-white leading-none select-none z-10 text-center uppercase">
+              FFGOLF
             </div>
-            <div className="font-mono text-[9px] uppercase tracking-widest text-violet/60 z-10 text-right">
+            <div className="font-mono text-[9px] uppercase tracking-widest text-white/60 z-10 text-right">
               {label}
             </div>
           </div>
@@ -290,13 +300,17 @@ export default function ProjectCard({ project, index, className }) {
     }
   };
 
-  const projectTitle = project.id === "02" 
-    ? "Abercrombie & Fitch" 
-    : project.id === "01" 
-      ? "Groupe ADP" 
-      : project.id === "03" 
-        ? "Civic Vote" 
-        : project.slug.replace('-', ' ');
+  const PROJECT_NAMES = {
+    'groupe-adp': 'Groupe ADP',
+    'ffgolf': 'ffgolf',
+    'abercrombie': 'Abercrombie & Fitch',
+    'civic-vote': 'Civic Vote',
+    'serinity': 'Serinity',
+    'okane': 'Okane',
+    'scentify': 'Scentify',
+  };
+
+  const projectTitle = PROJECT_NAMES[project.slug] || project.slug.replace('-', ' ');
 
   return (
     <motion.div

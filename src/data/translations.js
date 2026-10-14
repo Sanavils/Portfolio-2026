@@ -18,7 +18,7 @@ export const translations = {
       titleLine3: "AND I’M A UX/UI DESIGNER",
       editorial: "EVERYTHING STARTS WITH A LINE — THE FIRST MARK, THE ORIGIN OF AN IDEA. FROM THIS SINGLE PATH, CONCEPTS TAKE SHAPE, EVOLVING INTO DIGITAL EXPERIENCES THAT FEEL CLEAR, USEFUL AND MEMORABLE.",
       secondary: "Design is a continuous movement. Each project starts with a simple idea, then grows through research, structure, visual exploration and iteration. My work connects interface design, brand identity and user experience to create digital products that feel intentional and easy to use.",
-      ctaWork: "View project",
+      ctaWork: "View case study",
       ctaContact: "Contact me",
       ctaPlayground: "Discover Playground"
     },
@@ -30,7 +30,7 @@ export const translations = {
       ctaAll: "VIEW ALL PROJECTS",
       ctaEmail: "CONTACT ME",
       caseStudy: "Case Study",
-      viewBtn: "View project"
+      viewBtn: "View case study"
     },
     aboutSection: {
       number: "02",
